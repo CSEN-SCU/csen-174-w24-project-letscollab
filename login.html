@@ -19,14 +19,19 @@
             <!-- image -->
             <img src="icon.png" alt="icon" />
             <h1>LetsCollab</h1>
-            <input id="one" type="search" placeholder="username" />
-            <input id="two" type="password" placeholder="password" />
+            <input id="one" type="search" placeholder="Username" />
+            <br>
+            <input id="two" type="password" placeholder="Password" />
+            <br>
+            <button type="button" onclick="fn()">Login/Register</button>
             <script>
-                var value = document.getElementById("one").value;
-                document.write(value);
+                function fn() {
+                    var value = document.getElementById("one").value;
+                    document.getElementById("demo").innerHTML = "Your username is " + value;
+                }
             </script>
-            <p>login/register</p>
+            <p id="demo">login/register</p>
         </header>
     </main>
 </body>
-<
+</html>
