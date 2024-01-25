@@ -26,11 +26,12 @@
             <button type="button" onclick="fn()">Login/Register</button>
             <script>
                 function fn() {
-                    var value = document.getElementById("one").value;
-                    document.getElementById("demo").innerHTML = "Your username is " + value;
+                    document.getElementById("demo").innerHTML = "Your username is " + document.getElementById("one").value;
+                    document.getElementById("demo2").innerHTML = "Your password is " + document.getElementById("two").value;
                 }
             </script>
             <p id="demo">login/register</p>
+            <p id="demo2"></p>
         </header>
     </main>
 </body>
