@@ -19,7 +19,12 @@
             <!-- image -->
             <img src="icon.png" alt="icon" />
             <h1>LetsCollab</h1>
-            <input type="search" placeholder="username" />
+            <input id="one" type="search" placeholder="username" />
+            <input id="two" type="password" placeholder="password" />
+            <script>
+                var value = document.getElementById("one").value;
+                document.write(value);
+            </script>
             <p>login/register</p>
         </header>
     </main>
