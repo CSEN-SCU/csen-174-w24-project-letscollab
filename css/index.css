@@ -1,0 +1,21 @@
+html, body
+{
+    background-color: var(--background-color);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+}
+
+main
+{
+    background-color: var(--white);
+    border-radius: 1rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    padding: 2rem 4rem;
+    text-align: center;
+    width: 50%;
+}
