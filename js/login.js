@@ -13,8 +13,8 @@ $(function() {
     }
     $("#submitbutton").click(
         function() {
-            var username = $('#username').prop('value');
-            var password = $('#password').prop('value');
+            let username = $('#username').prop('value');
+            let password = $('#password').prop('value');
             if (username === "") {
                 alert("You did not enter a username!");
             } else if (password === "") {
@@ -25,7 +25,6 @@ $(function() {
                         console.error('Error loading JSON:', error);
                     } else {
                         console.log('JSON data loaded:', jsonData);
-                        //alert((userData.password === password) ? "Correct password" : "Wrong password");
                         if (jsonData[username].password === password) {
                             window.location.href = "home.html";
                         } else {
