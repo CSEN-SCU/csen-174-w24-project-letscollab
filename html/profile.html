@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>LetsCollab: Profile</title>
-    <link rel="stylesheet" type="text/css" href="base.css">
+    <link rel="stylesheet" type="text/css" href="../css/base.css">
+    <link rel="stylesheet" type="text/css" href="../css/profile.css">
 </head>
 
 <body>
@@ -15,12 +16,56 @@
     </nav>
 
     <main>
-        <header>
-            <!-- image -->
-            <img src="icon.png" alt="icon" />
-            <h1>LetsCollab</h1>
-            <p>For SCU students looking to build project experience WHO are looking for peers with unique skillsets</p>
-        </header>
+        <header>Edit Profile</header>
+
+        <div id="usericon">
+            <p>ZC</p>
+        </div>
+
+        <form id="userform">
+            <div class="userinfo">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="name" placeholder="example@scu.edu" />
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" />
+
+                <label for="showpassword">Show Password:</label>
+                <input type="checkbox" id="showpassword" name="showpassword" />
+            </div>
+
+            <div class="userinfo">
+                <label for="firstname">First:</label>
+                <input type="text" id="firstname" name="name" placeholder="John" />
+
+                <label for="lastname">Last:</label>
+                <input type="text" id="lastname" name="name" placeholder="Doe" />
+            </div>
+
+            <div class="userinfo">
+                <label for="year">Year:</label>
+                <select name="year" id="year">
+                    <option value="Freshman">UG Freshman</option>
+                    <option value="Sophomore">UG Sophomore</option>
+                    <option value="Junior">UG Junior</option>
+                    <option value="Senior">UG Senior</option>
+                    <option value="Graduate">Graduate</option>
+                </select>
+            </div>
+
+            <div class="userinfo">
+                <label for="description">About Me:</label>
+                <textarea name="description" id="description" rows="5" cols="25" spellcheck="true" placeholder="Tell us something about you!"></textarea>
+            </div>
+
+            <div class="userinfo">
+                <label for="skills">Skills:</label>
+                <div id="skills">
+                    <p>Skill 1</p>
+                    <p>Skill 2</p>
+                </div>
+            </div>
+        </form>
     </main>
 </body>
 </html>

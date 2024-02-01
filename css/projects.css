@@ -1,0 +1,111 @@
+header ul
+{
+    display: flex;
+    flex-direction: row;
+
+    li
+    {
+        background-color: gray;
+        color: var(--white);
+        cursor: pointer;
+        padding: .5rem;
+        text-wrap: nowrap;
+    }
+}
+
+.active
+{
+    background-color: var(--scuRed);
+    text-decoration: solid underline;
+}
+
+
+section
+{
+    background-color: #ccc;
+    border-radius: 1rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    height: 16rem;
+    justify-content: start;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+}
+
+figure
+{
+    box-sizing: border-box;
+    line-height: 1.5;
+    height: 100%;
+    margin: 0;
+    padding: 2rem;
+    width: 80%;
+
+    *
+    {
+        margin: 0;
+        padding: 0;
+    }
+
+    ul
+    {
+        display: flex;
+        flex-direction: row;
+        gap: .5rem;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+
+        li
+        {
+            background-color: var(--white);
+            border-radius: .5rem;
+            box-sizing: border-box;
+            padding: 0.2rem 1rem;
+
+        }
+    }
+}
+
+.description
+{
+    margin: 1rem 0;
+}
+
+aside
+{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
+    padding: 1rem;
+    width: 20%;
+
+    *
+    {
+        margin: 0;
+        padding: 0;
+    }
+}
+
+.interestButton
+{
+    background-color: var(--white);
+    border-radius: 1rem;
+    padding: 1rem;
+
+    transition: all .5s;
+}
+
+.interestButton:hover
+{
+    background-color: var(--background-color);
+}
+
+.peopleInterested
+{
+    font-style: italic;
+}
