@@ -5,23 +5,35 @@ function do() {
 // external.js or in another <script> tag in HTML
 document.getElementById('submitbutton').addEventListener('click', do);*/
 $(function() {
-    var users = new Map();
+    function loadJSON(callback) {
+        fetch('../data/data.json')
+            .then(response => response.json())
+            .then(data => callback(null, data))
+            .catch(error => callback(error, null));
+    }
     $("#submitbutton").click(
         function() {
-            //alert("Hello " + $('#username').prop("value"));
             var username = $('#username').prop('value');
             var password = $('#password').prop('value');
-            //var message = "Your username is " + username;
-            //var message2 = "Your password is " + password;
-            if (users.has(username)) {
-                if (users.get(username) !== password) {
-                    alert("Incorrect password. Try again.");
-                } else {
-                    alert("You logged in as " + username + " and your password is " + "I ain't telling you shit".substring(0, password.length));
-                }
-            } else {
-                alert("Your account has been added");
-                users.set(username, password);
+            if (username === "") {
+                alert("You did not enter a username!");
+            } else if (password === "") {
+                alert("You did not enter a password!");
+            } else  {
+                loadJSON((error, jsonData) => {
+                    if (error) {
+                        console.error('Error loading JSON:', error);
+                    } else {
+                        console.log('JSON data loaded:', jsonData);
+                        //alert((userData.password === password) ? "Correct password" : "Wrong password");
+                        if (jsonData[username].password === password) {
+                            window.location.href = "home.html";
+                        } else {
+                            alert("Incorrect password for " + username);
+                            $('#password').val("");
+                        }
+                    }
+                });
             }
         }
     )
