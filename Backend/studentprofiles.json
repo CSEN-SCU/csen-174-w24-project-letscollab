@@ -1,0 +1,52 @@
+{
+  "john.doe@scu.edu": {
+      "FirstName": "John",
+      "LastName": "Doe",
+      "Password": "jd12345",
+      "Skills": ["Python", "Data Analysis", "Machine Learning"],
+      "Description": "Senior computer science student interested in AI and data science.",
+      "Year": "Senior",
+      "Major": "Computer Science",
+      "ProjectIDs": ["P1001"]
+  },
+  "alice.smith@scu.edu": {
+      "FirstName": "Alice",
+      "LastName": "Smith",
+      "Password": "as12345",
+      "Skills": ["Web Development", "JavaScript", "React"],
+      "Description": "Junior year student with a passion for front-end development.",
+      "Year": "Junior",
+      "Major": "Software Engineering",
+      "ProjectIDs": ["P1002"]
+  },
+  "mark.brown@scu.edu": {
+      "FirstName": "Mark",
+      "LastName": "Brown",
+      "Password": "mb12345",
+      "Skills": ["C++", "Embedded Systems", "Robotics"],
+      "Description": "Sophomore interested in robotics and IoT devices.",
+      "Year": "Sophomore",
+      "Major": "Electrical Engineering",
+      "ProjectIDs": ["P1003"]
+  },
+  "emily.jones@scu.edu": {
+      "FirstName": "Emily",
+      "LastName": "Jones",
+      "Password": "ej12345",
+      "Skills": ["Graphic Design", "Adobe Photoshop", "Illustrator"],
+      "Description": "Graphic design major with an interest in UI/UX.",
+      "Year": "Senior",
+      "Major": "Graphic Design",
+      "ProjectIDs": ["P1004"]
+  },
+  "sarah.green@scu.edu": {
+      "FirstName": "Sarah",
+      "LastName": "Green",
+      "Password": "sg12345",
+      "Skills": ["Python", "Django", "REST APIs"],
+      "Description": "Graduate student specializing in backend development and APIs.",
+      "Year": "Graduate",
+      "Major": "Computer Science",
+      "ProjectIDs": ["P1005"]
+  }
+}
