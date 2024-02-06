@@ -1,0 +1,90 @@
+form
+{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 1rem 0;
+}
+
+figure
+{
+    /* background-color: aqua; */
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    margin: 0;
+}
+
+section
+{
+    /* background-color: yellow; */
+    min-width: 10%;
+    max-width: 30%;
+}
+
+section *
+{
+    padding: 0;
+    width: 100%;
+}
+
+label
+{
+    text-wrap: nowrap;
+}
+
+#addSkillButton
+{
+    background-color: var(--scuRed);
+    color: var(--white);
+    cursor: pointer;
+    margin: 0;
+    padding: .2rem;
+    text-align: center;
+}
+
+.skills
+{
+    gap: 1rem;
+}
+
+.skill
+{
+    background-color: var(--gray);
+    margin: 0;
+    padding: .2rem .4rem;
+    cursor: pointer;
+}
+
+.skill:hover
+{
+    background-color: var(--background-color);
+}
+
+footer ul
+{
+    display: flex;
+    flex-direction: row;
+    gap: .5rem;
+}
+
+footer ul li
+{
+    color: var(--white);
+    cursor: pointer;
+    /* padding: .5rem; */
+    text-wrap: nowrap;
+}
+
+footer ul li a
+{
+    background-color: var(--background-color);
+    color: var(--white);
+    padding: 0.5rem;
+    text-decoration: none;
+}
+
+#saveButton
+{
+    background-color: olive;
+}
