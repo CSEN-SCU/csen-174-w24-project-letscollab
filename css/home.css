@@ -1,0 +1,36 @@
+ul
+{
+    display: flex;
+    flex-direction: column;
+    gap: .8rem;
+    list-style-type: none;
+    margin: 1rem 0;
+    padding: 0;
+
+}
+
+ul li
+{
+    display: flex;
+    text-align: center;
+}
+
+li a
+{
+    background-color: var(--scuRed);
+    border-radius: 1rem;
+    box-sizing: border-box;
+    color: var(--white);
+    font-size: 16pt;
+    height: 100%;
+    padding: 1.5rem 0;
+    /* padding: 1rem; */
+    text-decoration: none;
+    transition: all 0.5s;
+    width: 100%;
+}
+
+li a:hover
+{
+    background-color: var(--black);
+}
