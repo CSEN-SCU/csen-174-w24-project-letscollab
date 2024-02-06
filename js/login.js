@@ -1,6 +1,6 @@
 $(function() {
     function loadJSON(callback) {
-        fetch('../data/data.json')
+        fetch('../Backend/studentprofiles.json')
             .then(response => response.json())
             .then(data => callback(null, data))
             .catch(error => callback(error, null));
@@ -19,7 +19,7 @@ $(function() {
                         console.error('Error loading JSON:', error);
                     } else {
                         console.log('JSON data loaded:', jsonData);
-                        if (jsonData[username].password === password) {
+                        if (jsonData[username].Password === password) {
                             window.location.href = "home.html";
                         } else {
                             alert("Incorrect password for " + username);
