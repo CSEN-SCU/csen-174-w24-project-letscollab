@@ -10,8 +10,7 @@ fs.readFile("./projects.json")
   })
   .catch((err) => {
     if (err.code === "ENOENT") {
-      //log.warn("No storage.json file, creating.");
-      fs.writeFile("./storage.json", JSON.stringify({}));
+      fs.writeFile("./projects.json", JSON.stringify({}));
     }
   });
 
