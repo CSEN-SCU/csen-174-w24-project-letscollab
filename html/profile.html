@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>LetsCollab: Profile</title>
@@ -11,24 +11,28 @@
     <nav>
         <!-- four navigation links -->
         <ul>
-            <li><a href="index.html">home</a></li>
+            <li><a href="index.html">← Back</a></li>
         </ul>
     </nav>
 
     <main>
-        <header>Edit Profile</header>
+        <div id="head">
+            <header>Edit Profile</header>
 
-        <div id="usericon">
-            <p>ZC</p>
+            <div id="usericon">
+                <p>JD</p>
+            </div>
         </div>
 
         <form id="userform">
             <div class="userinfo">
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="name" placeholder="example@scu.edu" />
+                <input type="email" id="email" name="name" placeholder="example@test.edu" />
 
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" />
+                <div id="passwordinputs">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" placeholder="••••••••••"/>
+                </div>
 
                 <label for="showpassword">Show Password:</label>
                 <input type="checkbox" id="showpassword" name="showpassword" />
@@ -55,15 +59,48 @@
 
             <div class="userinfo">
                 <label for="description">About Me:</label>
-                <textarea name="description" id="description" rows="5" cols="25" spellcheck="true" placeholder="Tell us something about you!"></textarea>
+                <textarea name="description" id="description" rows="5" cols="50" spellcheck="true" placeholder="Tell us something about you!"></textarea>
             </div>
 
             <div class="userinfo">
                 <label for="skills">Skills:</label>
                 <div id="skills">
-                    <p>Skill 1</p>
-                    <p>Skill 2</p>
+                    <div class="skill selected">
+                        <p class="skillicon cs">•</p>
+                        <p class="skillname">Python</p>
+                    </div>
+                    <div class="skill selected">
+                        <p class="skillicon business">•</p>
+                        <p class="skillname">Business</p>
+                    </div>
+                    <div class="skill selected">
+                        <p class="skillicon cs">•</p>
+                        <p class="skillname">C++</p>
+                    </div>
+                    <div class="skill">
+                        <p class="skillicon cs">•</p>
+                        <p class="skillname">Java</p>
+                    </div>
+                    <div class="skill">
+                        <p class="skillicon cs">•</p>
+                        <p class="skillname">JavaScript</p>
+                    </div>
+                    <div class="skill">
+                        <p class="skillicon cs">•</p>
+                        <p class="skillname">Data Structures</p>
+                    </div>
+                    <div class="skill">
+                        <p class="skillicon business">•</p>
+                        <p class="skillname">Fortnite</p>
+                    </div>
                 </div>
+            </div>
+
+            <br/>
+            <br/>
+
+            <div class="userinfo">
+                <input type="submit" value="Save" class="submit">
             </div>
         </form>
     </main>

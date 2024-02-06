@@ -5,6 +5,7 @@ html, body
     --black: #333;
     --scuRed: #b30738;
 
+    font-family: 'Trebuchet MS', sans-serif;
     background-color: var(--background-color);
     color: var(--black);
     display: flex;
@@ -66,4 +67,69 @@ ul
             background-color: var(--black);
         }
     }
+}
+
+#usericon
+{
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    border-style: solid;
+    border-width: medium;
+    border-color: black;
+    border-radius: 50%;
+    background-color: var(--scuRed);
+    width: 75px;
+    height: 75px;
+    margin: 1%;
+}
+
+#usericon p
+{
+    flex: auto;
+    font-weight: bold;
+    font-size: xx-large;
+    text-align: center;
+    color: var(--white);
+}
+
+#skills
+{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2%;
+}
+
+.skill
+{
+    display: flex;
+    padding: 5px 10px 5px 10px;
+    border-radius: 5%;
+    background-color: var(--background-color);
+    border-style: double;
+}
+.selected
+{
+    border-style: solid;
+    border-color: green;
+}
+.skill .skillicon
+{
+    padding: 5px;
+    color: var(--scuRed);
+}
+
+.skill .skillname
+{
+    padding: 5px;
+}
+
+.skill .cs
+{
+    color: aquamarine;
+}
+
+.skill .business
+{
+    color: green;
 }

@@ -1,0 +1,38 @@
+nav {
+    background-color: transparent;
+    border-radius: 0;
+
+}
+#head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: xx-large;
+    margin-bottom: 5%;
+}
+#userform {
+    display: block;
+}
+.userinfo * {
+    margin: 0 0 1% 0;
+}
+.userinfo textarea {
+    vertical-align: top;
+    resize: none;
+}
+.skill:hover {
+    cursor: pointer;
+}
+.submit {
+    background-color: var(--scuRed);
+    color: white;
+    border-style: solid;
+    border-color: black;
+    padding: 1% 2% 1% 2%;
+    font-weight: bold;
+}
+.submit:hover {
+    background-color: white;
+    color: var(--scuRed);
+    cursor: pointer;
+}
