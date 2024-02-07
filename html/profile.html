@@ -8,13 +8,6 @@
 </head>
 
 <body>
-    <nav>
-        <!-- four navigation links -->
-        <ul>
-            <li><a href="index.html">← Back</a></li>
-        </ul>
-    </nav>
-
     <main>
         <div id="head">
             <header>Edit Profile</header>
@@ -26,24 +19,24 @@
 
         <form id="userform">
             <div class="userinfo">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="name" placeholder="example@test.edu" />
-
-                <div id="passwordinputs">
-                    <label for="password">Password:</label>
-                    <input type="password" id="password" name="password" placeholder="••••••••••"/>
-                </div>
-
-                <label for="showpassword">Show Password:</label>
-                <input type="checkbox" id="showpassword" name="showpassword" />
-            </div>
-
-            <div class="userinfo">
                 <label for="firstname">First:</label>
                 <input type="text" id="firstname" name="name" placeholder="John" />
 
                 <label for="lastname">Last:</label>
                 <input type="text" id="lastname" name="name" placeholder="Doe" />
+            </div>
+
+            <div class="userinfo">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="name" placeholder="example@scu.edu" />
+
+                <div id="passwordinputs">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" placeholder="••••••••••"/>
+
+                    <label for="showpassword">Show Password:</label> <!-- Whoever implements this just know all you have to do is set the type of the password input to "text" to toggle it -->
+                    <input type="checkbox" id="showpassword" name="showpassword" />
+                </div>
             </div>
 
             <div class="userinfo">
@@ -63,35 +56,35 @@
             </div>
 
             <div class="userinfo">
-                <label for="skills">Skills:</label>
+                <label for="skills">Click to Remove Skills:</label>
                 <div id="skills">
-                    <div class="skill selected">
-                        <p class="skillicon cs">•</p>
+                    <div class="skill cs removable">
+                        <p class="skillicon">•</p>
                         <p class="skillname">Python</p>
                     </div>
-                    <div class="skill selected">
-                        <p class="skillicon business">•</p>
-                        <p class="skillname">Business</p>
+                    <div class="skill business removable">
+                        <p class="skillicon">•</p>
+                        <p class="skillname">Business Stuff</p>
                     </div>
-                    <div class="skill selected">
-                        <p class="skillicon cs">•</p>
+                </div>
+            </div>
+
+            <br/>
+
+            <div class="userinfo">
+                <label for="addskills">Click to Add Skills:</label>
+                <div id="addskills">
+                    <div class="skill cs selectable">
+                        <p class="skillicon">•</p>
                         <p class="skillname">C++</p>
                     </div>
-                    <div class="skill">
-                        <p class="skillicon cs">•</p>
+                    <div class="skill cs selectable">
+                        <p class="skillicon">•</p>
                         <p class="skillname">Java</p>
                     </div>
-                    <div class="skill">
-                        <p class="skillicon cs">•</p>
-                        <p class="skillname">JavaScript</p>
-                    </div>
-                    <div class="skill">
-                        <p class="skillicon cs">•</p>
-                        <p class="skillname">Data Structures</p>
-                    </div>
-                    <div class="skill">
-                        <p class="skillicon business">•</p>
-                        <p class="skillname">Fortnite</p>
+                    <div class="skill business selectable">
+                        <p class="skillicon">•</p>
+                        <p class="skillname">Accounting</p>
                     </div>
                 </div>
             </div>
@@ -101,6 +94,7 @@
 
             <div class="userinfo">
                 <input type="submit" value="Save" class="submit">
+                <input type="button" value="Home" class="home" onclick="location.href='home.html'">
             </div>
         </form>
     </main>

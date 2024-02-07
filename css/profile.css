@@ -1,8 +1,7 @@
-nav {
-    background-color: transparent;
-    border-radius: 0;
-
+main {
+    width: 50%;
 }
+
 #head {
     display: flex;
     justify-content: space-between;
@@ -10,29 +9,52 @@ nav {
     font-size: xx-large;
     margin-bottom: 5%;
 }
+
 #userform {
     display: block;
 }
+
 .userinfo * {
-    margin: 0 0 1% 0;
+    margin: 0 0 3% 0;
 }
+
+.userinfo label, textarea, input, select {
+    font-size: large;
+}
+
 .userinfo textarea {
     vertical-align: top;
     resize: none;
+    padding: 5px 0 0 5px;
 }
-.skill:hover {
+
+.skill.removable:hover, .skill.selectable:hover {
     cursor: pointer;
 }
-.submit {
+
+#addskills
+{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2%;
+    margin-top: 10px;
+}
+
+.submit, .home {
     background-color: var(--scuRed);
     color: white;
     border-style: solid;
     border-color: black;
-    padding: 1% 2% 1% 2%;
-    font-weight: bold;
+    padding: 2% 4% 2% 4%;
+    margin-right: 3%;
+    border-width: thin;
 }
-.submit:hover {
-    background-color: white;
-    color: var(--scuRed);
+
+.home {
+    background-color: var(--scuRed);
+}
+
+.submit:hover, .home:hover {
+    font-weight: bold;
     cursor: pointer;
 }

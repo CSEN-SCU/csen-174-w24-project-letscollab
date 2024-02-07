@@ -1,16 +1,27 @@
 html, body
 {
     --background-color: #aaa;
-    --white: #eee;
     --black: #333;
+    --dark-gray: #999;
+    --gray: #ccc;
+    --white: #eee;
     --scuRed: #b30738;
+    --scuDarkRed: #930028;
 
-    font-family: 'Trebuchet MS', sans-serif;
-    background-color: var(--background-color);
+    background-image: url("../images/background-upscaled.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
     color: var(--black);
     display: flex;
     flex-direction: column;
     justify-content: center;
+    font-family: 'Trebuchet MS', sans-serif;
+}
+
+.hidden
+{
+    display: none;
 }
 
 main
@@ -20,7 +31,8 @@ main
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    margin: 3rem auto;
+    overflow: hidden;
+    margin: 1rem auto;
     padding: 2rem 4rem;
     /* text-align: center; */
     width: 70%;
@@ -35,40 +47,19 @@ header
 
 ul
 {
-    display: flex;
-    flex-direction: column;
     gap: .8rem;
     list-style-type: none;
     margin: 1rem 0;
     padding: 0;
-
-    li
-    {
-        display: flex;
-        text-align: center;
-
-        a
-        {
-            background-color: var(--scuRed);
-            border-radius: 1rem;
-            box-sizing: border-box;
-            color: var(--white);
-            font-size: 16pt;
-            height: 100%;
-            padding: 1.5rem 0;
-            /* padding: 1rem; */
-            text-decoration: none;
-            transition: all 0.5s;
-            width: 100%;
-        }
-
-        a:hover
-        {
-            background-color: var(--black);
-        }
-    }
 }
 
+img
+{
+    width: 64px;
+    height: 64px;
+}
+
+/* User Icon */
 #usericon
 {
     display: flex;
@@ -98,21 +89,20 @@ ul
     display: flex;
     flex-wrap: wrap;
     gap: 2%;
+    margin-top: 10px;
 }
 
+/* Skills */
 .skill
 {
     display: flex;
     padding: 5px 10px 5px 10px;
     border-radius: 5%;
     background-color: var(--background-color);
-    border-style: double;
-}
-.selected
-{
     border-style: solid;
-    border-color: green;
+    text-align: center;
 }
+
 .skill .skillicon
 {
     padding: 5px;
@@ -124,12 +114,22 @@ ul
     padding: 5px;
 }
 
-.skill .cs
+.skill.removable:hover
+{
+    border-color: darkred;
+}
+
+.skill.selectable:hover
+{
+    border-color: darkgreen;
+}
+
+.skill.cs .skillicon
 {
     color: aquamarine;
 }
 
-.skill .business
+.skill.business .skillicon
 {
     color: green;
 }
