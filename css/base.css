@@ -8,11 +8,20 @@ html, body
     --scuRed: #b30738;
     --scuDarkRed: #930028;
 
-    background-color: var(--background-color);
+    background-image: url("../images/background-upscaled.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
     color: var(--black);
     display: flex;
     flex-direction: column;
     justify-content: center;
+    font-family: 'Trebuchet MS', sans-serif;
+}
+
+.hidden
+{
+    display: none;
 }
 
 main
@@ -48,4 +57,79 @@ img
 {
     width: 64px;
     height: 64px;
+}
+
+/* User Icon */
+#usericon
+{
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    border-style: solid;
+    border-width: medium;
+    border-color: black;
+    border-radius: 50%;
+    background-color: var(--scuRed);
+    width: 75px;
+    height: 75px;
+    margin: 1%;
+}
+
+#usericon p
+{
+    flex: auto;
+    font-weight: bold;
+    font-size: xx-large;
+    text-align: center;
+    color: var(--white);
+}
+
+#skills
+{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2%;
+    margin-top: 10px;
+}
+
+/* Skills */
+.skill
+{
+    display: flex;
+    padding: 5px 10px 5px 10px;
+    border-radius: 5%;
+    background-color: var(--background-color);
+    border-style: solid;
+    text-align: center;
+}
+
+.skill .skillicon
+{
+    padding: 5px;
+    color: var(--scuRed);
+}
+
+.skill .skillname
+{
+    padding: 5px;
+}
+
+.skill.removable:hover
+{
+    border-color: darkred;
+}
+
+.skill.selectable:hover
+{
+    border-color: darkgreen;
+}
+
+.skill.cs .skillicon
+{
+    color: aquamarine;
+}
+
+.skill.business .skillicon
+{
+    color: green;
 }

@@ -1,90 +1,60 @@
-form
+main {
+    width: 50%;
+}
+
+#head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: xx-large;
+    margin-bottom: 5%;
+}
+
+#userform {
+    display: block;
+}
+
+.userinfo * {
+    margin: 0 0 3% 0;
+}
+
+.userinfo label, textarea, input, select {
+    font-size: large;
+}
+
+.userinfo textarea {
+    vertical-align: top;
+    resize: none;
+    padding: 5px 0 0 5px;
+}
+
+.skill.removable:hover, .skill.selectable:hover {
+    cursor: pointer;
+}
+
+#addskills
 {
     display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    margin: 1rem 0;
+    flex-wrap: wrap;
+    gap: 2%;
+    margin-top: 10px;
 }
 
-figure
-{
-    /* background-color: aqua; */
-    display: flex;
-    flex-direction: row;
-    gap: 2rem;
-    margin: 0;
-}
-
-section
-{
-    /* background-color: yellow; */
-    min-width: 10%;
-    max-width: 30%;
-}
-
-section *
-{
-    padding: 0;
-    width: 100%;
-}
-
-label
-{
-    text-wrap: nowrap;
-}
-
-#addSkillButton
-{
+.submit, .home {
     background-color: var(--scuRed);
-    color: var(--white);
+    color: white;
+    border-style: solid;
+    border-color: black;
+    padding: 2% 4% 2% 4%;
+    margin-right: 3%;
+    border-width: thin;
+}
+
+.home {
+    background-color: var(--scuRed);
+}
+
+.submit:hover, .home:hover {
+    font-weight: bold;
     cursor: pointer;
-    margin: 0;
-    padding: .2rem;
-    text-align: center;
-}
-
-.skills
-{
-    gap: 1rem;
-}
-
-.skill
-{
-    background-color: var(--gray);
-    margin: 0;
-    padding: .2rem .4rem;
-    cursor: pointer;
-}
-
-.skill:hover
-{
-    background-color: var(--background-color);
-}
-
-footer ul
-{
-    display: flex;
-    flex-direction: row;
-    gap: .5rem;
-}
-
-footer ul li
-{
-    color: var(--white);
-    cursor: pointer;
-    /* padding: .5rem; */
-    text-wrap: nowrap;
-}
-
-footer ul li a
-{
-    background-color: var(--background-color);
-    color: var(--white);
-    padding: 0.5rem;
-    text-decoration: none;
-}
-
-#saveButton
-{
-    background-color: olive;
 }
