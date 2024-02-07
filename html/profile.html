@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>LetsCollab: Profile</title>
@@ -9,96 +9,94 @@
 
 <body>
     <main>
-        <h2>Edit Profile</h2>
+        <div id="head">
+            <header>Edit Profile</header>
 
-        <img src="../images/background.jpeg" alt="icon" />
+            <div id="usericon">
+                <p>JD</p>
+            </div>
+        </div>
 
         <form id="userform">
-            <!-- `id` for css, `name` for scripting -->
-            <figure>
-                <section>
-                    <input type="text" id="fname" name="fname" placeholder="John" />
-                    <label for="fname">First Name</label>
-                </section>
+            <div class="userinfo">
+                <label for="firstname">First:</label>
+                <input type="text" id="firstname" name="name" placeholder="John" />
 
-                <section>
-                    <input type="text" id="lname" name="lname" placeholder="Doe" />
-                    <label for="lname">Last Name</label>
-                </section>
-            </figure>
+                <label for="lastname">Last:</label>
+                <input type="text" id="lastname" name="name" placeholder="Doe" />
+            </div>
 
-            <figure>
-                <section>
-                    <input type="email" id="email" name="email" placeholder="example@scu.edu" />
-                    <label for="email">Email </label>
-                </section>
+            <div class="userinfo">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="name" placeholder="example@scu.edu" />
 
-                <section>
-                    <input type="password" id="password" name="password" />
-                    <label for="password">Password</label>
-                </section>
+                <div id="passwordinputs">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" placeholder="••••••••••"/>
 
-                <section>
+                    <label for="showpassword">Show Password:</label> <!-- Whoever implements this just know all you have to do is set the type of the password input to "text" to toggle it -->
                     <input type="checkbox" id="showpassword" name="showpassword" />
-                    <label for="showpassword">Show Password</label>
-                </section>
-            </figure>
+                </div>
+            </div>
 
-            <figure>
-                <section>
-                    <select name="year" id="year">
-                        <option value="Freshman">UG Freshman</option>
-                        <option value="Sophomore">UG Sophomore</option>
-                        <option value="Junior">UG Junior</option>
-                        <option value="Senior">UG Senior</option>
-                        <option value="Graduate">Graduate</option>
-                    </select>
-                    <label for="year">Year</label>
-                </section>
-            </figure>
+            <div class="userinfo">
+                <label for="year">Year:</label>
+                <select name="year" id="year">
+                    <option value="Freshman">UG Freshman</option>
+                    <option value="Sophomore">UG Sophomore</option>
+                    <option value="Junior">UG Junior</option>
+                    <option value="Senior">UG Senior</option>
+                    <option value="Graduate">Graduate</option>
+                </select>
+            </div>
 
-            <figure>
-                <section>
-                    <textarea name="description" id="description" rows="5" cols="25" spellcheck="true" placeholder="Tell us something about you!"></textarea>
-                    <label for="description">About You</label>
-                </section>
-            </figure>
+            <div class="userinfo">
+                <label for="description">About Me:</label>
+                <textarea name="description" id="description" rows="5" cols="50" spellcheck="true" placeholder="Tell us something about you!"></textarea>
+            </div>
 
+            <div class="userinfo">
+                <label for="skills">Click to Remove Skills:</label>
+                <div id="skills">
+                    <div class="skill cs removable">
+                        <p class="skillicon">•</p>
+                        <p class="skillname">Python</p>
+                    </div>
+                    <div class="skill business removable">
+                        <p class="skillicon">•</p>
+                        <p class="skillname">Business Stuff</p>
+                    </div>
+                </div>
+            </div>
 
-            <figure>
-                <section>
-                    <select name="skills" id="skills">
-                        <option value="Freshman">Front End</option>
-                        <option value="Sophomore">Back End</option>
-                        <option value="Junior">Full Stack</option>
-                        <option value="Senior">C</option>
-                        <option value="Graduate">C++</option>
-                    </select>
-                    <label for="skills">Skills</label>
-                </section>
+            <br/>
 
-                <section>
-                    <!-- TODO javascript when you press this button it adds current skill as a tag -->
-                    <p id="addSkillButton">add skill</p>
-                </section>
-            </figure>
+            <div class="userinfo">
+                <label for="addskills">Click to Add Skills:</label>
+                <div id="addskills">
+                    <div class="skill cs selectable">
+                        <p class="skillicon">•</p>
+                        <p class="skillname">C++</p>
+                    </div>
+                    <div class="skill cs selectable">
+                        <p class="skillicon">•</p>
+                        <p class="skillname">Java</p>
+                    </div>
+                    <div class="skill business selectable">
+                        <p class="skillicon">•</p>
+                        <p class="skillname">Accounting</p>
+                    </div>
+                </div>
+            </div>
 
-            <!-- TODO when you press the tags it deletes them from skills -->
-            <figure class="skills">
-                <p class="skill">skill 1</p>
+            <br/>
+            <br/>
 
-                <p class="skill">skill 3</p>
-            </figure>
+            <div class="userinfo">
+                <input type="submit" value="Save" class="submit">
+                <input type="button" value="Home" class="home" onclick="location.href='projects.html'">
+            </div>
         </form>
-
-        <footer>
-            <ul>
-                <!-- TODO javascript: save current form format as thing
-                    maybe better to do a form submit button here -->
-                <li><a href="home.html">return home</a></li>
-                <li><a id="saveButton" href="home.html">save changes</a></li>
-            </ul>
-        </footer>
     </main>
 </body>
 </html>
