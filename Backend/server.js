@@ -1,25 +1,42 @@
 const express = require("express");
 const app = express();
 const port = 8080;
-const projects = require('./file-storage');
 const cors = require("cors");
-const init = require("./importCommands")
-init.ImportCommands();
+const {ImportSourceFiles,sendFile} = require("./importCommands")
 
-app.get('/projects',(req,res)=>{
-    if(req.query.id == null) return res.send(JSON.stringify(projects.getKeys()));
-    let data = projects.getItem(req.query.id);
-    res.send(JSON.stringify(data));
-});
+const fs = require("fs");
+let Commands = new Map();
+function ImportCommands() {
+    const commandFiles = fs.readdirSync('./routes').filter(file => file.endsWith('.js'));
+    for (const file of commandFiles) {
+        const command = require(`./routes/${file}`);
+        Commands.set(command.name, command);
+        console.log(`Imported ${file}...`)
+    }
+}
+ImportCommands(); //Imports all GET and POST routes
+ImportSourceFiles(); //Imports all the html files to serve them when requested
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.get('/users/:id',(req,res)=>{
-    res.send(JSON.stringify(projects[req.params.id]))
+app.get('/v1/:get',async(req,res)=>{
+    const command = Commands.get(req.params.get);
+    let resObj = await command.execute(req.query);
+    res.send(resObj)
+})
+
+app.post('/v1/:post',async(req,res)=>{
+    console.log(req.body);
+    const command = Commands.get(req.params.post);
+    let resObj = await command.execute(req.body);
+    res.send(resObj)
 })
 
 app.get("/:page",(req,res)=>{
-    init.sendFile(req.params.page,res);
+    sendFile(req.params.page,res);
 })
-app.use(cors());
+
 app.listen(port,()=>{
     console.log(`Now listening on port ${port}`);
 })

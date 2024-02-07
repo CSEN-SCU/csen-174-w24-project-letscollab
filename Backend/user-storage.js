@@ -18,8 +18,13 @@ module.exports = {
   getKeys: ()=>{
     return Object.keys(data);
   },
+  getData: ()=>{
+    let allData = data;
+    return allData;
+  },
   getItem: (key) => {
-    return data[key] || null;
+    let dataItem = data[key] || null;
+    return dataItem;
   },
   setItem: (key, value) => {
     data[key] = value;
