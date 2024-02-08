@@ -1,1 +1,33 @@
 GET http://127.0.0.1:8080/index.css HTTP/1.1
+
+###
+
+GET http://127.0.0.1:8080/v1/getAllUsers HTTP/1.1
+###
+
+GET http://127.0.0.1:8080/v1/getUser?id=alice.smith@scu.edu HTTP/1.1
+
+
+###
+
+GET http://127.0.0.1:8080/v1/getProject?id=P1001 HTTP/1.1
+
+###
+GET http://127.0.0.1:8080/v1/getLogin?email=john.doe@scu.edu&password=jd12345 HTTP/1.1
+
+###
+
+POST http://127.0.0.1:8080/v1/setUser
+Content-Type: application/json
+
+{
+    "Email":"riley.smith@scu.edu",
+    "FirstName": "Alice",
+    "LastName": "Smith",
+    "Password": "as12345",
+    "Skills": ["Web Development", "JavaScript", "React"],
+    "Description": "Junior year student with a passion for front-end development.",
+    "Year": "Junior",
+    "Major": "Software Engineering",
+    "ProjectIDs": ["P1002"]
+}
