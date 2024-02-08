@@ -24,14 +24,14 @@ app.use(express.urlencoded({ extended: true }));
 app.get('/v1/:get',async(req,res)=>{
     const command = Commands.get(req.params.get);
     let resObj = await command.execute(req.query);
-    res.send(resObj)
+    res.send({"data":resObj})
 })
 
 app.post('/v1/:post',async(req,res)=>{
     console.log(req.body);
     const command = Commands.get(req.params.post);
     let resObj = await command.execute(req.body);
-    res.send(resObj)
+    res.send({"data":resObj})
 })
 
 app.get("/:page",(req,res)=>{
