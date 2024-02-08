@@ -25,10 +25,9 @@ $(function() {
         // Remove from bottom list
         const addableSkills = document.querySelector(LISTS[from]);/*"#addskills" is the bottom list*/
         const skillArray = addableSkills.querySelectorAll(".skill");
-        for (let i = 0; i < skillArray.length; i = i + 1) {
+        for (let i = 0; i < skillArray.length; ++i) {
             let div = skillArray.item(i);
-            const p = div.querySelector(".skillname");
-            if (p.textContent === skill) { // Remove
+            if (div.querySelector(".skillname").textContent === skill) { // Remove
                 addableSkills.removeChild(div);
                 break;
             }
