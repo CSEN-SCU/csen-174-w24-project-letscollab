@@ -42,14 +42,29 @@ figure
     margin: 0;
     padding: 2rem;
     width: 80%;
-
-
 }
 
 figure *
 {
     margin: 0;
     padding: 0;
+}
+
+figure article
+{
+    display: flex;
+    flex-direction: row;
+}
+
+article img
+{
+    border-radius: 100%;
+    margin-right: 1rem;
+}
+
+article h1
+{
+    margin: 1rem 0;
 }
 
 figure ul
