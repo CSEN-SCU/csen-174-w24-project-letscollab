@@ -32,8 +32,11 @@ main {
     cursor: pointer;
 }
 
-#addskills
-{
+#skills {
+    margin-top: 10px;
+}
+
+#addskills {
     display: flex;
     flex-wrap: wrap;
     gap: 2%;
