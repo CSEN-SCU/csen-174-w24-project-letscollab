@@ -50,6 +50,10 @@ main {
     border-width: thin;
 }
 
+.home {
+    background-color: var(--scuRed);
+}
+
 .submit:hover, .home:hover {
     font-weight: bold;
     cursor: pointer;

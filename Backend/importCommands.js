@@ -16,7 +16,7 @@ sendFile(filename,res)
         file.on('data',(data)=>res.write(data));
         file.on('end',()=>res.end())
 },
-ImportCommands() {
+ImportSourceFiles() {
     fs.readdir('./src',(err,files)=>{
         for (const file of files) {
             let fileExt = file.substring(file.lastIndexOf('.')+1);
@@ -31,5 +31,6 @@ ImportCommands() {
         }
     })
 }
+
 }
 
