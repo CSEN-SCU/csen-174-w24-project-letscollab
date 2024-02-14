@@ -6,8 +6,13 @@
             "Time": 1617922800,
             "Location": "Engineering Building, Room 101"
         },
-        "Skills Desired": ["AI", "NLP"],
-        "Interested Users": ["alice.smith@scu.edu"],
+        "Skills Desired": [
+            "AI",
+            "NLP"
+        ],
+        "Interested Users": [
+            "alice.smith@scu.edu"
+        ],
         "PeopleRequired": 3,
         "AuthorEmail": "john.doe@scu.edu",
         "CoverImage": "https://example.com/chatbot_project.jpg"
@@ -19,8 +24,13 @@
             "Time": 1618009200,
             "Location": "Library Study Room 3"
         },
-        "Skills Desired": ["GIS", "UI/UX Design"],
-        "Interested Users": ["mark.brown@scu.edu"],
+        "Skills Desired": [
+            "GIS",
+            "UI/UX Design"
+        ],
+        "Interested Users": [
+            "mark.brown@scu.edu"
+        ],
         "PeopleRequired": 2,
         "AuthorEmail": "alice.smith@scu.edu",
         "CoverImage": "https://example.com/campus_nav_app.jpg"
@@ -32,8 +42,13 @@
             "Time": 1618095600,
             "Location": "Tech Lab 2"
         },
-        "Skills Desired": ["Arduino", "Sensors"],
-        "Interested Users": ["emily.jones@scu.edu"],
+        "Skills Desired": [
+            "Arduino",
+            "Sensors"
+        ],
+        "Interested Users": [
+            "emily.jones@scu.edu"
+        ],
         "PeopleRequired": 4,
         "AuthorEmail": "mark.brown@scu.edu",
         "CoverImage": "https://example.com/gardening_system.jpg"
@@ -45,11 +60,16 @@
             "Time": 1618182000,
             "Location": "Art Studio 5"
         },
-        "Skills Desired": ["Web Design", "Database Management"],
-        "Interested Users": ["john.doe@scu.edu"],
+        "Skills Desired": [
+            "Web Design",
+            "Database Management"
+        ],
+        "Interested Users": [
+            "john.doe@scu.edu"
+        ],
         "PeopleRequired": 5,
         "AuthorEmail": "emily.jones@scu.edu",
-        "CoverImage":"https://example.com/campus_nav_app.jpg"
+        "CoverImage": "https://example.com/campus_nav_app.jpg"
     },
     "P1005": {
         "Name": "Community Event Platform",
@@ -58,10 +78,15 @@
             "Time": 1618182000,
             "Location": "Art Studio 5"
         },
-        "Skills Desired": ["Web Design", "Database Management"],
-        "Interested Users": ["john.doe@scu.edu"],
+        "Skills Desired": [
+            "Web Design",
+            "Database Management"
+        ],
+        "Interested Users": [
+            "john.doe@scu.edu"
+        ],
         "PeopleRequired": 5,
         "AuthorEmail": "sarah.green@scu.edu",
-        "CoverImage":"https://example.com/campus_nav_app.jpg"
+        "CoverImage": "https://example.com/campus_nav_app.jpg"
     }
 }
