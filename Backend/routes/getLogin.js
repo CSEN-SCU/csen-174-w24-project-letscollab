@@ -16,7 +16,7 @@ module.exports = {
                     out_obj = "Incorrect Username/Password"
                 }
             }else{
-                out_obj = "User does not exists";
+                out_obj = "User does not exist";
             }
             resolve(out_obj);            
         });

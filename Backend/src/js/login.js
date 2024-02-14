@@ -20,7 +20,7 @@ loginForm.addEventListener("submit",(event)=>{
         data:params,
         success:function(response,textStatus,xhr){
             $('#response').html(response.status?"Login Success":response.data).css('color',response.status ?'green':'red');
-            
+            //window.location.href = ""
         },
         error:function(xhr,status,error){
             $('#response').html('Network Error').css('color','red');
