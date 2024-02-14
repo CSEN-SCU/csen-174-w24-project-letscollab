@@ -1,0 +1,58 @@
+main {
+    width: 50%;
+}
+
+header h1 {
+    font-size: xx-large;
+}
+
+#createproject {
+    display: block;
+}
+
+#createproject header {
+    font-size: x-large;
+    font-weight: bold;
+    color: var(--dark-gray);
+}
+
+.row * {
+    margin: 0 0 3% 0;
+}
+
+.row {
+    margin-top: 2%;
+}
+
+#imageupload {
+    cursor: pointer;
+    color: cornflowerblue;
+}
+
+#imageupload input {
+    display: none;
+}
+
+#imageupload:hover {
+    color: blue;
+    font-style: italic;
+}
+
+.row textarea {
+    vertical-align: top;
+}
+
+#submit, #home {
+    background-color: var(--scuRed);
+    color: white;
+    border-style: solid;
+    border-color: black;
+    padding: 2% 4% 2% 4%;
+    margin-right: 3%;
+    border-width: thin;
+}
+
+#submit:hover, #home:hover {
+    font-weight: bold;
+    cursor: pointer;
+}

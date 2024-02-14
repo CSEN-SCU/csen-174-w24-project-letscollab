@@ -3,8 +3,7 @@ const app = express();
 const port = 8080;
 const projects = require('.project-storage.js');
 const cors = require("cors");
-const {ImportSourceFiles,sendFile} = require("./importCommands")
-
+const path = require('path');
 const fs = require("fs");
 let Commands = new Map();
 function ImportCommands() {
@@ -15,8 +14,8 @@ function ImportCommands() {
         console.log(`Imported ${file}...`)
     }
 }
-ImportCommands(); //Imports all GET and POST routes
-ImportSourceFiles(); //Imports all the html files to serve them when requested
+ImportCommands(); 
+
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -24,20 +23,18 @@ app.use(express.urlencoded({ extended: true }));
 app.get('/v1/:get',async(req,res)=>{
     const command = Commands.get(req.params.get);
     let resObj = await command.execute(req.query);
-    res.send({"data":resObj})
+    res.status(200).send({"data":resObj,"status":typeof resObj == "object"})
 })
 
 app.post('/v1/:post',async(req,res)=>{
     console.log(req.body);
     const command = Commands.get(req.params.post);
     let resObj = await command.execute(req.body);
-    res.send({"data":resObj})
+    res.status(200).send({"data":resObj,"status":typeof resObj == "object"})
 })
-
-app.get("/:page",(req,res)=>{
-    sendFile(req.params.page,res);
-})
+app.use(express.static(path.join(__dirname, 'src')));
 
 app.listen(port,()=>{
+    
     console.log(`Now listening on port ${port}`);
 })

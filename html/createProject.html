@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LetsCollab: Create Project</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/createProject.css">
+    <script src="../js/jquery-3.7.1.js"></script>
+    <script src="../js/createProject.js"></script>
+</head>
+<body>
+    <main>
+        <header>
+            <h1>Create New Project</h1>
+
+            <div id="usericon">
+                <p>JD</p>
+            </div>
+        </header>
+
+        <form id="createproject">
+            <header>General</header>
+            <div class="row">
+                <label id="imageupload">
+                    Upload Cover Image
+                    <input type="file" id="photo" name="photo" accept="image/jpeg, image/png" />
+                </label>
+                <br>
+                <br> <!-- Temporary. Will remove if we add image preview circle -->
+                <label for="name">Project Name:</label>
+                <input type="text" id="name" name="name" placeholder="My Project" />
+            </div>
+
+            <div class="row">
+                <label for="description">Project Description:</label>
+                <textarea name="description" id="description" rows="5" cols="50" spellcheck="true" placeholder="Give a detailed explanation of your project"></textarea>
+            </div>
+
+            <header>Meetup Details</header>
+            <div class="row">
+                <label for="time">Time:</label>
+                <input type="time" id="time" name="time" />
+
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" />
+
+                <label for="location">Location:</label>
+                <input list="locations" id="location" name="location" />
+                <datalist id="locations">
+                    <option value="Heafy">Heafy</option>
+                    <option value="SCDI">SCDI</option>
+                    <option value="Library">Library</option>
+                    <option value="Benson">Benson</option>
+                </datalist>
+            </div>
+
+            <header>Skills Desired</header>
+            <div class="row">
+                <div id="skills">
+                    <div class="skill cs">
+                        <p class="skillicon">•</p>
+                        <p class="skillname">Python</p>
+                    </div>
+                </div>
+            </div>
+
+            <header>Preview</header>
+            <div class="row">
+                Put preview HTML/CSS here
+            </div>
+
+            <div class="row">
+                <input type="submit" id="submit" value="Create" />
+                <input type="button" id="home" value="Go Back" onclick="location.href='projects.html'" />
+            </div>
+        </form>
+    </main>
+</body>
+</html>

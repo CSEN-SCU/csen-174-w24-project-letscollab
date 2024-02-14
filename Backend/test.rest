@@ -17,7 +17,7 @@ GET http://127.0.0.1:8080/v1/getLogin?email=john.doe@scu.edu&password=jd12345 HT
 
 ###
 
-POST http://127.0.0.1:8080/v1/setUser
+POST http://127.0.0.1:8080/v1/createUser
 Content-Type: application/json
 
 {

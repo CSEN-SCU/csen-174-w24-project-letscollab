@@ -8,10 +8,10 @@ module.exports = {
             let project_id = body.id;
             if(projects.getItem(project_id)!=null){
                 projects.setItem(body.id,body);
-                out_obj["Project has been updated!"]
+                out_obj="Project has been updated!"
 
             }else{
-                out_obj["Project does not exists."]
+                out_obj="Project does not exists."
             }
             resolve(out_obj);            
         });
