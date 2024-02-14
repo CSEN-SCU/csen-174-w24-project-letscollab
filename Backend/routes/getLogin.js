@@ -9,7 +9,7 @@ module.exports = {
             let password = params.password;
             out_obj = users.getItem(email);
             if(out_obj != null){
-                if(out_obj.Password == password){
+                if(out_obj.Password === password){
                     const { ["Password"]: _, ...new_obj } = out_obj;
                     out_obj = new_obj;
                 }else{
