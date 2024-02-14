@@ -8,7 +8,7 @@ html, body
     --scuRed: #b30738;
     --scuDarkRed: #930028;
 
-    background-image: url("../images/background-upscaled.jpg");
+    background-image: url("./background-upscaled.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -86,14 +86,10 @@ img
 
 #skills
 {
-    display: inline-block;
+    display: flex;
     flex-wrap: wrap;
     gap: 2%;
-}
-
-#skills *
-{
-    margin: 0 0 3% 0;
+    margin-top: 10px;
 }
 
 /* Skills */
@@ -133,112 +129,7 @@ img
     color: aquamarine;
 }
 
-.skill.business .skillicon {
+.skill.business .skillicon
+{
     color: green;
-}
-
-/* Project List Item */
-section#projectlist figure
-{
-    box-sizing: border-box;
-    line-height: 1.5;
-    height: 100%;
-    margin: 0;
-    padding: 2rem;
-    width: 80%;
-}
-
-section#projectlist figure article
-{
-    display: flex;
-    flex-direction: row;
-}
-
-section#projectlist article img
-{
-    border-radius: 100%;
-    margin-right: 1rem;
-}
-
-section#projectlist article h1
-{
-    margin: 1rem 0;
-}
-
-section#projectlist figure ul
-{
-    display: flex;
-    flex-direction: row;
-    gap: .5rem;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-section#projectlist figure ul li
-{
-    background-color: var(--white);
-    border-radius: .5rem;
-    box-sizing: border-box;
-    padding: 0.2rem 1rem;
-}
-
-section#projectlist .description
-{
-    margin: 1rem 0;
-}
-
-section#projectlist aside
-{
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 0;
-    padding: 1rem;
-    width: 20%;
-}
-
-section#projectlist aside *
-{
-    margin: 0;
-    padding: 0;
-}
-
-section#projectlist .interestButton
-{
-    background-color: var(--white);
-    border-radius: 1rem;
-    cursor: pointer;
-    padding: 1rem;
-    text-align: center;
-    transition: all .5s;
-    margin-bottom: 5%;
-}
-
-section#projectlist .interestButton.selected
-{
-    background-color: var(--scuRed);
-    color: var(--white);
-}
-
-section#projectlist .interestButton.selected:hover
-{
-    background-color: var(--scuRed);
-}
-
-section#projectlist .interestButton:hover
-{
-    background-color: var(--background-color);
-}
-
-section#projectlist .peopleInterested
-{
-    font-style: italic;
-    text-align: center;
-}
-
-section#projectlist mark
-{
-    background-color: var(--gray);
 }

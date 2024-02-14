@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>LetsCollab: Projects</title>
@@ -25,7 +25,7 @@
         </header>
 
         <!-- TODO we populate here with `sections` each section being a project -->
-        <section>
+        <section id="projectlist">
             <figure>
                 <article>
                     <!-- TODO replace with project image -->
@@ -33,14 +33,15 @@
                     <h1>project title</h1>
                 </article>
                 <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud</p>
-                <h4>Meetup Time: x Location: x</h4>
+                <h3>Meetup Time: x Location: x</h3>
                 <!-- TODO js population -->
-                <h5>DESIRED SKILLS</h5>
-                <ul>
-                    <li>skill 1</li>
-                    <li>skill 2</li>
-                    <li>skill 3</li>
-                </ul>
+                <h3>Desired Skills:</h3>
+                <div id="skills">
+                    <div class="skill cs">
+                        <p class="skillicon">•</p>
+                        <p class="skillname">Python</p>
+                    </div>
+                </div>
             </figure>
             <!-- the aside is the side bar -->
             <aside>
