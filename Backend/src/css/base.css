@@ -8,7 +8,7 @@ html, body
     --scuRed: #b30738;
     --scuDarkRed: #930028;
 
-    background-image: url("./background-upscaled.jpg");
+    background-image: url("../images/background-upscaled.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
