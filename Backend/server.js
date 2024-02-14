@@ -36,7 +36,7 @@ app.post('/v1/:post',async(req,res)=>{
 app.use(express.static(path.join(__dirname, 'src')));
 
 app.get("/:page",(req,res)=>{
-    res.sendFile(path.join(__dirname, `/src/${req.params.page}.html`));
+    res.sendFile(path.join(__dirname, `/src/html/${req.params.page}.html`));
 });
 
 app.listen(port,()=>{
