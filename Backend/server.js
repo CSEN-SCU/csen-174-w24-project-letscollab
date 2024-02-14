@@ -1,9 +1,13 @@
 const express = require("express");
 const app = express();
-const port = 8080;
 const cors = require("cors");
 const path = require('path');
 const fs = require("fs");
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+const port = 8080;
+
 let Commands = new Map();
 function ImportCommands() {
     const commandFiles = fs.readdirSync('./routes').filter(file => file.endsWith('.js'));
@@ -14,10 +18,6 @@ function ImportCommands() {
     }
 }
 ImportCommands(); 
-
-app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
 app.get('/v1/:get',async(req,res)=>{
     const command = Commands.get(req.params.get);
@@ -32,6 +32,10 @@ app.post('/v1/:post',async(req,res)=>{
     res.status(200).send({"data":resObj,"status":typeof resObj == "object"})
 })
 app.use(express.static(path.join(__dirname, 'src')));
+
+app.get("/:page",(req,res)=>{
+    res.sendFile(path.join(__dirname, `/src/${req.params.page}.html`));
+});
 
 app.listen(port,()=>{
     
