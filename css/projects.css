@@ -11,6 +11,7 @@ header ul li
     cursor: pointer;
     padding: .5rem;
     text-wrap: nowrap;
+    transition: all .2s;
 }
 
 .active
@@ -95,9 +96,21 @@ aside *
 {
     background-color: var(--white);
     border-radius: 1rem;
+    cursor: pointer;
     padding: 1rem;
-
+    text-align: center;
     transition: all .5s;
+}
+
+.interestButton.selected
+{
+    background-color: var(--scuRed);
+    color: var(--white);
+}
+
+.interestButton.selected:hover
+{
+    background-color: var(--scuRed);
 }
 
 .interestButton:hover
@@ -108,4 +121,9 @@ aside *
 .peopleInterested
 {
     font-style: italic;
+}
+
+mark
+{
+    background-color: var(--gray);
 }

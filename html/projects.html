@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/projects.css">
     <script src="../js/jquery-3.7.1.js"></script>
-    <script src="../js/projects.js"></script>
+    <script defer src="../js/projects.js"></script>
 </head>
 
 <body>
@@ -15,8 +15,9 @@
             <ul>
                 <!-- TODO active class toggleable by user by pressing on li (would that be js/jquery or css ? but it will also change the
                     autopopulated fields below) -->
-                <li class="active">all projects</li>
-                <li>your projects</li>
+                <li class="active" onclick="selectTab(0)">All Projects</li>
+                <li onclick="selectTab(1)">Projects You're Interested In</li>
+                <li onclick="selectTab(2)">Your Projects</li>
             </ul>
             <a href="home.html">
                 <img src="../images/background.jpeg" alt="icon" />
@@ -40,8 +41,8 @@
             <!-- the aside is the side bar -->
             <aside>
                 <!-- TODO css/js to update between `Show Interest` \ `I'm interested!` ; and to display interest number -->
-                <p class="interestButton">I'm interested!</p>
-                <p class="peopleInterested">x people are interested</p>
+                <p class="interestButton" onclick="showInterest(this)"> Show Interest</p>
+                <p class="peopleInterested"><mark>0</mark> people are interested</p>
             </aside>
         </section>
     </main>
