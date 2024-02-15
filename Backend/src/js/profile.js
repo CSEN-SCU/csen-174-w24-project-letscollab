@@ -1,4 +1,3 @@
-const fs = require('fs');
 const LISTS = ["#skills", "#addskills"];
 const STATES = ["removable", "selectable"];
 const editProfileForm = document.getElementById("userform");
@@ -75,15 +74,16 @@ $(function() {
     createSkill("Java", "cs");
     createSkill("Business Stuff", "business");
     createSkill("Accounting", "business");*/
-    let file = "";
-    fs.readFile(file, "utf8", (error, data) => {
-        if (error) {
-            console.log("Error loading " + file);
-        } else {
-            let skills = JSON.parse(data);
-            for (let x of skills) {
-                createSkill(x.skillName, x.skillType);
+    $.ajax({
+        url: "/v1/getSkills",
+        type: "GET",
+        success:function(response, textStatus, xhr) {
+            for (let i = 0; (typeof response.data[i]) !== 'undefined'; ++i) {
+                createSkill(response.data[i].skillName, response.data[i].skillType);
             }
+        },
+        error:function(xhr, status, error) {
+            console.log("god dammit");
         }
     });
 })
