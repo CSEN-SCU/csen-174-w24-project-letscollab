@@ -83,7 +83,7 @@ $(function() {
             }
         },
         error:function(xhr, status, error) {
-            console.log("god dammit");
+            console.log("Could not get skills");
         }
     });
 })
