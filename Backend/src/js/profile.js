@@ -69,11 +69,23 @@ function transferSkill(from, skill, category) {
 }
 
 $(function() {
-    createSkill("Python", "cs");
+    /*createSkill("Python", "cs");
     createSkill("C++", "cs");
     createSkill("Java", "cs");
     createSkill("Business Stuff", "business");
-    createSkill("Accounting", "business");
+    createSkill("Accounting", "business");*/
+    $.ajax({
+        url: "/v1/getSkills",
+        type: "GET",
+        success:function(response, textStatus, xhr) {
+            for (let i = 0; (typeof response.data[i]) !== 'undefined'; ++i) {
+                createSkill(response.data[i].skillName, response.data[i].skillType);
+            }
+        },
+        error:function(xhr, status, error) {
+            console.log("Could not get skills");
+        }
+    });
 })
 
 $(function(){
