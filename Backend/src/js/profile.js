@@ -80,7 +80,8 @@ $(function() {
         if (error) {
             console.log("Error loading " + file);
         } else {
-            for (let x in data) {
+            let skills = JSON.parse(data);
+            for (let x of skills) {
                 createSkill(x.skillName, x.skillType);
             }
         }
