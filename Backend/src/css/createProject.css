@@ -1,5 +1,5 @@
 main {
-    width: 50%;
+    width: 60%;
 }
 
 header h1 {
@@ -55,4 +55,12 @@ header h1 {
 #submit:hover, #home:hover {
     font-weight: bold;
     cursor: pointer;
+}
+
+#projectlist article * {
+    margin: 0;
+}
+
+.endrow {
+    margin-top: 5%;
 }
