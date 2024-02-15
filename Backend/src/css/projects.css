@@ -2,6 +2,7 @@ header ul
 {
     display: flex;
     flex-direction: row;
+    align-items: center;
 }
 
 header ul li
@@ -9,30 +10,15 @@ header ul li
     background-color: var(--dark-gray);
     color: var(--white);
     cursor: pointer;
-    padding: .5rem;
-    text-wrap: none;
+    padding: 2%;
+    text-wrap: nowrap;
     transition: all .2s;
+    width: fit-content;
+    height: min-content;
 }
 
 .active
 {
     background-color: var(--scuRed);
     text-decoration: solid underline;
-}
-
-section#projectlist
-{
-    background-color: var(--gray);
-    border-radius: 1rem;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: row;
-    justify-content: start;
-    margin: 0;
-    overflow: hidden;
-    padding: 0;
-}
-
-h3, #skills {
-    margin-bottom: 0;
 }

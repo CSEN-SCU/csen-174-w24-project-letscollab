@@ -1,0 +1,114 @@
+[
+    {
+        "skillName": "C++",
+        "skillType": "cs"
+    },
+    {
+        "skillName": "C",
+        "skillType": "cs"
+    },
+    {
+        "skillName": "Python",
+        "skillType": "cs"
+    },
+    {
+        "skillName": "Java",
+        "skillType": "cs"
+    },
+    {
+        "skillName": "JavaScript",
+        "skillType": "cs"
+    },
+    {
+        "skillName": "ReactJS",
+        "skillType": "cs"
+    },
+    {
+        "skillName": "Rust",
+        "skillType": "cs"
+    },
+    {
+        "skillName": "C#",
+        "skillType": "cs"
+    },
+    {
+        "skillName": "Assembly",
+        "skillType": "cs"
+    },
+    {
+        "skillName": "Computer Science",
+        "skillType": "cs"
+    },
+    {
+        "skillName": "HTML",
+        "skillType": "cs"
+    },
+    {
+        "skillName": "CSS",
+        "skillType": "cs"
+    },
+    {
+        "skillName": "TypeScript",
+        "skillType": "cs"
+    },
+    {
+        "skillName": "Ruby",
+        "skillType": "cs"
+    },
+    {
+        "skillName": "SQL",
+        "skillType": "cs"
+    },
+    {
+        "skillName": "Go",
+        "skillType": "cs"
+    },
+    {
+        "skillName": "PHP",
+        "skillType": "cs"
+    },
+    {
+        "skillName": "MatLab",
+        "skillType": "cs"
+    },
+    {
+        "skillName": "Swift",
+        "skillType": "cs"
+    },
+    {
+        "skillName": "Kotlin",
+        "skillType": "cs"
+    },
+    {
+        "skillName": "Accounting",
+        "skillType": "business"
+    },
+    {
+        "skillName": "Business",
+        "skillType": "business"
+    },
+    {
+        "skillName": "Management",
+        "skillType": "business"
+    },
+    {
+        "skillName": "Entrepreneurship",
+        "skillType": "business"
+    },
+    {
+        "skillName": "Networking",
+        "skillType": "business"
+    },
+    {
+        "skillName": "Statistics",
+        "skillType": "business"
+    },
+    {
+        "skillName": "Ethics",
+        "skillType": "business"
+    },
+    {
+        "skillName": "Economics",
+        "skillType": "business"
+    }
+]

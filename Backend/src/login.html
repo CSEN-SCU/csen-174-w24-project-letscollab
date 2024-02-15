@@ -3,19 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>LetsCollab: Login</title>
-    <link rel="stylesheet" type="text/css" href="./css/base.css">
-    <link rel="stylesheet" type="text/css" href="./css/login.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="../js/API.js"></script>
-    <script src="../js/base.js"async defer></script>
-    <script src="../js/login.js"async defer></script>
+    <link rel="stylesheet" type="text/css" href="./base.css">
+    <link rel="stylesheet" type="text/css" href="./login.css">
+    <script src="./api.js"async defer></script>
+    <script src="./login.js"async defer></script>
 </head>
 
 <body>
 <nav>
     <!-- four navigation links -->
     <ul>
-        <li><a href="/index">home</a></li>
+        <li><a href="index.html">home</a></li>
     </ul>
 </nav>
 
@@ -31,17 +29,16 @@
 
         <div class="formdata">
             <label for="password">Password:</label>
-            <input type="password" name="Password" id="password" placeholder="••••••••••" />
+            <input name="password" type="password" placeholder="••••••••••" />
 
-            <label id="showPasswordLabel" for="showpassword">Show:</label>
+            <label for="showpassword">Show:</label>
             <input type="checkbox" id="showpassword" name="showpassword" />
         </div>
 
         <div class="formdata">
             <button type="submit" id="submit" value="Login">Login</button>
-            <a href="signup">Or create an account</a>
+            <a href="profile.html?new=1">Or create an account</a>
         </div>
-        <p id="response"></p>
     </form>
 
 </main>

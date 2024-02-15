@@ -117,5 +117,30 @@
             "P1005"
         ],
         "response": "Login Success"
+    },
+    "salinasf3@gmail.com": {
+        "FirstName": "Francisco",
+        "LastName": "Salinas",
+        "Email": "salinasf3@gmail.com",
+        "Password": "1234",
+        "Year": "Freshman",
+        "Description": "hi im francisco",
+        "Skills": [
+            "C++",
+            "Business Stuff"
+        ]
+    },
+    "test@test.com": {
+        "FirstName": "testing",
+        "LastName": "1234",
+        "Email": "test@test.com",
+        "Password": "1234",
+        "Year": "Freshman",
+        "Description": "oieqhfoieqhf",
+        "Skills": [
+            "Business Stuff",
+            "Java"
+        ],
+        "response": "Login Success"
     }
 }

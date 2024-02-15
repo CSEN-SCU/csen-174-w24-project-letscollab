@@ -1,4 +1,3 @@
-const fs = require('fs');
 const LISTS = ["#skills", "#addskills"];
 const STATES = ["removable", "selectable"];
 const editProfileForm = document.getElementById("userform");
@@ -13,6 +12,14 @@ function getSkillNamesArray() {
     });
   
     return skillNames;
+  }
+
+function validateForm(formDataObj){
+    if(formDataObj["FirstName"] == "")return false;
+    if(formDataObj["LastName"] == "")return false;
+    if(formDataObj["Email"] == "")return false;
+    if(formDataObj["Description"] == "")return false;
+    return true;
   }
   
     
@@ -70,40 +77,15 @@ function transferSkill(from, skill, category) {
 }
 
 $(function() {
-    /*createSkill("Python", "cs");
+    createSkill("Python", "cs");
     createSkill("C++", "cs");
     createSkill("Java", "cs");
     createSkill("Business Stuff", "business");
-    createSkill("Accounting", "business");*/
-    let file = "";
-    fs.readFile(file, "utf8", (error, data) => {
-        if (error) {
-            console.log("Error loading " + file);
-        } else {
-            let skills = JSON.parse(data);
-            for (let x of skills) {
-                createSkill(x.skillName, x.skillType);
-            }
-        }
-    });
+    createSkill("Accounting", "business");
 })
 
 $(function(){
-    let firstname = localStorage.getItem("FirstName");
-    let lastname = localStorage.getItem("LastName");
-    $("#usericon p").html(`${firstname[0]}${lastname[0]}`)
-    $('#firstname').val(firstname);
-    $('#lastname').val(lastname);
-    //$('#password').val(localStorage.getItem("Password"));
-    $('#email').val(localStorage.getItem("Email"));
-    $('#year').val(localStorage.getItem("Year"));
-    $('#description').val(localStorage.getItem("Description"));
-    var skills = localStorage.getItem("Skills").split(',');
-    console.log(skills);
-    $.each(skills, function(index, word) {
-        transferSkill(1,word,"cs");
-
-    });
+    localStorage.clear();
 })
 
 editProfileForm.addEventListener("submit",(event)=>{
@@ -111,13 +93,22 @@ editProfileForm.addEventListener("submit",(event)=>{
     const form = new FormData(editProfileForm);
     const formDataObj = Object.fromEntries(form.entries());
     formDataObj["Skills"] = getSkillNamesArray();
-    $('#response').html('');
-    API.updateUser(formDataObj).then(data=>{
+    if(!validateForm(formDataObj)){
+        $("#response").html("Missing Field").css("color","red");
+        setTimeout(()=>{
+            $("#response").html("");
+        },1500)
+        return;
+    }
+    API.createUser(formDataObj).then(data=>{
         if(data.status){
             $("#response").html(data.response).css("color","green");
             for(const [key,value] of Object.entries(data.data)){
                 localStorage.setItem(key,value);
             }
+            setTimeout(()=>{
+                window.location.href = "/login"
+             },1500)
         }else{
             $("#response").html(data.response).css("color","red");
         }
