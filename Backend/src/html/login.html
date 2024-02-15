@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="./css/login.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="../js/API.js"></script>
+    <script src="../js/base.js"async defer></script>
     <script src="../js/login.js"async defer></script>
 </head>
 
@@ -14,7 +15,7 @@
 <nav>
     <!-- four navigation links -->
     <ul>
-        <li><a href="index">home</a></li>
+        <li><a href="/index">home</a></li>
     </ul>
 </nav>
 
@@ -30,15 +31,15 @@
 
         <div class="formdata">
             <label for="password">Password:</label>
-            <input name="password" type="password" placeholder="••••••••••" />
+            <input type="password" name="Password" id="password" placeholder="••••••••••" />
 
-            <label for="showpassword">Show:</label>
+            <label id="showPasswordLabel" for="showpassword">Show:</label>
             <input type="checkbox" id="showpassword" name="showpassword" />
         </div>
 
         <div class="formdata">
             <button type="submit" id="submit" value="Login">Login</button>
-            <a href="profile">Or create an account</a>
+            <a href="signup">Or create an account</a>
         </div>
         <p id="response"></p>
     </form>

@@ -32,4 +32,3 @@ loginForm.addEventListener("submit",(event)=>{
             $('#response').html('Network Error').css('color','red');
         })
 })
-
