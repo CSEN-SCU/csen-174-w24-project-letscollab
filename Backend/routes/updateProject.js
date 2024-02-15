@@ -6,12 +6,20 @@ module.exports = {
         let out_obj = {};
         return new Promise(resolve=>{
             let project_id = body.id;
-            if(projects.getItem(project_id)!=null){
-                projects.setItem(body.id,body);
-                out_obj="Project has been updated!"
+            let updatedProject = body;
+            let projectObject = projects.getItem(project_id);
+            if(projectObject!=null){
+                for (let key in updatedProject) {
+                    if (updatedProject.hasOwnProperty(key)) {
+                        projectObject[key] = updatedProject[key];
+                    }
+                }
+                projects.setItem(project_id,projectObject);
+                out_obj = projects.getItem(project_id);
+                out_obj["response"]="Project has been updated!"
 
             }else{
-                out_obj="Project does not exists."
+                out_obj["response"]="Project does not exists."
             }
             resolve(out_obj);            
         });

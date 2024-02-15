@@ -1,12 +1,11 @@
 class LetsCollab {
     constructor() {
-        this.url = "http://localhost:8080/v1/";
+        this.url = "/v1/";
     }
 
     /**
-     * @param {string} params URL route 
-     * @param {*} body Content of body.
-     * @param {string} method HTTP Method. Default is 'GET'
+     * @param {string} email User email
+     * @param {string} password User password
      */
     getLogin(email, password) {
         const params = `getLogin?email=${email}&password=${password}`;
@@ -40,26 +39,87 @@ class LetsCollab {
             });
         });
     }
+    getProject(id) {
+        const params = `getProject?id=${id}`;
+        return new Promise((resolve, reject) => {
+            this.apiRequest(params).then(data => {
+                resolve(data);
+            }).catch(err => {
+                reject(err);
+            });
+        });
+    }
+    getUser(email) {
+        const params = `getUser?id=${email}`;
+        return new Promise((resolve, reject) => {
+            this.apiRequest(params).then(data => {
+                resolve(data);
+            }).catch(err => {
+                reject(err);
+            });
+        });
+    }
+    createProject(newProjectBody){
+        const params = `createProject`;
+        return new Promise((resolve, reject) => {
+            this.apiRequest(params,newProjectBody,"POST").then(data => {
+                resolve(data);
+            }).catch(err => {
+                reject(err);
+            });
+        });
+    }
+    createUser(newUserObject){
+        const params = `createUser`;
+        return new Promise((resolve, reject) => {
+            this.apiRequest(params,newUserObject,"POST").then(data => {
+                resolve(data);
+            }).catch(err => {
+                reject(err);
+            });
+        });
+    }
+    updateUser(userObject){
+        const params = `updateUser`;
+        return new Promise((resolve, reject) => {
+            this.apiRequest(params,userObject,"POST").then(data => {
+                resolve(data);
+            }).catch(err => {
+                reject(err);
+            });
+        });
+    }
+    updateProject(projectBody){
+        const params = `updateProject`;
+        return new Promise((resolve, reject) => {
+            this.apiRequest(params,projectBody,"POST").then(data => {
+                resolve(data);
+            }).catch(err => {
+                reject(err);
+            });
+        });
+    }
 
-    async apiRequest(params, body, method) {
+    /**
+     * Performs an API request using jQuery AJAX.
+     * @param {string} params URL route
+     * @param {*} body Content of the body.
+     * @param {string} method HTTP Method. Default is 'GET'
+     */
+    async apiRequest(params, body, method='GET') {
         return await new Promise((resolve, reject) => {
-            const requestOptions = {
-                method: method ? method : 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
+            $.ajax({
+                url: this.url + params,
+                type: method,
+                contentType: 'application/json',
+                data: method === 'GET' ? undefined : JSON.stringify(body),
+                success: function(data) {
+                    resolve(data);
                 },
-                body: body ? JSON.stringify(body) : undefined
-            };
-
-            fetch(this.url + params, requestOptions)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(data => resolve(data.data))
-                .catch(error => reject(error));
+                error: function(xhr, status, error) {
+                    reject(error);
+                }
+            });
         });
     }
 }

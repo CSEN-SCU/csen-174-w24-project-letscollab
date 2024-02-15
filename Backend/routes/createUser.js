@@ -9,10 +9,10 @@ module.exports = {
             let data = users.getData();
             if(data[email]==null){
                 users.setItem(email,body);
-                out_obj= "Created user!";
+                out_obj["response"]= "Created user!";
 
             }else{
-                out_obj= "User already exists!";
+                out_obj["response"]= "User already exists!";
             }
             resolve(out_obj);            
         });

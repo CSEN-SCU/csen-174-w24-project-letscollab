@@ -3,19 +3,44 @@ GET http://127.0.0.1:8080/index.css HTTP/1.1
 ###
 
 GET http://127.0.0.1:8080/v1/getAllUsers HTTP/1.1 ###
-
-GET http://127.0.0.1:8080/v1/getUser?id=alice.smith@scu.edu HTTP/1.1
+###
+GET http://127.0.0.1:8080/v1/getUser?id=riley.smith@scu.edu HTTP/1.1
 
 ###
 
 GET http://127.0.0.1:8080/v1/getProject?id=P1001 HTTP/1.1
+###
 
-### GET http://127.0.0.1:8080/v1/getLogin?email=john.doe@scu.edu&password=jd12345 HTTP/1.1
+POST http://127.0.0.1:8080/v1/updateProject HTTP/1.1
+Content-Type: application/json
+
+
+### GET
+http://127.0.0.1:8080/v1/getLogin?email=test@scu.edu&password=12345 HTTP/1.1
 
 ###
 
-POST http://127.0.0.1:8080/v1/createUser Content-Type: application/json
+POST http://127.0.0.1:8080/v1/createUser 
+Content-Type: application/json
 
 {
-"Email":"riley.smith@scu.edu", "FirstName": "Alice", "LastName": "Smith", "Password": "as12345", "Skills": ["Web Development", "JavaScript", "React"], "Description": "Junior year student with a passion for front-end development.", "Year": "Junior", "Major": "Software Engineering", "ProjectIDs": ["P1002"]
+"Email":"alice.smith@scu.edu", 
+"FirstName": "Alice", 
+"LastName": "Smith", 
+"Password": "as12345", 
+"Skills": ["Web Development", "JavaScript", "React"], 
+"Description": "Junior year student with a passion for front-end development.", 
+"Year": "Junior", 
+"Major": "Software Engineering", 
+"ProjectIDs": ["P1002"]
+}
+
+###
+
+POST http://127.0.0.1:8080/v1/updateUser 
+Content-Type: application/json
+
+{
+"Email":"riley.smith@scu.edu", 
+"Description":"Junior year student that likes to"
 }
