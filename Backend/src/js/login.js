@@ -10,21 +10,25 @@ loginForm.addEventListener("submit",(event)=>{
     if(form.get("password")==""){
         return $('#response').html("Missing Password").css("color","red");
     }
-    const params = {
-        "email":form.get("email"),
-        "password":form.get("password")
-    }
-    $.ajax({
-        url:"/v1/getLogin",
-        type:"GET",
-        data:params,
-        success:function(response,textStatus,xhr){
-            $('#response').html(response.status?"Login Success":response.data).css('color',response.status ?'green':'red');
+    $('#response').html('');
+    API.getLogin(form.get("email"),form.get("password")).then(data=>{
+        if(data.status){
+                localStorage.clear();
+                for(const [key,value] of Object.entries(data.data)){                
+                    localStorage.setItem(key,value);
+                }
+                $('#response').html(`${data.response}`).css("color","green");
+                setTimeout(()=>{
+                   window.location.href = "/profile"
+                },1500)
+            }else{
+                $('#response').html(`${data.response}`).css("color","red");
+                setTimeout(()=>{
+                    $("#response").html("");
+                },1500)
+            }
             
-        },
-        error:function(xhr,status,error){
+        }).catch(err=>{//error handling
             $('#response').html('Network Error').css('color','red');
-        }
-    })
+        })
 })
-

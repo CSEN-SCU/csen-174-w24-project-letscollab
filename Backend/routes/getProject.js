@@ -5,11 +5,12 @@ module.exports = {
     execute(params){
         let out_obj = {};
         return new Promise(resolve=>{
-            out_obj = projects.getItem(params.id);    
-            if(out_obj == null){
-                out_obj = "Project does not exist";
+            let projectObject = projects.getItem(params.id);    
+            if(projectObject == null){
+                out_obj["response"] = "Project does not exist";
             }else{
-                delete out_obj["Password"];    
+                out_obj = projectObject;
+                out_obj["response"] = "Successfully fetched project";    
             }
             resolve(out_obj);            
         });
