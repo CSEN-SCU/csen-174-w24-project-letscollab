@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/createProject.css">
     <script src="../js/jquery-3.7.1.js"></script>
+    <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
     <script src="../js/createProject.js"></script>
 </head>
 <body>
@@ -56,7 +57,7 @@
 
             <header>Skills Desired</header>
             <div class="row">
-                <div id="skills">
+                <div class="skills">
                     <div class="skill cs">
                         <p class="skillicon">•</p>
                         <p class="skillname">Python</p>
@@ -66,10 +67,29 @@
 
             <header>Preview</header>
             <div class="row">
-                Put preview HTML/CSS here
+                <section id="projectlist">
+                    <figure>
+                        <article>
+                            <!-- TODO replace with project image -->
+                            <img src="../images/background.jpeg" alt="project icon" />
+                            <h1>My Project</h1>
+                        </article>
+                        <p class="description">Give a detailed explanation of your project</p>
+                        <h3 id="meetup">Meetup Time: x Location: x</h3>
+                        <!-- TODO js population -->
+                        <h3>Desired Skills:</h3>
+                        <div class="skills"></div>
+                    </figure>
+                    <!-- the aside is the side bar -->
+                    <aside>
+                        <!-- TODO css/js to update between `Show Interest` \ `I'm interested!` ; and to display interest number -->
+                        <p class="interestButton"> Show Interest</p>
+                        <p class="peopleInterested"><mark>0</mark> people are interested</p>
+                    </aside>
+                </section>
             </div>
 
-            <div class="row">
+            <div class="row endrow">
                 <input type="submit" id="submit" value="Create" />
                 <input type="button" id="home" value="Go Back" onclick="location.href='projects'" />
             </div>

@@ -1,0 +1,47 @@
+main {
+    width: 50%;
+}
+
+main none {
+    border-style: solid;
+}
+
+main h1 {
+    font-weight: bold;
+    font-size: xxx-large;
+    margin: 0;
+}
+
+main h2 {
+    margin: 0;
+    color: var(--scuRed);
+    font-style: italic;
+}
+
+#login {
+    margin-top: 10%;
+    display: block;
+}
+
+#login .formdata {
+    padding-bottom: 1%;
+}
+
+#login * {
+    font-size: large;
+    margin: 0 0 1% 0;
+}
+
+#login #submit {
+    background-color: var(--scuRed);
+    color: white;
+    border-style: solid;
+    border-width: thin;
+    padding: 1% 2% 1% 2%;
+    margin-right: 1%;
+    cursor: pointer;
+}
+
+#login a {
+    font-size: small;
+}

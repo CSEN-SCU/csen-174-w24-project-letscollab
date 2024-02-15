@@ -84,14 +84,14 @@ img
     color: var(--white);
 }
 
-#skills
+.skills
 {
     display: flex;
     flex-wrap: wrap;
     gap: 2%;
 }
 
-#skills *
+.skills *
 {
     margin: 0 0 3% 0;
 }
@@ -105,6 +105,7 @@ img
     background-color: var(--background-color);
     border-style: solid;
     text-align: center;
+    border-width: thin;
 }
 
 .skill .skillicon
@@ -145,13 +146,14 @@ section#projectlist figure
     height: 100%;
     margin: 0;
     padding: 2rem;
-    width: 80%;
+    width: 70%;
 }
 
 section#projectlist figure article
 {
     display: flex;
     flex-direction: row;
+    align-items: center;
 }
 
 section#projectlist article img
@@ -196,7 +198,7 @@ section#projectlist aside
     justify-content: center;
     margin: 0;
     padding: 1rem;
-    width: 20%;
+    width: 30%;
 }
 
 section#projectlist aside *
@@ -241,4 +243,25 @@ section#projectlist .peopleInterested
 section#projectlist mark
 {
     background-color: var(--gray);
+}
+
+section#projectlist
+{
+    background-color: var(--gray);
+    border-radius: 1rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    margin: 2% 0 0 0;
+    overflow: hidden;
+    padding: 0;
+}
+
+section#projectlist h1 {
+    font-size: xx-large;
+}
+
+section#projectlist h3, section#projectlist #skills {
+    margin-bottom: 0;
 }
