@@ -1,5 +1,6 @@
 {
     "john.doe@scu.edu": {
+        "Email": "john.doe@scu.edu",
         "FirstName": "John",
         "LastName": "Doe",
         "Password": "jd12345",
@@ -16,6 +17,7 @@
         ]
     },
     "alice.smith@scu.edu": {
+        "Email": "alice.smith@scu.edu",
         "FirstName": "Alice",
         "LastName": "Smith",
         "Password": "as12345",
@@ -32,6 +34,7 @@
         ]
     },
     "mark.brown@scu.edu": {
+        "Email": "mark.brown@scu.edu",
         "FirstName": "Mark",
         "LastName": "Brown",
         "Password": "mb12345",
@@ -48,6 +51,7 @@
         ]
     },
     "emily.jones@scu.edu": {
+        "Email": "emily.jones@scu.edu",
         "FirstName": "Emily",
         "LastName": "Jones",
         "Password": "ej12345",
@@ -64,6 +68,7 @@
         ]
     },
     "sarah.green@scu.edu": {
+        "Email": "sarah.green@scu.edu",
         "FirstName": "Sarah",
         "LastName": "Green",
         "Password": "sg12345",
@@ -81,7 +86,7 @@
     },
     "riley.smith@scu.edu": {
         "Email": "riley.smith@scu.edu",
-        "FirstName": "Alice",
+        "FirstName": "Riley",
         "LastName": "Smith",
         "Password": "as12345",
         "Skills": [
@@ -89,11 +94,28 @@
             "JavaScript",
             "React"
         ],
-        "Description": "Junior year student with a passion for front-end development.",
+        "Description": "Junior year student that likes to",
         "Year": "Junior",
         "Major": "Software Engineering",
         "ProjectIDs": [
             "P1002"
         ]
+    },
+    "test@scu.edu": {
+        "Email": "test@scu.edu",
+        "FirstName": "test",
+        "LastName": "scu",
+        "Password": "12345",
+        "Skills": [
+            "Python",
+            "Java"
+        ],
+        "Description": "Junior year student",
+        "Year": "Junior",
+        "Major": "Software Engineering",
+        "ProjectIDs": [
+            "P1005"
+        ],
+        "response": "Login Success"
     }
 }

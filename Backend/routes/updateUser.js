@@ -6,13 +6,19 @@ module.exports = {
         let out_obj = {};
         return new Promise(resolve=>{
             let email = body.Email;
-            let data = users.getData();
-            if(data[email]==null){
-                users.setItem(email,body);
-                out_obj= "Added user!";
-
+            let updatedUser = body;
+            let userObject = users.getItem(email);
+            if(userObject !=null){
+                for (let key in updatedUser) {
+                    if (updatedUser.hasOwnProperty(key)) {
+                        userObject[key] = updatedUser[key];
+                    }
+                }
+                users.setItem(email,userObject);
+                out_obj = users.getItem(email);
+                out_obj["response"]= "Updated user!";
             }else{
-                out_obj= "User already exists!";
+                out_obj["response"]= "User does not exists!";
             }
             resolve(out_obj);            
         });

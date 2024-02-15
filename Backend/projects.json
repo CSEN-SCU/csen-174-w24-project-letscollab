@@ -15,7 +15,8 @@
         ],
         "PeopleRequired": 3,
         "AuthorEmail": "john.doe@scu.edu",
-        "CoverImage": "https://example.com/chatbot_project.jpg"
+        "CoverImage": "https://example.com/chatbot_project.jpg",
+        "ID": "P1001"
     },
     "P1002": {
         "Name": "Campus Navigation App",
@@ -33,7 +34,8 @@
         ],
         "PeopleRequired": 2,
         "AuthorEmail": "alice.smith@scu.edu",
-        "CoverImage": "https://example.com/campus_nav_app.jpg"
+        "CoverImage": "https://example.com/campus_nav_app.jpg",
+        "ID": "P1002"
     },
     "P1003": {
         "Name": "Automated Gardening System",
@@ -51,7 +53,8 @@
         ],
         "PeopleRequired": 4,
         "AuthorEmail": "mark.brown@scu.edu",
-        "CoverImage": "https://example.com/gardening_system.jpg"
+        "CoverImage": "https://example.com/gardening_system.jpg",
+        "ID": "P1003"
     },
     "P1004": {
         "Name": "Digital Artwork Gallery",
@@ -69,7 +72,8 @@
         ],
         "PeopleRequired": 5,
         "AuthorEmail": "emily.jones@scu.edu",
-        "CoverImage": "https://example.com/campus_nav_app.jpg"
+        "CoverImage": "https://example.com/campus_nav_app.jpg",
+        "ID": "P1004"
     },
     "P1005": {
         "Name": "Community Event Platform",
@@ -87,6 +91,7 @@
         ],
         "PeopleRequired": 5,
         "AuthorEmail": "sarah.green@scu.edu",
-        "CoverImage": "https://example.com/campus_nav_app.jpg"
+        "CoverImage": "https://example.com/campus_nav_app.jpg",
+        "ID": "P1005"
     }
 }
