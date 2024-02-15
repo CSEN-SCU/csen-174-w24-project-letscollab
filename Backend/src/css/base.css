@@ -86,7 +86,7 @@ img
 
 #skills
 {
-    display: inline-block;
+    display: flex;
     flex-wrap: wrap;
     gap: 2%;
 }
