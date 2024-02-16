@@ -78,8 +78,8 @@ $(function() {
         url: "/v1/getSkills",
         type: "GET",
         success:function(response, textStatus, xhr) {
-            for (let i = 0; (typeof response.data[i]) !== 'undefined'; ++i) {
-                createSkill(response.data[i].skillName, response.data[i].skillType);
+            for (let i = 0; (typeof response.data["skillList"][i]) !== 'undefined'; ++i) {
+                createSkill(response.data["skillList"][i].skillName, response.data["skillList"][i].skillType);
             }
         },
         error:function(xhr, status, error) {
