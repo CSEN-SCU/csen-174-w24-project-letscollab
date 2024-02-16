@@ -5,12 +5,14 @@ module.exports = {
     execute(params){
         let out_obj = {};
         return new Promise(resolve=>{
-            out_obj = users.getItem(params.id);
-            if(out_obj != null){
-                const { ["Password"]: _, ...new_obj } = out_obj;
+            console.log(params);
+            let userObject = users.getItem(params.id);
+            if(userObject != null){
+                const { ["Password"]: _, ...new_obj } = userObject;
                 out_obj = new_obj;
+                out_obj["response"] = "Got User";
             }else{
-                out_obj = "User does not exists";
+                out_obj["response"] = "User does not exists";
             }
             resolve(out_obj);            
         });
