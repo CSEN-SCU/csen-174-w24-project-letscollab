@@ -1,6 +1,10 @@
 const submitFormButton = document.getElementById("submit");
 const loginForm = document.getElementById("login");
+const createButton = document.getElementById("create");
 
+createButton.addEventListener("click", () => {
+    window.location.href = "/profile";
+});
 loginForm.addEventListener("submit",(event)=>{
     event.preventDefault();
     const form = new FormData(loginForm);
