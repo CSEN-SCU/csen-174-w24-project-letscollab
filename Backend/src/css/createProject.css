@@ -64,3 +64,12 @@ header h1 {
 .endrow {
     margin-top: 5%;
 }
+
+.selected {
+    border-color: green;
+}
+
+#selectskills * {
+    cursor: pointer;
+    user-select: none;
+}

@@ -108,6 +108,10 @@ img
     border-width: thin;
 }
 
+.skill * {
+    user-select: none;
+}
+
 .skill .skillicon
 {
     padding: 5px;
