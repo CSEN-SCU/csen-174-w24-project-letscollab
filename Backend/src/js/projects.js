@@ -24,6 +24,7 @@ $(async () => {
         type: "GET",
         success: function (response, textStatus, xhr) {
             projects = response.data;
+            console.log(response);
         },
         error: function (xhr, status, error) {
             console.log ("error loading project list ...")
@@ -86,6 +87,10 @@ function createProjectElement(projObj)
     // TODO place skills
     const skills = document.createElement("div");
     skills.classList.add("skills");
+    for (skill in projObj["Skills Desired"])
+    {
+        console.log(skill);
+    }
 
     const aside = document.createElement("aside");
 
