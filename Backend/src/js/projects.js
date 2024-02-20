@@ -24,7 +24,7 @@ $(async () => {
         type: "GET",
         success: function (response, textStatus, xhr) {
             projects = response.data;
-            console.log(response);
+            console.log(response.data);
         },
         error: function (xhr, status, error) {
             console.log ("error loading project list ...")
@@ -84,25 +84,49 @@ function createProjectElement(projObj)
     const desiredSkills = document.createElement("h3");
     desiredSkills.innerHTML = "Desired Skills:";
 
-    // TODO place skills
+    // place skills
     const skills = document.createElement("div");
     skills.classList.add("skills");
-    for (skill in projObj["Skills Desired"])
+    for (skill of projObj["Skills Desired"])
     {
         console.log(skill);
+
+        const skillDiv = document.createElement("div");
+        skillDiv.classList.add("skill");
+
+        const skillIcon = document.createElement("p");
+        skillIcon.classList.add("skillicon");
+        skillIcon.innerHTML = "•";
+        
+        const skillName = document.createElement("p");
+        skillName.classList.add("skillname");
+        skillName.innerHTML = skill;
+
+        skills.append(skillDiv);
+        skillDiv.append(skillIcon);
+        skillDiv.append(skillName);
     }
 
     const aside = document.createElement("aside");
 
     const interestButton = document.createElement("p");
     interestButton.classList.add("interestButton");
-    interestButton.onclick = "showInterest(this)";
     interestButton.innerHTML = "Show Interest";
+    
+    // add event listener for the interest button
+    interestButton.addEventListener("click", function() {
+        showInterest(projObj);
+    });
 
     const peopleInterested= document.createElement("p");
     peopleInterested.classList.add("peopleInterested");
-    peopleInterested.innerHTML = projObj.PeopleRequired + " people are interested";
+    let num = projObj["Interested Users"].length;
+    if (num == 1)
+        peopleInterested.innerHTML = num + " student is interested";
+    else
+        peopleInterested.innerHTML = num + " students are interested";
 
+    // construct the section
     projElement.append(figure);
     figure.append(article);
     article.append(image);
@@ -115,8 +139,6 @@ function createProjectElement(projObj)
     projElement.append(aside);
     aside.append(interestButton);
     aside.append(peopleInterested);
-
-    // TODO add event listener for the section
 }
 
 /**
@@ -146,17 +168,22 @@ function selectTab (index)
     // TODO call function that determines which projects to display based on the given tab
 }
 
-/*
+/**
  * showInterest ()
  * @param button button that was pressed
  * 
- * should add to the database that user is interested in ___ project,
- * and should also add to the project database that another student was interested
+ * @TODO add to studentprofiles.json that user is interested in ___ project,
+ * @TODO add to projects.json that another student was interested
  * 
- * vice versa
+ * @TODO removing interest
  */
-function showInterest (button)
+function showInterest (projObj)
 {
+    console.log(projObj);
+    // API.updateProject();
+
+
+    /*
     console.log(button + " clicked on" + typeof(Array.from(button.classList)));
 
     // TODO LOGIC FOR PUTTING INTEREST IN DATABASE
@@ -177,4 +204,5 @@ function showInterest (button)
         button.innerHTML = "Show Interest";
         tag.innerHTML = num-1;
     }
+    */
 }
