@@ -6,3 +6,12 @@ $(function() {
         $('#showPasswordLabel').text(type === 'password' ? 'Show:' : 'Hide:');
       });
 })
+
+
+$(function() {
+  $('#showPasswordLogo').hover(function(){
+      var type = $('#password').attr('type') === 'password' ? 'text' : 'password';
+      $('#password').attr('type', type);
+    });
+})
+

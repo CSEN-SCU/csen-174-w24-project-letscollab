@@ -14,8 +14,10 @@ loginForm.addEventListener("submit",(event)=>{
     if(form.get("password")==""){
         return $('#response').html("Missing Password").css("color","red");
     }
+    $('#loader').show();
     $('#response').html('');
     API.getLogin(form.get("email"),form.get("password")).then(data=>{
+        $('#loader').hide();
         if(data.status){
                 localStorage.clear();
                 for(const [key,value] of Object.entries(data.data)){                
@@ -33,6 +35,11 @@ loginForm.addEventListener("submit",(event)=>{
             }
             
         }).catch(err=>{//error handling
+            $('#loader').hide();
             $('#response').html('Network Error').css('color','red');
         })
+})
+
+$(function(){
+    $('#loader').hide();
 })
