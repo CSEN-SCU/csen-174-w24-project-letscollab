@@ -3,7 +3,7 @@ const loginForm = document.getElementById("login");
 const createButton = document.getElementById("create");
 
 createButton.addEventListener("click", () => {
-    window.location.href = "/profile";
+    window.location.href = "/signup";
 });
 loginForm.addEventListener("submit",(event)=>{
     event.preventDefault();
