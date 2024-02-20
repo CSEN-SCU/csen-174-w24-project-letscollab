@@ -59,6 +59,60 @@ class LetsCollab {
             });
         });
     }
+    getInterestedProjects(email) {//email is optional, if you logged in in the same session, a cookie will be used to assume the email
+        const params = `getInterestedProjects${email!=""?"?id="+email:""}`;
+        return new Promise((resolve, reject) => {
+            this.apiRequest(params).then(data => {
+                resolve(data);
+            }).catch(err => {
+                reject(err);
+            });
+        });
+    }
+    getInterestedUsers(projectID) {
+        const params = `getInterestedUsers?id=${projectID}`;
+        return new Promise((resolve, reject) => {
+            this.apiRequest(params).then(data => {
+                resolve(data);
+            }).catch(err => {
+                reject(err);
+            });
+        });
+    }
+    getProjectsCreated(email) {//email is optional, if you logged in in the same session, a cookie will be used to assume the email
+        const params = `getProjectsCreated${email!=""?"?id="+email:""}`;
+        return new Promise((resolve, reject) => {
+            this.apiRequest(params).then(data => {
+                resolve(data);
+            }).catch(err => {
+                reject(err);
+            });
+        });
+    }
+    getSkills() {
+        const params = `getSkills`;
+        return new Promise((resolve, reject) => {
+            this.apiRequest(params).then(data => {
+                resolve(data);
+            }).catch(err => {
+                reject(err);
+            });
+        });
+    }
+    createSkill(skillName, skillType){
+        const params = `createSkill`;
+        let body = {
+            "name":skillName,
+            "type":skillType
+        }
+        return new Promise((resolve, reject) => {
+            this.apiRequest(params,body,"POST").then(data => {
+                resolve(data);
+            }).catch(err => {
+                reject(err);
+            });
+        });
+    }
     createProject(newProjectBody){
         const params = `createProject`;
         return new Promise((resolve, reject) => {
@@ -99,6 +153,21 @@ class LetsCollab {
             });
         });
     }
+    setProjectInterest(projectID, isInterested){ 
+        let body = {
+            "id":projectID,
+            "setInterestTo":isInterested
+        }
+        const params = `setProjectInterest`;
+        return new Promise((resolve, reject) => {
+            this.apiRequest(params,body,"POST").then(data => {
+                resolve(data);
+            }).catch(err => {
+                reject(err);
+            });
+        });
+    }
+    
 
     /**
      * Performs an API request using jQuery AJAX.

@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/createProject.css">
     <script src="../js/jquery-3.7.1.js"></script>
-    <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
     <script src="../js/createProject.js"></script>
 </head>
 <body>
@@ -26,7 +25,7 @@
                     Upload Cover Image
                     <input type="file" id="photo" name="photo" accept="image/jpeg, image/png" />
                 </label>
-                <br>
+                <p id="uploadstatus"></p>
                 <br> <!-- Temporary. Will remove if we add image preview circle -->
                 <label for="name">Project Name:</label>
                 <input type="text" id="name" name="name" placeholder="My Project" />
@@ -57,12 +56,7 @@
 
             <header>Skills Desired</header>
             <div class="row">
-                <div class="skills">
-                    <div class="skill cs">
-                        <p class="skillicon">•</p>
-                        <p class="skillname">Python</p>
-                    </div>
-                </div>
+                <div class="skills" id="selectskills"></div>
             </div>
 
             <header>Preview</header>
@@ -75,7 +69,8 @@
                             <h1>My Project</h1>
                         </article>
                         <p class="description">Give a detailed explanation of your project</p>
-                        <h3 id="meetup">Meetup Time: x Location: x</h3>
+                        <h3 id="meettime">Meetup Time: x</h3>
+                        <h3 id="meetlocation">Location: x</h3>
                         <!-- TODO js population -->
                         <h3>Desired Skills:</h3>
                         <div class="skills"></div>

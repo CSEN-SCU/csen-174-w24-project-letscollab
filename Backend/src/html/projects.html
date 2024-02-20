@@ -24,8 +24,14 @@
             </div>
         </header>
 
-        <!-- TODO we populate here with `sections` each section being a project -->
-        <section id="projectlist">
+        <!--
+            `main` is populated by `sections`
+            each section denotes a PROJECT
+
+            note the project layout here
+            also note that on page load, this `demo project` is deleted
+        -->
+        <section class="projectlist">
             <figure>
                 <article>
                     <!-- TODO replace with project image -->
@@ -33,7 +39,8 @@
                     <h1>project title</h1>
                 </article>
                 <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud</p>
-                <h3>Meetup Time: x Location: x</h3>
+                <h3 class="meettime">Meetup Time: x</h3>
+                <h3 class="meetlocation">Location: x</h3>
                 <!-- TODO js population -->
                 <h3>Desired Skills:</h3>
                 <div class="skills"></div>
@@ -41,7 +48,7 @@
             <!-- the aside is the side bar -->
             <aside>
                 <!-- TODO css/js to update between `Show Interest` \ `I'm interested!` ; and to display interest number -->
-                <p class="interestButton" onclick="showInterest(this)"> Show Interest</p>
+                <p class="interestButton" onclick="showInterest(this)">Show Interest</p>
                 <p class="peopleInterested"><mark>0</mark> people are interested</p>
             </aside>
         </section>

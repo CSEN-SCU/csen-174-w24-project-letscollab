@@ -30,7 +30,7 @@
             "UI/UX Design"
         ],
         "Interested Users": [
-            "mark.brown@scu.edu"
+            "test@scu.edu"
         ],
         "PeopleRequired": 2,
         "AuthorEmail": "alice.smith@scu.edu",
@@ -49,7 +49,8 @@
             "Sensors"
         ],
         "Interested Users": [
-            "emily.jones@scu.edu"
+            "emily.jones@scu.edu",
+            "mark.brown@scu.edu"
         ],
         "PeopleRequired": 4,
         "AuthorEmail": "mark.brown@scu.edu",

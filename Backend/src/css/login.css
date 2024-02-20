@@ -1,30 +1,86 @@
 main {
-    width: 50%;
+    min-width: 30%;
+    width: auto;
 }
 
 main none {
     border-style: solid;
 }
 
+input{
+    border:0px;
+    border-radius: 12px;
+    padding:0.3rem;
+    opacity: 0.6;
+    transition: .2s all ease-in-out;
+    max-width: 75%;
+}
+
+input:focus{
+    opacity: 1.0;
+}
+
+#create{
+    border:0px;
+}
+#create:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#login #submit:hover{
+   background-color: var(--scuRed);
+}
+
 main h1 {
     font-weight: bold;
     font-size: xxx-large;
-    margin: 0;
+    margin: auto;
 }
 
 main h2 {
-    margin: 0;
+    margin: auto;
     color: var(--scuRed);
     font-style: italic;
 }
 
 #login {
+    padding:1rem;
+    margin:auto;
     margin-top: 10%;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    
 }
+.loader{
+    align-self: center;
+}
+#response{
+    text-align: center;
+    height: 10px;
+}
+#showPasswordLogo {
+    display: block;
+    padding: 0.3rem;
+    width: 20px; /* Desired width */
+    height: 20px; /* Desired height, adjusted to maintain the aspect ratio */
+    background: url("../images/eye.svg") no-repeat center center;
+    background-size: cover;
+    opacity: 0.5;
+    transition: .2s all ease-in-out;
+  }
 
-#login .formdata {
-    padding-bottom: 1%;
+#showPasswordLogo:hover{
+    opacity:1.0;
+    scale:1.1;
+}
+.password-w-checkbox {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap:10px;
 }
 
 #login * {
@@ -33,13 +89,14 @@ main h2 {
 }
 
 #login #submit {
-    background-color: var(--scuRed);
+    background-color: var(--scuDarkRed);
     color: white;
-    border-style: solid;
-    border-width: thin;
     padding: 1% 2% 1% 2%;
     margin-right: 1%;
     cursor: pointer;
+    border:0px;
+    border-radius: 12px;
+    transition: .2s ease-in-out;
 }
 
 #login a {

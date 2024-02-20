@@ -6,6 +6,7 @@ module.exports = {
         let outObj = {};
         return new Promise(resolve => {
             outObj = skills.getData();
+            outObj["response"] = "Retrieved skills";
             resolve(outObj);
         })
     }

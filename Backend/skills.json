@@ -1,114 +1,114 @@
-[
-    {
+{
+    "C++": {
         "skillName": "C++",
         "skillType": "cs"
     },
-    {
+    "C": {
         "skillName": "C",
         "skillType": "cs"
     },
-    {
+    "Python": {
         "skillName": "Python",
         "skillType": "cs"
     },
-    {
+    "Java": {
         "skillName": "Java",
         "skillType": "cs"
     },
-    {
+    "JavaScript": {
         "skillName": "JavaScript",
         "skillType": "cs"
     },
-    {
+    "ReactJS": {
         "skillName": "ReactJS",
         "skillType": "cs"
     },
-    {
+    "Rust": {
         "skillName": "Rust",
         "skillType": "cs"
     },
-    {
+    "C#": {
         "skillName": "C#",
         "skillType": "cs"
     },
-    {
+    "Assembly": {
         "skillName": "Assembly",
         "skillType": "cs"
     },
-    {
+    "Computer Science": {
         "skillName": "Computer Science",
         "skillType": "cs"
     },
-    {
+    "HTML": {
         "skillName": "HTML",
         "skillType": "cs"
     },
-    {
+    "CSS": {
         "skillName": "CSS",
         "skillType": "cs"
     },
-    {
+    "TypeScript": {
         "skillName": "TypeScript",
         "skillType": "cs"
     },
-    {
+    "Ruby": {
         "skillName": "Ruby",
         "skillType": "cs"
     },
-    {
+    "SQL": {
         "skillName": "SQL",
         "skillType": "cs"
     },
-    {
+    "Go": {
         "skillName": "Go",
         "skillType": "cs"
     },
-    {
+    "PHP": {
         "skillName": "PHP",
         "skillType": "cs"
     },
-    {
+    "MatLab": {
         "skillName": "MatLab",
         "skillType": "cs"
     },
-    {
+    "Swift": {
         "skillName": "Swift",
         "skillType": "cs"
     },
-    {
+    "Kotlin": {
         "skillName": "Kotlin",
         "skillType": "cs"
     },
-    {
+    "Accounting": {
         "skillName": "Accounting",
         "skillType": "business"
     },
-    {
+    "Business": {
         "skillName": "Business",
         "skillType": "business"
     },
-    {
+    "Management": {
         "skillName": "Management",
         "skillType": "business"
     },
-    {
+    "Entrepreneurship": {
         "skillName": "Entrepreneurship",
         "skillType": "business"
     },
-    {
+    "Networking": {
         "skillName": "Networking",
         "skillType": "business"
     },
-    {
+    "Statistics": {
         "skillName": "Statistics",
         "skillType": "business"
     },
-    {
+    "Ethics": {
         "skillName": "Ethics",
         "skillType": "business"
     },
-    {
+    "Economics": {
         "skillName": "Economics",
         "skillType": "business"
     }
-]
+}

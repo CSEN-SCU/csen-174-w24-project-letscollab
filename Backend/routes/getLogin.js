@@ -1,8 +1,9 @@
 const users = require('../user-storage.js');
+const { v4: uuidv4 } = require('uuid'); 
 module.exports = {
     name: "getLogin",
     method:'GET',
-    execute(params){
+    execute(params,req){
         return new Promise((resolve,reject)=>{
             let out_obj = {};
             let email = params.email;
@@ -12,6 +13,7 @@ module.exports = {
                 if(userObject.Password === password){
                     //const { ["Password"]: _, ...new_obj } = userObject;
                     out_obj = userObject;
+                    req.session.Email = userObject.Email;
                     out_obj["response"] = "Login Success";
                 }else{
                     out_obj["response"] = "Incorrect Username/Password"
