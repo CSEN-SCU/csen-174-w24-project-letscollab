@@ -32,8 +32,6 @@ function ImportCommands() {
 }
 
 function validateToken(req, res, next) {
-    console.log(req.session.Email);
-
     next();
 }
 
@@ -54,7 +52,7 @@ app.get('/v1/:get',validateToken,async(req,res)=>{
 
 app.post('/v1/:post',validateToken,async(req,res)=>{
     const command = Commands.get(req.params.post);
-    let resObj = await command.execute(req.body);
+    let resObj = await command.execute(req.body,req);
     let response = resObj["response"];
     const { ["response"]: _, ...out_obj } = resObj;
     res.status(200).send({

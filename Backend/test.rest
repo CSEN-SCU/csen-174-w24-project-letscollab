@@ -16,8 +16,26 @@ Content-Type: application/json
 
 
 ### GET
-http://127.0.0.1:8080/v1/getLogin?email=test@scu.edu&password=12345 HTTP/1.1
+GET http://127.0.0.1:8080/v1/getLogin?email=mark.brown@scu.edu&password=mb12345 HTTP/1.1
 
+### GET
+GET http://127.0.0.1:8080/v1/getInterestedUsers?id=P1002
+
+### GET
+GET http://127.0.0.1:8080/v1/getInterestedProjects?id=alice.smith@scu.edu
+
+###
+
+POST http://127.0.0.1:8080/v1/setProjectInterest HTTP/1.1
+Content-Type: application/json
+
+{
+"id":"P1002",
+"setInterestTo":"false"
+}
+
+### GET
+http://127.0.0.1:8080/v1/getProjectsCreated?id=alice.smith@scu.edu
 ###
 
 POST http://127.0.0.1:8080/v1/createUser 

@@ -12,9 +12,10 @@
         "Description": "Senior computer science student interested in AI and data science.",
         "Year": "Senior",
         "Major": "Computer Science",
-        "ProjectIDs": [
+        "ProjectsCreated": [
             "P1001"
-        ]
+        ],
+        "ProjectsInterested": []
     },
     "alice.smith@scu.edu": {
         "Email": "alice.smith@scu.edu",
@@ -29,9 +30,10 @@
         "Description": "Junior year student with a passion for front-end development.",
         "Year": "Junior",
         "Major": "Software Engineering",
-        "ProjectIDs": [
+        "ProjectsCreated": [
             "P1002"
-        ]
+        ],
+        "ProjectsInterested": []
     },
     "mark.brown@scu.edu": {
         "Email": "mark.brown@scu.edu",
@@ -46,9 +48,13 @@
         "Description": "Sophomore interested in robotics and IoT devices.",
         "Year": "Sophomore",
         "Major": "Electrical Engineering",
-        "ProjectIDs": [
+        "ProjectsCreated": [
             "P1003"
-        ]
+        ],
+        "ProjectsInterested": [
+            "P1003"
+        ],
+        "response": "Login Success"
     },
     "emily.jones@scu.edu": {
         "Email": "emily.jones@scu.edu",
@@ -63,9 +69,10 @@
         "Description": "Graphic design major with an interest in UI/UX.",
         "Year": "Senior",
         "Major": "Graphic Design",
-        "ProjectIDs": [
+        "ProjectsCreated": [
             "P1004"
-        ]
+        ],
+        "ProjectsInterested": []
     },
     "sarah.green@scu.edu": {
         "Email": "sarah.green@scu.edu",
@@ -80,9 +87,10 @@
         "Description": "Graduate student specializing in backend development and APIs.",
         "Year": "Graduate",
         "Major": "Computer Science",
-        "ProjectIDs": [
+        "ProjectsCreated": [
             "P1005"
-        ]
+        ],
+        "ProjectsInterested": []
     },
     "riley.smith@scu.edu": {
         "Email": "riley.smith@scu.edu",
@@ -97,9 +105,10 @@
         "Description": "Junior year student that likes to",
         "Year": "Junior",
         "Major": "Software Engineering",
-        "ProjectIDs": [
+        "ProjectsCreated": [
             "P1002"
-        ]
+        ],
+        "ProjectsInterested": []
     },
     "test@scu.edu": {
         "Email": "test@scu.edu",
@@ -113,8 +122,11 @@
         "Description": "Junior year student",
         "Year": "Junior",
         "Major": "Software Engineering",
-        "ProjectIDs": [
+        "ProjectsCreated": [
             "P1005"
+        ],
+        "ProjectsInterested": [
+            "P1002"
         ],
         "response": "Login Success"
     },
@@ -128,7 +140,9 @@
         "Skills": [
             "C++",
             "Business Stuff"
-        ]
+        ],
+        "ProjectsCreated": [],
+        "ProjectsInterested": []
     },
     "test@test.com": {
         "FirstName": "testing",
@@ -141,6 +155,7 @@
             "Business Stuff",
             "Java"
         ],
-        "response": "Login Success"
+        "ProjectsCreated": [],
+        "ProjectsInterested": []
     }
 }

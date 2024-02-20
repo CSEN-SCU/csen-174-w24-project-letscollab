@@ -8,6 +8,8 @@ module.exports = {
             let email = body.Email;
             let data = users.getData();
             if(data[email]==null){
+                body["ProjectsCreated"] = [];
+                body["ProjectsInterested"] = [];
                 users.setItem(email,body);
                 let userObject = users.getItem(email);
                 if(userObject!=null){
