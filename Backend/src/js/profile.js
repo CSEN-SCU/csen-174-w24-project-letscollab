@@ -74,18 +74,28 @@ $(function() {
     createSkill("Java", "cs");
     createSkill("Business Stuff", "business");
     createSkill("Accounting", "business");*/
-    $.ajax({
-        url: "/v1/getSkills",
-        type: "GET",
-        success:function(response, textStatus, xhr) {
-            for (let i = 0; (typeof response.data["skillList"][i]) !== 'undefined'; ++i) {
-                createSkill(response.data["skillList"][i].skillName, response.data["skillList"][i].skillType);
-            }
-        },
-        error:function(xhr, status, error) {
-            console.log("Could not get skills");
+    API.getSkills().then(response=>{
+        let skillsArray = Object.values(response.data);
+        console.log(skillsArray);
+        skillsArray.forEach(skill=>{
+            createSkill(skill.skillName, skill.skillType);
         }
-    });
+    )
+    }).catch(err=>{
+        console.log("Could not get skills");
+    })
+    // $.ajax({
+    //     url: "/v1/getSkills",
+    //     type: "GET",
+    //     success:function(response, textStatus, xhr) {
+    //         for (let i = 0; (typeof response.data["skillList"][i]) !== 'undefined'; ++i) {
+    //             createSkill(response.data["skillList"][i].skillName, response.data["skillList"][i].skillType);
+    //         }
+    //     },
+    //     error:function(xhr, status, error) {
+    //         console.log("Could not get skills");
+    //     }
+    // });
 })
 
 $(function(){

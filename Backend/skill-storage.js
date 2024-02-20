@@ -31,8 +31,12 @@ module.exports = {
         let dataItem = data[key] || null;
         return dataItem;
     },
+    setItem: (key, value) => {
+        data[key] = value;
+        fs.writeFile("./skills.json", JSON.stringify(data,0,4));
+    },
     addSkill: (skill) => {
-        data["skillList"].append(skill);
-        fs.writeFile("./projects.json", JSON.stringify(data,0,4));
+        data[skill.skillName].append(skill);
+        fs.writeFile("./skills.json", JSON.stringify(data,0,4));
     },
 }

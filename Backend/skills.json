@@ -1,116 +1,114 @@
 {
-    "skillList": [
-        {
-            "skillName": "C++",
-            "skillType": "cs"
-        },
-        {
-            "skillName": "C",
-            "skillType": "cs"
-        },
-        {
-            "skillName": "Python",
-            "skillType": "cs"
-        },
-        {
-            "skillName": "Java",
-            "skillType": "cs"
-        },
-        {
-            "skillName": "JavaScript",
-            "skillType": "cs"
-        },
-        {
-            "skillName": "ReactJS",
-            "skillType": "cs"
-        },
-        {
-            "skillName": "Rust",
-            "skillType": "cs"
-        },
-        {
-            "skillName": "C#",
-            "skillType": "cs"
-        },
-        {
-            "skillName": "Assembly",
-            "skillType": "cs"
-        },
-        {
-            "skillName": "Computer Science",
-            "skillType": "cs"
-        },
-        {
-            "skillName": "HTML",
-            "skillType": "cs"
-        },
-        {
-            "skillName": "CSS",
-            "skillType": "cs"
-        },
-        {
-            "skillName": "TypeScript",
-            "skillType": "cs"
-        },
-        {
-            "skillName": "Ruby",
-            "skillType": "cs"
-        },
-        {
-            "skillName": "SQL",
-            "skillType": "cs"
-        },
-        {
-            "skillName": "Go",
-            "skillType": "cs"
-        },
-        {
-            "skillName": "PHP",
-            "skillType": "cs"
-        },
-        {
-            "skillName": "MatLab",
-            "skillType": "cs"
-        },
-        {
-            "skillName": "Swift",
-            "skillType": "cs"
-        },
-        {
-            "skillName": "Kotlin",
-            "skillType": "cs"
-        },
-        {
-            "skillName": "Accounting",
-            "skillType": "business"
-        },
-        {
-            "skillName": "Business",
-            "skillType": "business"
-        },
-        {
-            "skillName": "Management",
-            "skillType": "business"
-        },
-        {
-            "skillName": "Entrepreneurship",
-            "skillType": "business"
-        },
-        {
-            "skillName": "Networking",
-            "skillType": "business"
-        },
-        {
-            "skillName": "Statistics",
-            "skillType": "business"
-        },
-        {
-            "skillName": "Ethics",
-            "skillType": "business"
-        },
-        {
-            "skillName": "Economics",
-            "skillType": "business"
-        }
-    ]
+    "C++": {
+        "skillName": "C++",
+        "skillType": "cs"
+    },
+    "C": {
+        "skillName": "C",
+        "skillType": "cs"
+    },
+    "Python": {
+        "skillName": "Python",
+        "skillType": "cs"
+    },
+    "Java": {
+        "skillName": "Java",
+        "skillType": "cs"
+    },
+    "JavaScript": {
+        "skillName": "JavaScript",
+        "skillType": "cs"
+    },
+    "ReactJS": {
+        "skillName": "ReactJS",
+        "skillType": "cs"
+    },
+    "Rust": {
+        "skillName": "Rust",
+        "skillType": "cs"
+    },
+    "C#": {
+        "skillName": "C#",
+        "skillType": "cs"
+    },
+    "Assembly": {
+        "skillName": "Assembly",
+        "skillType": "cs"
+    },
+    "Computer Science": {
+        "skillName": "Computer Science",
+        "skillType": "cs"
+    },
+    "HTML": {
+        "skillName": "HTML",
+        "skillType": "cs"
+    },
+    "CSS": {
+        "skillName": "CSS",
+        "skillType": "cs"
+    },
+    "TypeScript": {
+        "skillName": "TypeScript",
+        "skillType": "cs"
+    },
+    "Ruby": {
+        "skillName": "Ruby",
+        "skillType": "cs"
+    },
+    "SQL": {
+        "skillName": "SQL",
+        "skillType": "cs"
+    },
+    "Go": {
+        "skillName": "Go",
+        "skillType": "cs"
+    },
+    "PHP": {
+        "skillName": "PHP",
+        "skillType": "cs"
+    },
+    "MatLab": {
+        "skillName": "MatLab",
+        "skillType": "cs"
+    },
+    "Swift": {
+        "skillName": "Swift",
+        "skillType": "cs"
+    },
+    "Kotlin": {
+        "skillName": "Kotlin",
+        "skillType": "cs"
+    },
+    "Accounting": {
+        "skillName": "Accounting",
+        "skillType": "business"
+    },
+    "Business": {
+        "skillName": "Business",
+        "skillType": "business"
+    },
+    "Management": {
+        "skillName": "Management",
+        "skillType": "business"
+    },
+    "Entrepreneurship": {
+        "skillName": "Entrepreneurship",
+        "skillType": "business"
+    },
+    "Networking": {
+        "skillName": "Networking",
+        "skillType": "business"
+    },
+    "Statistics": {
+        "skillName": "Statistics",
+        "skillType": "business"
+    },
+    "Ethics": {
+        "skillName": "Ethics",
+        "skillType": "business"
+    },
+    "Economics": {
+        "skillName": "Economics",
+        "skillType": "business"
+    }
 }

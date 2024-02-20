@@ -34,9 +34,21 @@ Content-Type: application/json
 "setInterestTo":"false"
 }
 
-### GET
-http://127.0.0.1:8080/v1/getProjectsCreated?id=alice.smith@scu.edu
 ###
+
+POST http://127.0.0.1:8080/v1/createSkill HTTP/1.1
+Content-Type: application/json
+
+{
+"name":"C/C++",
+"type":"cs"
+}
+
+### GET
+GET http://127.0.0.1:8080/v1/getProjectsCreated?id=alice.smith@scu.edu
+
+### GET
+GET http://127.0.0.1:8080/v1/getSkills
 
 POST http://127.0.0.1:8080/v1/createUser 
 Content-Type: application/json

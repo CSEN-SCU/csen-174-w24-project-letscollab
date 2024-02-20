@@ -89,6 +89,30 @@ class LetsCollab {
             });
         });
     }
+    getSkills() {
+        const params = `getSkills`;
+        return new Promise((resolve, reject) => {
+            this.apiRequest(params).then(data => {
+                resolve(data);
+            }).catch(err => {
+                reject(err);
+            });
+        });
+    }
+    createSkill(skillName, skillType){
+        const params = `createSkill`;
+        let body = {
+            "name":skillName,
+            "type":skillType
+        }
+        return new Promise((resolve, reject) => {
+            this.apiRequest(params,body,"POST").then(data => {
+                resolve(data);
+            }).catch(err => {
+                reject(err);
+            });
+        });
+    }
     createProject(newProjectBody){
         const params = `createProject`;
         return new Promise((resolve, reject) => {
