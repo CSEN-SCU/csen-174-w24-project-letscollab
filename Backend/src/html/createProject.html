@@ -61,16 +61,16 @@
 
             <header>Preview</header>
             <div class="row">
-                <section id="projectlist">
+                <section class="projectlist">
                     <figure>
                         <article>
                             <!-- TODO replace with project image -->
-                            <img src="../images/background.jpeg" alt="project icon" />
+                            <img src="../images/background.jpeg" alt="project icon"></img>
                             <h1>My Project</h1>
                         </article>
                         <p class="description">Give a detailed explanation of your project</p>
-                        <h3 id="meettime">Meetup Time: x</h3>
-                        <h3 id="meetlocation">Location: x</h3>
+                        <h3 class="meettime">Meetup Time: x</h3>
+                        <h3 class="meetlocation">Location: x</h3>
                         <!-- TODO js population -->
                         <h3>Desired Skills:</h3>
                         <div class="skills"></div>
@@ -78,7 +78,7 @@
                     <!-- the aside is the side bar -->
                     <aside>
                         <!-- TODO css/js to update between `Show Interest` \ `I'm interested!` ; and to display interest number -->
-                        <p class="interestButton"> Show Interest</p>
+                        <p class="interestButton" onclick="showInterest(this)">Show Interest</p>
                         <p class="peopleInterested"><mark>0</mark> people are interested</p>
                     </aside>
                 </section>
