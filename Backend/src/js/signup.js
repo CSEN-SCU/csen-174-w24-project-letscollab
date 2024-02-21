@@ -3,7 +3,7 @@ const STATES = ["removable", "selectable"];
 const editProfileForm = document.getElementById("userform");
 function getSkillNamesArray() {
     // Initialize an array to hold the skill names
-    var skillNames = [];
+    let skillNames = [];
   
     // Use jQuery to select each .skillname element and iterate over them
     $('#skills .skillname').each(function() {
@@ -12,15 +12,14 @@ function getSkillNamesArray() {
     });
   
     return skillNames;
-  }
+}
 
 function validateForm(formDataObj){
-    if(formDataObj["FirstName"] == "")return false;
-    if(formDataObj["LastName"] == "")return false;
-    if(formDataObj["Email"] == "")return false;
-    if(formDataObj["Description"] == "")return false;
-    return true;
-  }
+    if (formDataObj["FirstName"] === "") return false;
+    if (formDataObj["LastName"] === "") return false;
+    if (formDataObj["Email"] === "") return false;
+    return formDataObj["Description"] !== "";
+}
   
     
 function createSkill(skill, category) {
@@ -77,14 +76,7 @@ function transferSkill(from, skill, category) {
 }
 
 $(function() {
-    /*createSkill("Python", "cs");
-    createSkill("C++", "cs");
-    createSkill("Java", "cs");
-    createSkill("Business Stuff", "business");
-    createSkill("Accounting", "business");*/
     API.getSkills().then(response => {
-        //let skillsArray = Object.values(response.data);
-        //console.log(skillsArray);
         Object.values(response.data).forEach(skill => {
             createSkill(skill.skillName, skill.skillType);
             console.log(`Added skill ${skill.skillName} with type ${skill.skillType}`);
@@ -111,18 +103,18 @@ editProfileForm.addEventListener("submit",(event)=>{
         return;
     }
     API.createUser(formDataObj).then(data=>{
-        if(data.status){
+        if (data.status) {
             $("#response").html(data.response).css("color","green");
             for(const [key,value] of Object.entries(data.data)){
-                localStorage.setItem(key,value);
+                localStorage.setItem(key, value);
             }
-            setTimeout(()=>{
+            setTimeout(()=> {
                 window.location.href = "/login"
-             },1500)
-        }else{
+            },1500)
+        } else {
             $("#response").html(data.response).css("color","red");
         }
-        setTimeout(()=>{
+        setTimeout(()=> {
             $("#response").html("");
         },1500)
     })
