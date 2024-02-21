@@ -6,7 +6,7 @@ fs.readFile("./studentprofiles.json")
   .then((contents) => {
     if (contents) {
       data = JSON.parse(contents);
-      fs.writeFile("./studentprofiles.json", JSON.stringify(data,0,4));
+      fs.writeFile("./studentprofiles.json", JSON.stringify(data,null,4));
     }
   })
   .catch((err) => {
@@ -29,6 +29,6 @@ module.exports = {
   },
   setItem: (key, value) => {
     data[key] = value;
-    fs.writeFile("./studentprofiles.json", JSON.stringify(data,0,4));
+    fs.writeFile("./studentprofiles.json", JSON.stringify(data,null,4));
   },
 };
