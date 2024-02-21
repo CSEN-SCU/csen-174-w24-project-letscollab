@@ -77,6 +77,24 @@ function transferSkill(from, skill, category) {
 }
 
 $(function() {
+    /*createSkill("Python", "cs");
+    createSkill("C++", "cs");
+    createSkill("Java", "cs");
+    createSkill("Business Stuff", "business");
+    createSkill("Accounting", "business");*/
+    API.getSkills().then(response => {
+        //let skillsArray = Object.values(response.data);
+        //console.log(skillsArray);
+        Object.values(response.data).forEach(skill => {
+            createSkill(skill.skillName, skill.skillType);
+            console.log(`Added skill ${skill.skillName} with type ${skill.skillType}`);
+        })
+    }).catch(err => {
+        console.log("Could not get skills");
+    });
+})
+
+$(function(){
     localStorage.clear();
     API.getSkills().then(response=>{
         let skillsArray = Object.values(response.data);
