@@ -14,7 +14,7 @@ function setResponse(text, color){
     $('#response').html(`${text}`).css("color",color);
     setTimeout(()=>{
         $("#response").html("");
-    },1500)
+     },1500)
 }
 createButton.addEventListener("click", () => {
     window.location.href = "/signup";
@@ -33,23 +33,23 @@ loginForm.addEventListener("submit",(event)=>{
     $('#loader').show();
     $('#response').html('');
     setTimeout(()=>{
-        API.getLogin(form.get("email"),form.get("password")).then(data=>{
-            if(data.status){
+    API.getLogin(form.get("email"),form.get("password")).then(data=>{
+        if(data.status){
                 localStorage.clear();
-                for(const [key,value] of Object.entries(data.data)){
+                for(const [key,value] of Object.entries(data.data)){                
                     localStorage.setItem(key,value);
                 }
                 setResponse(data.response,"green");
                 setTimeout(()=>{
                     window.location.href = "/profile"
-                },1500)
-
+                 },1500)
+             
             }else{
                 setResponse(data.response,"red");
-                setElementShake("#response");
+                setElementShake("#response");   
             }
         }).catch(err=>{//error handling
-            setResponse("Network Error","red");
+            setResponse("Network Error","red");            
         })
     },500)
 })
