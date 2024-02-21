@@ -19,32 +19,38 @@ $(async () => {
     demoProject.remove();
 
     let projects = {};
-    await $.ajax({
-        url: "/v1/getAllProjects",
-        type: "GET",
-        success: function (response, textStatus, xhr) {
-            projects = response.data;
-            console.log(response.data);
-        },
-        error: function (xhr, status, error) {
-            console.log ("error loading project list ...")
+    API.getAllProjects().then(response => {
+        projects = response.data;
+        console.log(response.data);
+
+        // iterate through each project in projects.json, creating html elements
+        for (project in projects)
+        {
+            createProjectElement(projects[project]);
         }
+    }).catch(err => {
+        console.log('error' + err);
     })
 
-    /**
-     * iterate through each project in projects.json
-     */
-    for (project in projects)
-    {
-        createProjectElement(projects[project]);
-    }
+    /* outdated ajax call */
+    // await $.ajax({
+    //     url: "/v1/getAllProjects",
+    //     type: "GET",
+    //     success: function (response, textStatus, xhr) {
+    //         // projects = response.data;
+    //         console.log(response.data);
+    //     },
+    //     error: function (xhr, status, error) {
+    //         console.log ("error loading project list ...")
+    //     }
+    // })
 });
 
 /**
  * createProjectElement ()
- * 
+ *
  * create a `section` element for each project
- * 
+ *
  * @param projObj project object being iterated on page load
  */
 function createProjectElement(projObj)
@@ -73,7 +79,7 @@ function createProjectElement(projObj)
     desc.classList.add("description");
     desc.innerHTML = projObj.Description;
 
-    const meetTime = document.createElement("h3"); 
+    const meetTime = document.createElement("h3");
     meetTime.classList.add("meettime");
     meetTime.innerHTML = "Meetup Time: " + projObj.Meetup.Time;
 
@@ -89,6 +95,7 @@ function createProjectElement(projObj)
     skills.classList.add("skills");
     for (skill of projObj["Skills Desired"])
     {
+        /** @TODO highlight skills */
         console.log(skill);
 
         const skillDiv = document.createElement("div");
@@ -97,7 +104,7 @@ function createProjectElement(projObj)
         const skillIcon = document.createElement("p");
         skillIcon.classList.add("skillicon");
         skillIcon.innerHTML = "•";
-        
+
         const skillName = document.createElement("p");
         skillName.classList.add("skillname");
         skillName.innerHTML = skill;
@@ -112,13 +119,14 @@ function createProjectElement(projObj)
     const interestButton = document.createElement("p");
     interestButton.classList.add("interestButton");
     interestButton.innerHTML = "Show Interest";
-    
+
     // add event listener for the interest button
     interestButton.addEventListener("click", function() {
-        showInterest(projObj);
+        showInterest(interestButton, projObj);
     });
 
-    const peopleInterested= document.createElement("p");
+    // display number of interested students
+    const peopleInterested = document.createElement("p");
     peopleInterested.classList.add("peopleInterested");
     let num = projObj["Interested Users"].length;
     if (num == 1)
@@ -144,7 +152,7 @@ function createProjectElement(projObj)
 /**
  * selectTab ()
  * @param index denotes which tab was pressed
- * 
+ *
  * changes selected tab in header
  */
 function selectTab (index)
@@ -171,38 +179,33 @@ function selectTab (index)
 /**
  * showInterest ()
  * @param button button that was pressed
- * 
+ *
  * @TODO add to studentprofiles.json that user is interested in ___ project,
  * @TODO add to projects.json that another student was interested
- * 
+ *
  * @TODO removing interest
  */
-function showInterest (projObj)
+function showInterest (button, projObj)
 {
     console.log(projObj);
-    // API.updateProject();
-
-
-    /*
-    console.log(button + " clicked on" + typeof(Array.from(button.classList)));
-
-    // TODO LOGIC FOR PUTTING INTEREST IN DATABASE
+    /** @TODO add the user to the project's interested users? */
     button.classList.toggle("selected");
-    
-    // edit the text below the button
-    let tag = button.nextElementSibling.querySelector("mark");
-    let num = Number(tag.innerHTML);
 
     // if we have now shown interest ...
     if (button.classList.contains("selected"))
     {
         button.innerHTML = "I'm interested!";
-        tag.innerHTML = num+1;
     }
     else
     {
         button.innerHTML = "Show Interest";
-        tag.innerHTML = num-1;
     }
+
+    // API.updateProject();
+
+    /*
+    // edit the text below the button
+    let tag = button.nextElementSibling.querySelector("mark");
+    let num = Number(tag.innerHTML);
     */
 }
