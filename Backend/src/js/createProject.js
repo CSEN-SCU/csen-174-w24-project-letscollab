@@ -43,7 +43,7 @@ const updatePreviewImage = (event) => {
     if (images.length < 0) return;
 
     const image = URL.createObjectURL(images[0]);
-    const previewElement = $("#projectlist img");
+    const previewElement = $(".projectlist img");
     previewElement.attr("src", image);
 
     // Create status message
@@ -85,7 +85,7 @@ const updatePreviewDescription = () => {
  * Updates the meetup time of the preview in realtime (the regex is ugly, and I'm sorry) <-- its not that bad anymore
  */
 const updatePreviewDateTime = () => {
-    const previewElement = $("#projectlist #meettime");
+    const previewElement = $(".projectlist .meettime");
 
     // Number to text month object
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -99,7 +99,6 @@ const updatePreviewDateTime = () => {
             hour -= 12;
             timeSuffix = "PM";
         }
-
         const timeResult = `${hour}:${minutes} ${timeSuffix}`;
 
         // Update preview element
@@ -126,7 +125,7 @@ const updatePreviewDateTime = () => {
  */
 const updatePreviewLocation = () => {
     const locationContent = $("#location").val();
-    const previewElement = $("#projectlist #meetlocation");
+    const previewElement = $(".projectlist .meetlocation");
 
     if (locationContent.length > 1) {
         previewElement.html(previewElement.html().replace(/(Location:\s)(.+)/g, `$1${locationContent}`));
@@ -144,7 +143,7 @@ const loadSkillList = async () => {
         url: "/v1/getSkills",
         type: "GET",
         success: function(response, textStatus, xhr) {
-            skills = response.data["skillList"];
+            skills = Object.values(response.data);
         },
         error: function(xhr, status, error) {
             console.log("this is bad. very bad");
@@ -161,7 +160,7 @@ const loadSkillList = async () => {
 /**
  * Creates a skill element in a given container
  * @param {object}container Where to put the skill
- * @param {object}skill What the skill is in format { skillName: "name", skillType: "type"}
+ * @param {object}skill What the skill is in format {skillName: "name", skillType: "type"}
  * @param {boolean}isPreview Whether the skill is being appended to the preview view or not
  */
 const createSkillElement = (container, skill, isPreview) => {
@@ -178,7 +177,7 @@ const createSkillElement = (container, skill, isPreview) => {
                 removeSkillElement(skill.skillName);
             } else { // Otherwise, add it
                 newSkill.addClass("selected");
-                const previewContainer = $("#projectlist .skills");
+                const previewContainer = $(".projectlist .skills");
                 createSkillElement(previewContainer, skill, true)
             }
         });
@@ -205,7 +204,7 @@ const createSkillElement = (container, skill, isPreview) => {
  * @param {string}skillName Name of skill
  */
 const removeSkillElement = (skillName) => {
-    const skills = $("#projectlist .skills").children();
+    const skills = $(".projectlist .skills").children();
     skills.each((index, skill) => {
         if ($(skill).find(".skillname").html() === skillName) skills.eq(index).remove();
     })
