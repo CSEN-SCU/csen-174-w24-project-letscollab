@@ -7,8 +7,8 @@ function getSkillNamesArray() {
   
     // Use jQuery to select each .skillname element and iterate over them
     $('#skills .skillname').each(function() {
-      // Add the innerHTML (text content) of each .skillname element to the array
-      skillNames.push($(this).text());
+        // Add the innerHTML (text content) of each .skillname element to the array
+        skillNames.push($(this).text());
     });
   
     return skillNames;
@@ -33,15 +33,13 @@ function createSkill(skill, category) {
     newSkill.classList.add("skill");
     newSkill.classList.add(category);
     newSkill.classList.add(STATES[1]);
-    //newSkill.classList.add("skill cs removable");
     newSkill.appendChild(dot);
     newSkill.appendChild(skillName);
-    const skillContainer = document.querySelector(LISTS[1]);/*"#skills" is the top list*/
+    const skillContainer = document.querySelector(LISTS[1]);
     skillContainer.appendChild(newSkill);
     newSkill.addEventListener("click", () => {
         transferSkill(1, skill, category);
     });
-    
 }
 function transferSkill(from, skill, category) {
     // Add to top list
@@ -55,16 +53,15 @@ function transferSkill(from, skill, category) {
     newSkill.classList.add("skill");
     newSkill.classList.add(category);
     newSkill.classList.add(STATES[1 - from]);
-    //newSkill.classList.add("skill cs removable");
     newSkill.appendChild(dot);
     newSkill.appendChild(skillName);
-    const skillContainer = document.querySelector(LISTS[1 - from]);/*"#skills" is the top list*/
+    const skillContainer = document.querySelector(LISTS[1 - from]);
     skillContainer.appendChild(newSkill);
     newSkill.addEventListener("click", () => {
         transferSkill(1 - from, skill, category);
     });
     // Remove from bottom list
-    const addableSkills = document.querySelector(LISTS[from]);/*"#addskills" is the bottom list*/
+    const addableSkills = document.querySelector(LISTS[from]);
     const skillArray = addableSkills.querySelectorAll(".skill");
     for (let i = 0; i < skillArray.length; ++i) {
         let div = skillArray.item(i);
@@ -81,7 +78,7 @@ $(function() {
             createSkill(skill.skillName, skill.skillType);
             console.log(`Added skill ${skill.skillName} with type ${skill.skillType}`);
         })
-    }).catch(err => {
+    }).catch(() => {
         console.log("Could not get skills");
     });
 })
@@ -92,20 +89,19 @@ $(function(){
 
 editProfileForm.addEventListener("submit",(event)=>{
     event.preventDefault();
-    const form = new FormData(editProfileForm);
-    const formDataObj = Object.fromEntries(form.entries());
+    const formDataObj = Object.fromEntries(new FormData(editProfileForm).entries());
     formDataObj["Skills"] = getSkillNamesArray();
-    if(!validateForm(formDataObj)){
+    if (!validateForm(formDataObj)) {
         $("#response").html("Missing Field").css("color","red");
-        setTimeout(()=>{
+        setTimeout(() => {
             $("#response").html("");
         },1500)
         return;
     }
-    API.createUser(formDataObj).then(data=>{
+    API.createUser(formDataObj).then(data => {
         if (data.status) {
             $("#response").html(data.response).css("color","green");
-            for(const [key,value] of Object.entries(data.data)){
+            for (const [key, value] of Object.entries(data.data)) {
                 localStorage.setItem(key, value);
             }
             setTimeout(()=> {
@@ -114,7 +110,7 @@ editProfileForm.addEventListener("submit",(event)=>{
         } else {
             $("#response").html(data.response).css("color","red");
         }
-        setTimeout(()=> {
+        setTimeout(() => {
             $("#response").html("");
         },1500)
     })
