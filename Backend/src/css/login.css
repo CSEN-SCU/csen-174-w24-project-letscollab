@@ -8,7 +8,7 @@ main none {
 }
 
 input{
-    border:0px;
+    border:1px thin black;
     border-radius: 12px;
     padding:0.3rem;
     opacity: 0.6;

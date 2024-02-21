@@ -11,18 +11,41 @@ main {
 }
 
 #userform {
-    display: block;
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+}
+
+input,textarea,select{
+    border: 0px;
+    border-radius: 12px;
+    padding:0.3rem;
+
+    opacity: 0.6;
+    transition: .2s all ease-in-out;
+    max-width: 75%;
+}
+
+input:focus,textarea:focus{
+    opacity: 1.0;
+}
+
+
+.formStyle{
+    display: flex;
+    flex-direction: column;
+    gap:5px;
 }
 
 .userinfo * {
     margin: 0 0 3% 0;
 }
 
-.userinfo label, textarea, input, select {
-    font-size: large;
+label, textarea, input, select {
+    font-size: larger;
 }
 
-.userinfo textarea {
+textarea {
     vertical-align: top;
     resize: none;
     padding: 5px 0 0 5px;

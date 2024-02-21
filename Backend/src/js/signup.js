@@ -77,16 +77,19 @@ function transferSkill(from, skill, category) {
 }
 
 $(function() {
-    createSkill("Python", "cs");
-    createSkill("C++", "cs");
-    createSkill("Java", "cs");
-    createSkill("Business Stuff", "business");
-    createSkill("Accounting", "business");
+    localStorage.clear();
+    API.getSkills().then(response=>{
+        let skillsArray = Object.values(response.data);
+        console.log(skillsArray);
+        skillsArray.forEach(skill=>{
+            createSkill(skill.skillName, skill.skillType);
+        }
+    )
+    }).catch(err=>{
+        console.log("Could not get skills");
+    })
 })
 
-$(function(){
-    localStorage.clear();
-})
 
 editProfileForm.addEventListener("submit",(event)=>{
     event.preventDefault();
