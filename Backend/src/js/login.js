@@ -2,6 +2,20 @@ const submitFormButton = document.getElementById("submit");
 const loginForm = document.getElementById("login");
 const createButton = document.getElementById("create");
 
+function setElementShake(elementValue){
+    $(elementValue).addClass('incorrect');
+    setTimeout(()=>{
+        $(elementValue).removeClass("incorrect");
+    },1500)
+}
+
+function setResponse(text, color){
+    $('#loader').hide();
+    $('#response').html(`${text}`).css("color",color);
+    setTimeout(()=>{
+        $("#response").html("");
+     },1500)
+}
 createButton.addEventListener("click", () => {
     window.location.href = "/signup";
 });
@@ -9,35 +23,35 @@ loginForm.addEventListener("submit",(event)=>{
     event.preventDefault();
     const form = new FormData(loginForm);
     if(form.get("email")==""){
-        return $('#response').html("Missing Username").css("color","red");
+        setElementShake("#submit");
+        return setResponse("Missing Email","red");
     }
     if(form.get("password")==""){
-        return $('#response').html("Missing Password").css("color","red");
+        setElementShake("#submit");
+        return setResponse("Missing Password","red");
     }
     $('#loader').show();
     $('#response').html('');
+    setTimeout(()=>{
     API.getLogin(form.get("email"),form.get("password")).then(data=>{
-        $('#loader').hide();
         if(data.status){
                 localStorage.clear();
                 for(const [key,value] of Object.entries(data.data)){                
                     localStorage.setItem(key,value);
                 }
-                $('#response').html(`${data.response}`).css("color","green");
+                setResponse(data.response,"green");
                 setTimeout(()=>{
-                   window.location.href = "/profile"
-                },1500)
+                    window.location.href = "/profile"
+                 },1500)
+             
             }else{
-                $('#response').html(`${data.response}`).css("color","red");
-                setTimeout(()=>{
-                    $("#response").html("");
-                },1500)
+                setResponse(data.response,"red");
+                setElementShake("#response");   
             }
-            
         }).catch(err=>{//error handling
-            $('#loader').hide();
-            $('#response').html('Network Error').css('color','red');
+            setResponse("Network Error","red");            
         })
+    },500)
 })
 
 $(function(){

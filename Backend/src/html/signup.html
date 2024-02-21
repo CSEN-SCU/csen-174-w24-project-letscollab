@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>LetsCollab: Profile</title>
     <link rel="stylesheet" type="text/css" href="../css/base.css">
-    <link rel="stylesheet" type="text/css" href="../css/profile.css">
+    <link rel="stylesheet" type="text/css" href="../css/signup.css">
     <script src="../js/jquery-3.7.1.js"></script>
     <script src="../js/API.js"></script>
     <script src="../js/base.js"async defer></script>
@@ -22,28 +22,22 @@
         </div>
 
         <form id="userform">
-            <div class="userinfo">
+            <div class="formStyle">
                 <label for="firstname">First:</label>
                 <input type="text" id="firstname" name="FirstName" placeholder="John" />
 
                 <label for="lastname">Last:</label>
                 <input type="text" id="lastname" name="LastName" placeholder="Doe" />
-            </div>
 
-            <div class="userinfo">
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="Email" placeholder="example@scu.edu" />
 
-                <div id="passwordinputs">
-                    <label for="password">Password:</label>
-                    <input type="password" id="password" name="Password" placeholder="••••••••••"/>
-
-                    <label id="showPasswordLabel" for="showpassword">Show:</label> <!-- Whoever implements this just know all you have to do is set the type of the password input to "text" to toggle it -->
-                    <input type="checkbox" id="showpassword" name="showpassword" />
+                <label for="password">Password:</label>
+                <div class="password-w-checkbox">
+                    <input type="password" name="password" id="password" placeholder="••••••••••" />
+                    <div id="showPasswordLogo"></div>
                 </div>
-            </div>
 
-            <div class="userinfo">
                 <label for="year">Year:</label>
                 <select name="Year" id="year">
                     <option value="Freshman">UG Freshman</option>
@@ -52,9 +46,6 @@
                     <option value="Senior">UG Senior</option>
                     <option value="Graduate">Graduate</option>
                 </select>
-            </div>
-
-            <div class="userinfo">
                 <label for="description">About Me:</label>
                 <textarea name="Description" id="description" rows="5" cols="50" spellcheck="true" placeholder="Tell us something about you!"></textarea>
             </div>

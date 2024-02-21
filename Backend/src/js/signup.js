@@ -96,7 +96,18 @@ $(function() {
 
 $(function(){
     localStorage.clear();
+    API.getSkills().then(response=>{
+        let skillsArray = Object.values(response.data);
+        console.log(skillsArray);
+        skillsArray.forEach(skill=>{
+            createSkill(skill.skillName, skill.skillType);
+        }
+    )
+    }).catch(err=>{
+        console.log("Could not get skills");
+    })
 })
+
 
 editProfileForm.addEventListener("submit",(event)=>{
     event.preventDefault();

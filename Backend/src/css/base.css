@@ -118,11 +118,16 @@ img
 {
     display: flex;
     padding: 5px 10px 5px 10px;
-    border-radius: 5%;
+    border-radius: 10px;
+    border:0px;
     background-color: var(--background-color);
-    border-style: solid;
     text-align: center;
     border-width: thin;
+    transition: .2s all ease-in-out;
+}
+.skill:hover{
+    background-color: var(--gray);
+    scale:1.15;
 }
 
 .skill * {

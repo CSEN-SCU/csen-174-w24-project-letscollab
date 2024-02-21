@@ -48,9 +48,9 @@ $(async () => {
 
 /**
  * createProjectElement ()
- * 
+ *
  * create a `section` element for each project
- * 
+ *
  * @param projObj project object being iterated on page load
  */
 function createProjectElement(projObj)
@@ -79,7 +79,7 @@ function createProjectElement(projObj)
     desc.classList.add("description");
     desc.innerHTML = projObj.Description;
 
-    const meetTime = document.createElement("h3"); 
+    const meetTime = document.createElement("h3");
     meetTime.classList.add("meettime");
     meetTime.innerHTML = "Meetup Time: " + projObj.Meetup.Time;
 
@@ -104,7 +104,7 @@ function createProjectElement(projObj)
         const skillIcon = document.createElement("p");
         skillIcon.classList.add("skillicon");
         skillIcon.innerHTML = "•";
-        
+
         const skillName = document.createElement("p");
         skillName.classList.add("skillname");
         skillName.innerHTML = skill;
@@ -119,7 +119,7 @@ function createProjectElement(projObj)
     const interestButton = document.createElement("p");
     interestButton.classList.add("interestButton");
     interestButton.innerHTML = "Show Interest";
-    
+
     // add event listener for the interest button
     interestButton.addEventListener("click", function() {
         showInterest(interestButton, projObj);
@@ -152,7 +152,7 @@ function createProjectElement(projObj)
 /**
  * selectTab ()
  * @param index denotes which tab was pressed
- * 
+ *
  * changes selected tab in header
  */
 function selectTab (index)
@@ -179,10 +179,10 @@ function selectTab (index)
 /**
  * showInterest ()
  * @param button button that was pressed
- * 
+ *
  * @TODO add to studentprofiles.json that user is interested in ___ project,
  * @TODO add to projects.json that another student was interested
- * 
+ *
  * @TODO removing interest
  */
 function showInterest (button, projObj)
