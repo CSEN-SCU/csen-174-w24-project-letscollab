@@ -13,14 +13,6 @@ function getSkillNamesArray() {
   
     return skillNames;
   }
-
-function validateForm(formDataObj){
-    if(formDataObj["FirstName"] == "")return false;
-    if(formDataObj["LastName"] == "")return false;
-    if(formDataObj["Email"] == "")return false;
-    if(formDataObj["Description"] == "")return false;
-    return true;
-  }
   
     
 function createSkill(skill, category) {
@@ -136,6 +128,6 @@ editProfileForm.addEventListener("submit",(event)=>{
         setTimeout(()=>{
             $("#response").html("");
         },1500)
-    })
-})
+    });
+});
 

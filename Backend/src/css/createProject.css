@@ -67,9 +67,18 @@ header h1 {
 
 .selected {
     border-color: green;
+    opacity: 1.0;
 }
 
 #selectskills * {
     cursor: pointer;
     user-select: none;
+}
+
+#selectskills .skill {
+    opacity: 0.5;
+}
+
+#selectskills .selected {
+    opacity: 1.0;
 }
