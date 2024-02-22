@@ -8,7 +8,7 @@ main none {
 }
 
 input{
-    border:1px thin black;
+    border:0px;
     border-radius: 12px;
     padding:0.3rem;
     opacity: 0.6;
@@ -91,7 +91,7 @@ main h2 {
 #login #submit {
     background-color: var(--scuDarkRed);
     color: white;
-    padding: 1% 2% 1% 2%;
+    padding: 0.3rem;
     margin-right: 1%;
     cursor: pointer;
     border:0px;

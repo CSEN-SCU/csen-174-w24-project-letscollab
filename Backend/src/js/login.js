@@ -24,7 +24,7 @@ loginForm.addEventListener("submit",(event)=>{
     const form = new FormData(loginForm);
     if(form.get("email")==""){
         setElementShake("#submit");
-        return setResponse("Missing Username","red");
+        return setResponse("Missing Email","red");
     }
     if(form.get("password")==""){
         setElementShake("#submit");

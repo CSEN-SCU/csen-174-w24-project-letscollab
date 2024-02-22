@@ -7,9 +7,31 @@ header h1 {
 }
 
 #createproject {
-    display: block;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    gap:10px;
+}
+input,textarea,select{
+    border: 0px;
+    border-radius: 12px;
+    padding:0.3rem;
+    font-size: large;
+    opacity: 0.6;
+    resize: none;
+    transition: .2s all ease-in-out;
+    max-width: 75%;
 }
 
+.meetup-details{
+    display: flex;
+    flex-direction: row;
+    gap:10px;
+    align-items: center;
+}
+#peopleRequired{
+    max-width: 30%;
+}
 #createproject header {
     font-size: x-large;
     font-weight: bold;
@@ -57,15 +79,19 @@ header h1 {
     cursor: pointer;
 }
 
+
 #projectlist article * {
     margin: 0;
 }
+
+
 
 .endrow {
     margin-top: 5%;
 }
 
 .selected {
+    opacity: 1.0;
     border-color: green;
     opacity: 1.0;
 }

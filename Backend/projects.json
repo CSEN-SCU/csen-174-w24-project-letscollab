@@ -11,12 +11,14 @@
             "NLP"
         ],
         "Interested Users": [
-            "alice.smith@scu.edu"
+            "alice.smith@scu.edu",
+            "test@scu.edu"
         ],
         "PeopleRequired": 3,
         "AuthorEmail": "john.doe@scu.edu",
         "CoverImage": "https://example.com/chatbot_project.jpg",
-        "ID": "P1001"
+        "ID": "P1001",
+        "CreatedAt": 1708557400
     },
     "P1002": {
         "Name": "Campus Navigation App",
@@ -29,13 +31,12 @@
             "GIS",
             "UI/UX Design"
         ],
-        "Interested Users": [
-            "test@scu.edu"
-        ],
+        "Interested Users": [],
         "PeopleRequired": 2,
         "AuthorEmail": "alice.smith@scu.edu",
         "CoverImage": "https://example.com/campus_nav_app.jpg",
-        "ID": "P1002"
+        "ID": "P1002",
+        "CreatedAt": 1708557400
     },
     "P1003": {
         "Name": "Automated Gardening System",
@@ -55,7 +56,8 @@
         "PeopleRequired": 4,
         "AuthorEmail": "mark.brown@scu.edu",
         "CoverImage": "https://example.com/gardening_system.jpg",
-        "ID": "P1003"
+        "ID": "P1003",
+        "CreatedAt": 1708557400
     },
     "P1004": {
         "Name": "Digital Artwork Gallery",
@@ -74,7 +76,8 @@
         "PeopleRequired": 5,
         "AuthorEmail": "emily.jones@scu.edu",
         "CoverImage": "https://example.com/campus_nav_app.jpg",
-        "ID": "P1004"
+        "ID": "P1004",
+        "CreatedAt": 1708557400
     },
     "P1005": {
         "Name": "Community Event Platform",
@@ -93,6 +96,85 @@
         "PeopleRequired": 5,
         "AuthorEmail": "sarah.green@scu.edu",
         "CoverImage": "https://example.com/campus_nav_app.jpg",
-        "ID": "P1005"
-    }
+        "ID": "P1005",
+        "CreatedAt": 1708557400
+    },
+    "6b6f3e57-5a07-437f-afdc-96121694fda6": {
+        "Name": "My New Project",
+        "Description": "AI TOOL TO DO MY HOMEWORK",
+        "Meetup": {
+            "Time": 1708561080,
+            "Location": "Heafy"
+        },
+        "Skills Desired": [
+            "Computer Science",
+            "TypeScript",
+            "Swift"
+        ],
+        "CoverImage": "",
+        "PeopleRequired": "6",
+        "ID": "6b6f3e57-5a07-437f-afdc-96121694fda6",
+        "Interested Users": [],
+        "CreatedAt": 1708561143
+    },
+    "7a42f1ad-a4c2-43b3-9238-f4a0cd864744": {
+        "Name": "My Project",
+        "Description": "Okay im done",
+        "Meetup": {
+            "Time": 1708562340,
+            "Location": "Library"
+        },
+        "Skills Desired": [
+            "JavaScript",
+            "TypeScript",
+            "MatLab",
+            "Accounting",
+            "Management",
+            "Economics"
+        ],
+        "CoverImage": "",
+        "PeopleRequired": "1",
+        "ID": "7a42f1ad-a4c2-43b3-9238-f4a0cd864744",
+        "Interested Users": [],
+        "CreatedAt": 1708562073
+    },
+    "1dca3ca8-95ee-4b64-8026-4b42fbab1b04": {
+        "Name": "testproject",
+        "Description": "testprojct",
+        "Meetup": {
+            "Time": 1708627080,
+            "Location": "Heafy"
+        },
+        "Skills Desired": [
+            "C",
+            "Computer Science",
+            "CSS",
+            "PHP"
+        ],
+        "CoverImage": {},
+        "PeopleRequired": "4",
+        "ID": "1dca3ca8-95ee-4b64-8026-4b42fbab1b04",
+        "Interested Users": [],
+        "CreatedAt": 1708627006
+    },
+    "3d30cd6b-5d91-4b2d-a234-d1f6b15d9a69": {
+        "Name": "testproject",
+        "Description": "testprojct",
+        "Meetup": {
+            "Time": 1708627080,
+            "Location": "Heafy"
+        },
+        "Skills Desired": [
+            "C",
+            "Computer Science",
+            "CSS",
+            "PHP"
+        ],
+        "CoverImage": {},
+        "PeopleRequired": "4",
+        "ID": "3d30cd6b-5d91-4b2d-a234-d1f6b15d9a69",
+        "Interested Users": [],
+        "CreatedAt": 1708627056
+    },
+    "response": "Got all projects"
 }

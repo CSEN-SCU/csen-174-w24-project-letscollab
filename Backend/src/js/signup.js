@@ -130,4 +130,3 @@ editProfileForm.addEventListener("submit",(event)=>{
         },1500)
     });
 });
-

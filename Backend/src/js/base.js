@@ -69,4 +69,3 @@ function validateForm(formDataObj){
     if(formDataObj["Password"] == "") return false;
     return true;
 }
-
