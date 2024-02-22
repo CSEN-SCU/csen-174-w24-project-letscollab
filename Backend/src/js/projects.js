@@ -18,31 +18,23 @@ $(async () => {
     demoProject.remove();
 
     let projects = {};
-    API.getAllProjects().then(response => {
+    await API.getAllProjects().then(response => {
         projects = response.data;
 
         // iterate through each project in projects.json, creating html elements
+        /** @TODO matching by skills? */
         for (project in projects)
         {
             createProjectElement(projects[project]);
         }
+
+        console.log("loaded all projects");
     }).catch(err => {
         console.log('error' + err);
     })
 
-    /* outdated ajax call */
-    // await $.ajax({
-    //     url: "/v1/getAllProjects",
-    //     type: "GET",
-    //     success: function (response, textStatus, xhr) {
-    //         // projects = response.data;
-    //         console.log(response.data);
-    //     },
-    //     error: function (xhr, status, error) {
-    //         console.log ("error loading project list ...")
-    //     }
-    // })
-});
+    console.log("done");
+}
 
 /**
  * createProjectElement ()
@@ -60,11 +52,11 @@ function createProjectElement(projObj)
     // append our new project element to the project list (in main)
     projectList.append(projElement);
 
-    // making the different parts of the section
+    // construct section elements
     const figure = document.createElement("figure");
     const article = document.createElement("article");
 
-    // TODO make this the project's image
+    /** @TODO make this the project's image */
     const image = document.createElement("img");
     image.src = "../images/background.jpeg";
     image.alt = "project icon";
@@ -78,7 +70,10 @@ function createProjectElement(projObj)
 
     const meetTime = document.createElement("h3");
     meetTime.classList.add("meettime");
+    // projObj.Meetup.Time is saved as a unix timestamp
+    let date = new Date(projObj.Meetup.Time * 1000);
     meetTime.innerHTML = "Meetup Time: " + projObj.Meetup.Time;
+    meetTime.innerHTML = "Meetup Time: " + date.toLocaleString();
 
     const meetLoc = document.createElement("h3");
     meetLoc.classList.add("meetlocation");
@@ -154,9 +149,10 @@ function createProjectElement(projObj)
 
 /**
  * selectTab ()
- * @param index denotes which tab was pressed
+ * @param index which tab was pressed
  *
  * changes selected tab in header
+ * displays/hides projects accordingly
  */
 function selectTab (index)
 {
@@ -164,19 +160,28 @@ function selectTab (index)
     if (currentTab == index)
         return;
 
-    // update `currentTab`
+    // change active tab
+    tabs[currentTab].classList.remove("active");
     currentTab = index;
-
-    // go through each tab and remove `active` class selector
-    for (let i=0; i<tabs.length; ++i)
-    {
-        tabs[i].classList.remove("active")
-    }
-
-    // add `active` class selector to the tab that was clicked on
     tabs[index].classList.add("active");
 
-    // TODO call function that determines which projects to display based on the given tab
+    const projects = document.getElementsByClassName("projectlist");
+    // initially unhide all projects
+    for (project of projects)
+    {
+       project.classList.remove("hidden");
+    }
+
+    /** @TODO call API function that display/hide projects according to currentTab */
+    if (index == 1) {
+        /** @TODO based on user, show projects that user marked `interested` */
+        console.log("showing interested projects");
+    }
+    else
+    {
+        /** @TODO only show projects that the user created */
+        console.log("showing created projects");
+    }
 }
 
 /**
