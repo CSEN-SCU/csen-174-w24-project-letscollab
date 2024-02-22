@@ -95,7 +95,7 @@ function createProjectElement(projObj)
     skills.classList.add("skills");
     for (skill of projObj["Skills Desired"])
     {
-        /** @TODO highlight skills */
+        /** @TODO highlight skills if they match user */
         console.log(skill);
 
         const skillDiv = document.createElement("div");
@@ -151,9 +151,10 @@ function createProjectElement(projObj)
 
 /**
  * selectTab ()
- * @param index denotes which tab was pressed
+ * @param index which tab was pressed
  *
  * changes selected tab in header
+ * displays/hides projects accordingly
  */
 function selectTab (index)
 {
@@ -161,19 +162,29 @@ function selectTab (index)
     if (currentTab == index)
         return;
 
-    // update `currentTab`
+
+    // change active tab
+    tabs[currentTab].classList.remove("active");
     currentTab = index;
-
-    // go through each tab and remove `active` class selector
-    for (let i=0; i<tabs.length; ++i)
-    {
-        tabs[i].classList.remove("active")
-    }
-
-    // add `active` class selector to the tab that was clicked on
     tabs[index].classList.add("active");
 
-    // TODO call function that determines which projects to display based on the given tab
+    const projects = document.getElementsByClassName("projectlist");
+    for (project in projects)
+    {
+        project.classList.remove("hidden");
+    }
+
+    if (index == 1)
+    /** @TODO call API function that display/hide projects according to currentTab */
+    switch (index)
+    {
+        case (1):
+            /** @TODO based on user, show projects that user marked `interested` */
+            break;
+        case (2):
+            /** @TODO only show projects that the user created */
+            break;
+    }
 }
 
 /**
