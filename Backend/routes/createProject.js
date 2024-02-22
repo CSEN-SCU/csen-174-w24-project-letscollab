@@ -9,11 +9,14 @@ function validateProject(project) {
     // Return true if all conditions are met, false otherwise
     return hasName && hasDescription;
 }
-
+const toTimestampString = () => {
+    const dt = new Date().getTime();
+    return Math.floor(dt / 1000);
+}
 module.exports = {
     name: "createProject",
     method:'POST',
-    execute(body){
+    execute(body,req){
         let out_obj = {};
         return new Promise(resolve=>{
             if(!validateProject(body)){
@@ -22,6 +25,9 @@ module.exports = {
             }
             let project_id = uuid();
             body["ID"] = project_id;
+            body["Interested Users"] = [];
+            body["AuthorEmail"] = req.session.Email;
+            body["CreatedAt"] = toTimestampString();
             projects.setItem(project_id,body);
             let projectObject = projects.getData(project_id);
             if(projectObject!=null){
