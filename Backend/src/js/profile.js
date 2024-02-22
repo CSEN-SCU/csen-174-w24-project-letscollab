@@ -69,33 +69,13 @@ function transferSkill(from, skill, category) {
 }
 
 $(function() {
-    /*createSkill("Python", "cs");
-    createSkill("C++", "cs");
-    createSkill("Java", "cs");
-    createSkill("Business Stuff", "business");
-    createSkill("Accounting", "business");*/
-    API.getSkills().then(response=>{
-        let skillsArray = Object.values(response.data);
-        console.log(skillsArray);
-        skillsArray.forEach(skill=>{
+    API.getSkills().then(response => {
+        Object.values(response.data).forEach(skill => {
             createSkill(skill.skillName, skill.skillType);
-        }
-    )
-    }).catch(err=>{
+        });
+    }).catch(() => {
         console.log("Could not get skills");
-    })
-    // $.ajax({
-    //     url: "/v1/getSkills",
-    //     type: "GET",
-    //     success:function(response, textStatus, xhr) {
-    //         for (let i = 0; (typeof response.data["skillList"][i]) !== 'undefined'; ++i) {
-    //             createSkill(response.data["skillList"][i].skillName, response.data["skillList"][i].skillType);
-    //         }
-    //     },
-    //     error:function(xhr, status, error) {
-    //         console.log("Could not get skills");
-    //     }
-    // });
+    });
 })
 
 $(function(){
@@ -108,7 +88,7 @@ $(function(){
     $('#email').val(localStorage.getItem("Email"));
     $('#year').val(localStorage.getItem("Year"));
     $('#description').val(localStorage.getItem("Description"));
-    var skills = localStorage.getItem("Skills").split(',');
+    const skills = localStorage.getItem("Skills").split(',');
     console.log(skills);
     $.each(skills, function(index, word) {
         transferSkill(1,word,"cs");
