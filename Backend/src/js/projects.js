@@ -11,7 +11,7 @@ var currentTab = 0;
 /**
  * on page load
  */
-$(async () => {
+window.onload = async function () {
     console.log("loading projects asynchronously ...");
 
     // remove the demo project
@@ -19,32 +19,24 @@ $(async () => {
     demoProject.remove();
 
     let projects = {};
-    API.getAllProjects().then(response => {
+    await API.getAllProjects().then(response => {
         projects = response.data;
         console.log(response.data);
 
         // iterate through each project in projects.json, creating html elements
+        /** @TODO matching by skills? */
         for (project in projects)
         {
             createProjectElement(projects[project]);
         }
+
+        console.log("loaded all projects");
     }).catch(err => {
         console.log('error' + err);
     })
 
-    /* outdated ajax call */
-    // await $.ajax({
-    //     url: "/v1/getAllProjects",
-    //     type: "GET",
-    //     success: function (response, textStatus, xhr) {
-    //         // projects = response.data;
-    //         console.log(response.data);
-    //     },
-    //     error: function (xhr, status, error) {
-    //         console.log ("error loading project list ...")
-    //     }
-    // })
-});
+    console.log("done");
+}
 
 /**
  * createProjectElement ()
@@ -55,7 +47,7 @@ $(async () => {
  */
 function createProjectElement(projObj)
 {
-    // log
+    // log project object
     console.log(projObj);
 
     const projElement = document.createElement("section");
@@ -63,11 +55,11 @@ function createProjectElement(projObj)
     // append our new project element to the project list (in main)
     projectList.append(projElement);
 
-    // making the different parts of the section
+    // construct section elements
     const figure = document.createElement("figure");
     const article = document.createElement("article");
 
-    // TODO make this the project's image
+    /** @TODO make this the project's image */
     const image = document.createElement("img");
     image.src = "../images/background.jpeg";
     image.alt = "project icon";
@@ -81,7 +73,10 @@ function createProjectElement(projObj)
 
     const meetTime = document.createElement("h3");
     meetTime.classList.add("meettime");
+    // projObj.Meetup.Time is saved as a unix timestamp
+    let date = new Date(projObj.Meetup.Time * 1000);
     meetTime.innerHTML = "Meetup Time: " + projObj.Meetup.Time;
+    meetTime.innerHTML = "Meetup Time: " + date.toLocaleString();
 
     const meetLoc = document.createElement("h3");
     meetLoc.classList.add("meetlocation");
@@ -120,7 +115,7 @@ function createProjectElement(projObj)
     interestButton.classList.add("interestButton");
     interestButton.innerHTML = "Show Interest";
 
-    // add event listener for the interest button
+    // add mouse click event listener for interest button
     interestButton.addEventListener("click", function() {
         showInterest(interestButton, projObj);
     });
@@ -162,28 +157,27 @@ function selectTab (index)
     if (currentTab == index)
         return;
 
-
     // change active tab
     tabs[currentTab].classList.remove("active");
     currentTab = index;
     tabs[index].classList.add("active");
 
     const projects = document.getElementsByClassName("projectlist");
-    for (project in projects)
+    // initially unhide all projects
+    for (project of projects)
     {
-        project.classList.remove("hidden");
+       project.classList.remove("hidden");
     }
 
-    if (index == 1)
     /** @TODO call API function that display/hide projects according to currentTab */
-    switch (index)
+    if (index == 1) {
+        /** @TODO based on user, show projects that user marked `interested` */
+        console.log("showing interested projects");
+    }
+    else
     {
-        case (1):
-            /** @TODO based on user, show projects that user marked `interested` */
-            break;
-        case (2):
-            /** @TODO only show projects that the user created */
-            break;
+        /** @TODO only show projects that the user created */
+        console.log("showing created projects");
     }
 }
 
@@ -213,7 +207,12 @@ function showInterest (button, projObj)
     }
 
     // API.updateProject();
-
+    const peopleInterested = button.parentElement.getElementsByClassName("peopleInterested");
+    let num = projObj["Interested Users"].length;
+    if (num == 1)
+        peopleInterested.innerHTML = num + " student is interested";
+    else
+        peopleInterested.innerHTML = num + " students are interested";
     /*
     // edit the text below the button
     let tag = button.nextElementSibling.querySelector("mark");
