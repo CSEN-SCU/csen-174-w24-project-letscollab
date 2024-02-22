@@ -101,7 +101,11 @@ input,textarea,select{
 }
 
 #selectskills .skill{
-    opacity: 0.7;
+    opacity: 0.5;
+}
+
+#selectskills .skill:hover {
+    opacity: 1.0;
 }
 
 #selectskills .selected{

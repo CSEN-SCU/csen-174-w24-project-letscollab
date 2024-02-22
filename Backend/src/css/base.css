@@ -121,12 +121,12 @@ img
     border-radius: 10px;
     border:0px;
     background-color: var(--background-color);
+    color: white;
     text-align: center;
     border-width: thin;
     transition: .2s all ease-in-out;
 }
 .skill:hover{
-    background-color: var(--gray);
     scale:1.15;
 }
 

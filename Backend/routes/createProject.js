@@ -23,6 +23,7 @@ module.exports = {
                 out_obj["response"] = "Invalid Project Format";
                 resolve(out_obj);
             }
+            console.log(body);
             let project_id = uuid();
             body["ID"] = project_id;
             body["Interested Users"] = [];

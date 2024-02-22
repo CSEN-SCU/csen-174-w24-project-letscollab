@@ -297,11 +297,26 @@ function getSkillNamesArray() {
         $(this).html("");
      },1500)
 }
-projectForm.addEventListener("submit",(event)=>{
+const fileToDataURL = async(file) =>{
+    var reader = new FileReader()
+    return new Promise(function (resolve, reject) {
+      reader.onload = function (event) {
+        var base64DataUrl = event.target.result;
+        var base64String = base64DataUrl.split(',')[1];
+        resolve(base64String);
+      }
+      reader.readAsDataURL(file)
+    })
+  }  
+
+
+projectForm.addEventListener("submit",async (event)=>{
     event.preventDefault();
     const form = new FormData(projectForm);
     const obj = Object.fromEntries(form.entries());
     let date = toUnixTimestamp(obj["date"],obj["time"]);
+    const file = document.getElementById("photo").files[0];
+    let imageBase64 = await fileToDataURL(file);
     let sendObj = {
         "Name":obj["name"],
         "Description":obj["description"],
@@ -310,7 +325,7 @@ projectForm.addEventListener("submit",(event)=>{
             "Location":obj["location"]
         },        
         "Skills Desired":getSkillNamesArray(),
-        "CoverImage":"",
+        "CoverImage":imageBase64,
         "PeopleRequired":$('#peopleRequired').val()
     }
     let validObject = validateObject(sendObj);
@@ -331,33 +346,3 @@ projectForm.addEventListener("submit",(event)=>{
     });
 
 })
-// $("#photo").on("change", async (event) => {
-//     event.preventDefault();
-//     var file = event.target.files[0]; // Get the file
-//     if (file) {
-//         var reader = new FileReader();
-
-//         reader.onload = async function(loadEvent) {
-//             // This result contains the Base64 data URL
-//             var base64DataUrl = loadEvent.target.result;
-//             // Optionally, extract the Base64 string if you don't want the data URL format
-//             var base64String = base64DataUrl.split(',')[1];
-
-//             await $.ajax({
-//                 url: "/v1/upload",
-//                 type: "POST",
-//                 data: JSON.stringify({ image: base64String }), // Sending as part of a JSON payload
-//                 contentType: "application/json", // Important for sending JSON
-//                 success: function(response, textStatus, xhr) {
-//                     console.log("Upload successful", response);
-//                 },
-//                 error: function(xhr, status, error) {
-//                     console.log("this is bad. very bad");
-//                 }
-//             });
-//         };
-
-//         reader.readAsDataURL(file); // Read the file as a Data URL (Base64)
-//     }
-// });
-

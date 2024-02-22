@@ -4,10 +4,10 @@ const app = express();
 const cors = require("cors");
 const path = require('path');
 const fs = require("fs");
-const { constants } = require("buffer");
 app.use(cors());
-app.use(express.json());
+app.use(express.json({limit:'50mb'}));
 app.use(express.urlencoded({ extended: true }));
+
 
 app.use(session({
     secret: 'your_secret_key',
@@ -15,6 +15,7 @@ app.use(session({
     saveUninitialized: false,
     cookie: { secure: false } // Set to true in production with HTTPS
   }));
+
 const port = 8080;
 
 let Commands = new Map();
@@ -33,13 +34,18 @@ function ImportCommands() {
 }
 
 function validateToken(req, res, next) {
-    next();
+    if(req.params.page.replace(/\.html$/,'') != "login" && req.session.Email == null){
+        res.redirect('/login');
+    }else{
+        next();
+    }
 }
 
   
 ImportCommands(); 
+app.use(express.static(path.join(__dirname, 'src')));
 
-app.get('/v1/:get',validateToken,async(req,res)=>{
+app.get('/v1/:get',async(req,res)=>{
     const command = Commands.get(req.params.get);
     let resObj = await command.execute(req.query,req);
     let response = resObj["response"];
@@ -51,7 +57,7 @@ app.get('/v1/:get',validateToken,async(req,res)=>{
     })
 })
 
-app.post('/v1/:post',validateToken,async(req,res)=>{
+app.post('/v1/:post',async(req,res)=>{
     const command = Commands.get(req.params.post);
     let resObj = await command.execute(req.body,req);
     let response = resObj["response"];
@@ -62,11 +68,14 @@ app.post('/v1/:post',validateToken,async(req,res)=>{
         "response":response
     })
 })
-app.use(express.static(path.join(__dirname, 'src')));
 
-app.get("/:page",(req,res)=>{
+app.get("/:page",validateToken,(req,res)=>{
     let page = req.params.page;
-    res.sendFile(path.join(__dirname, `/src/html/${req.params.page}${page.includes(".html")?"":".html"}`));
+    if(page.includes(".html")){
+        res.redirect(page.replace(/\.html$/, ''))
+    }else{
+        res.sendFile(path.join(__dirname, `/src/html/${req.params.page}${page.includes(".html")?"":".html"}`));
+    }
 });
 
 app.listen(port,()=>{
