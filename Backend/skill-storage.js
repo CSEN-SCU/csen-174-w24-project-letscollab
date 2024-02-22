@@ -35,8 +35,4 @@ module.exports = {
         data[key] = value;
         fs.writeFile("./skills.json", JSON.stringify(data,0,4));
     },
-    addSkill: (skill) => {
-        data[skill.skillName].append(skill);
-        fs.writeFile("./skills.json", JSON.stringify(data,0,4));
-    },
 }

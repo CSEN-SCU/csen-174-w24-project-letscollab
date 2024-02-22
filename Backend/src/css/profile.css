@@ -84,3 +84,11 @@ main {
     align-items: center;
     gap:10px;
 }
+
+#addskills .skill {
+    opacity: 0.5;
+}
+
+#addskills .selected {
+    opacity: 1.0;
+}

@@ -1,84 +1,21 @@
-const LISTS = ["#skills", "#addskills"];
-const STATES = ["removable", "selectable"];
 const editProfileForm = document.getElementById("userform");
-function getSkillNamesArray() {
+
+const getSkillNamesArray = () => {
     // Initialize an array to hold the skill names
-    var skillNames = [];
+    const skillNames = [];
   
     // Use jQuery to select each .skillname element and iterate over them
-    $('#skills .skillname').each(function() {
+    $('#addskills .skill').each((index, skill) => {
       // Add the innerHTML (text content) of each .skillname element to the array
-      skillNames.push($(this).text());
-    });
-  
-    return skillNames;
-  }
-  
-    
-function createSkill(skill, category) {
-    const newSkill = document.createElement("div");
-    const dot = document.createElement('p');
-    const skillName = document.createElement('p');
-    dot.classList.add("skillicon");
-    dot.textContent = "•";
-    skillName.classList.add("skillname");
-    skillName.textContent = skill;
-    newSkill.classList.add("skill");
-    newSkill.classList.add(category);
-    newSkill.classList.add(STATES[1]);
-    //newSkill.classList.add("skill cs removable");
-    newSkill.appendChild(dot);
-    newSkill.appendChild(skillName);
-    const skillContainer = document.querySelector(LISTS[1]);/*"#skills" is the top list*/
-    skillContainer.appendChild(newSkill);
-    newSkill.addEventListener("click", () => {
-        transferSkill(1, skill, category);
-    });
-    
-}
-function transferSkill(from, skill, category) {
-    // Add to top list
-    const newSkill = document.createElement("div");
-    const dot = document.createElement('p');
-    const skillName = document.createElement('p');
-    dot.classList.add("skillicon");
-    dot.textContent = "•";
-    skillName.classList.add("skillname");
-    skillName.textContent = skill;
-    newSkill.classList.add("skill");
-    newSkill.classList.add(category);
-    newSkill.classList.add(STATES[1 - from]);
-    //newSkill.classList.add("skill cs removable");
-    newSkill.appendChild(dot);
-    newSkill.appendChild(skillName);
-    const skillContainer = document.querySelector(LISTS[1 - from]);/*"#skills" is the top list*/
-    skillContainer.appendChild(newSkill);
-    newSkill.addEventListener("click", () => {
-        transferSkill(1 - from, skill, category);
-    });
-    // Remove from bottom list
-    const addableSkills = document.querySelector(LISTS[from]);/*"#addskills" is the bottom list*/
-    const skillArray = addableSkills.querySelectorAll(".skill");
-    for (let i = 0; i < skillArray.length; ++i) {
-        let div = skillArray.item(i);
-        if (div.querySelector(".skillname").textContent === skill) { // Remove
-            addableSkills.removeChild(div);
-            break;
+        if ($(skill).hasClass("selected")) {
+            skillNames.push($(skill).find(".skillname").html());
         }
-    }
+    });
+    return skillNames;
 }
 
-$(function() {
-    API.getSkills().then(response => {
-        Object.values(response.data).forEach(skill => {
-            createSkill(skill.skillName, skill.skillType);
-        });
-    }).catch(() => {
-        console.log("Could not get skills");
-    });
-})
-
-$(function(){
+$(async () => {
+    // Load data from localstorage if it is accessible
     let firstname = localStorage.getItem("FirstName");
     let lastname = localStorage.getItem("LastName");
     $("#usericon p").html(`${firstname[0]}${lastname[0]}`)
@@ -88,13 +25,17 @@ $(function(){
     $('#email').val(localStorage.getItem("Email"));
     $('#year').val(localStorage.getItem("Year"));
     $('#description').val(localStorage.getItem("Description"));
-    const skills = localStorage.getItem("Skills").split(',');
-    console.log(skills);
-    $.each(skills, function(index, word) {
-        transferSkill(1,word,"cs");
 
+    // Load skills from user and from server
+    const userSkills = localStorage.getItem("Skills").split(",");
+    const skillData = await API.getSkills();
+    const allSkills = Object.values(skillData.data);
+    const skillContainer = $("#addskills");
+    console.log(allSkills);
+    allSkills.forEach((skill) => {
+       createProfileSkill(skillContainer, skill, userSkills);
     });
-})
+});
 
 editProfileForm.addEventListener("submit",(event)=>{
     event.preventDefault();
@@ -102,6 +43,13 @@ editProfileForm.addEventListener("submit",(event)=>{
     const formDataObj = Object.fromEntries(form.entries());
     formDataObj["Skills"] = getSkillNamesArray();
     $('#response').html('');
+    if(!validateForm(formDataObj)){
+        $("#response").html("Missing Field").css("color","red");
+        setTimeout(()=>{
+            $("#response").html("");
+        },1500)
+        return;
+    }
     API.updateUser(formDataObj).then(data=>{
         if(data.status){
             $("#response").html(data.response).css("color","green");
@@ -114,6 +62,5 @@ editProfileForm.addEventListener("submit",(event)=>{
         setTimeout(()=>{
             $("#response").html("");
         },1500)
-    })
-})
-
+    });
+});

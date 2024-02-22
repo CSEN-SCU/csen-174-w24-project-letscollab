@@ -3,23 +3,16 @@ const STATES = ["removable", "selectable"];
 const editProfileForm = document.getElementById("userform");
 function getSkillNamesArray() {
     // Initialize an array to hold the skill names
-    let skillNames = [];
+    var skillNames = [];
   
     // Use jQuery to select each .skillname element and iterate over them
     $('#skills .skillname').each(function() {
-        // Add the innerHTML (text content) of each .skillname element to the array
-        skillNames.push($(this).text());
+      // Add the innerHTML (text content) of each .skillname element to the array
+      skillNames.push($(this).text());
     });
   
     return skillNames;
-}
-
-function validateForm(formDataObj){
-    if (formDataObj["FirstName"] === "") return false;
-    if (formDataObj["LastName"] === "") return false;
-    if (formDataObj["Email"] === "") return false;
-    return formDataObj["Description"] !== "";
-}
+  }
   
     
 function createSkill(skill, category) {
@@ -33,13 +26,15 @@ function createSkill(skill, category) {
     newSkill.classList.add("skill");
     newSkill.classList.add(category);
     newSkill.classList.add(STATES[1]);
+    //newSkill.classList.add("skill cs removable");
     newSkill.appendChild(dot);
     newSkill.appendChild(skillName);
-    const skillContainer = document.querySelector(LISTS[1]);
+    const skillContainer = document.querySelector(LISTS[1]);/*"#skills" is the top list*/
     skillContainer.appendChild(newSkill);
     newSkill.addEventListener("click", () => {
         transferSkill(1, skill, category);
     });
+    
 }
 function transferSkill(from, skill, category) {
     // Add to top list
@@ -53,15 +48,16 @@ function transferSkill(from, skill, category) {
     newSkill.classList.add("skill");
     newSkill.classList.add(category);
     newSkill.classList.add(STATES[1 - from]);
+    //newSkill.classList.add("skill cs removable");
     newSkill.appendChild(dot);
     newSkill.appendChild(skillName);
-    const skillContainer = document.querySelector(LISTS[1 - from]);
+    const skillContainer = document.querySelector(LISTS[1 - from]);/*"#skills" is the top list*/
     skillContainer.appendChild(newSkill);
     newSkill.addEventListener("click", () => {
         transferSkill(1 - from, skill, category);
     });
     // Remove from bottom list
-    const addableSkills = document.querySelector(LISTS[from]);
+    const addableSkills = document.querySelector(LISTS[from]);/*"#addskills" is the bottom list*/
     const skillArray = addableSkills.querySelectorAll(".skill");
     for (let i = 0; i < skillArray.length; ++i) {
         let div = skillArray.item(i);
@@ -73,12 +69,19 @@ function transferSkill(from, skill, category) {
 }
 
 $(function() {
+    /*createSkill("Python", "cs");
+    createSkill("C++", "cs");
+    createSkill("Java", "cs");
+    createSkill("Business Stuff", "business");
+    createSkill("Accounting", "business");*/
     API.getSkills().then(response => {
+        //let skillsArray = Object.values(response.data);
+        //console.log(skillsArray);
         Object.values(response.data).forEach(skill => {
             createSkill(skill.skillName, skill.skillType);
             console.log(`Added skill ${skill.skillName} with type ${skill.skillType}`);
         })
-    }).catch(() => {
+    }).catch(err => {
         console.log("Could not get skills");
     });
 })
@@ -100,30 +103,30 @@ $(function(){
 
 editProfileForm.addEventListener("submit",(event)=>{
     event.preventDefault();
-    const formDataObj = Object.fromEntries(new FormData(editProfileForm).entries());
+    const form = new FormData(editProfileForm);
+    const formDataObj = Object.fromEntries(form.entries());
     formDataObj["Skills"] = getSkillNamesArray();
-    if (!validateForm(formDataObj)) {
+    if(!validateForm(formDataObj)){
         $("#response").html("Missing Field").css("color","red");
-        setTimeout(() => {
+        setTimeout(()=>{
             $("#response").html("");
         },1500)
         return;
     }
-    API.createUser(formDataObj).then(data => {
-        if (data.status) {
+    API.createUser(formDataObj).then(data=>{
+        if(data.status){
             $("#response").html(data.response).css("color","green");
-            for (const [key, value] of Object.entries(data.data)) {
-                localStorage.setItem(key, value);
+            for(const [key,value] of Object.entries(data.data)){
+                localStorage.setItem(key,value);
             }
-            setTimeout(()=> {
+            setTimeout(()=>{
                 window.location.href = "/login"
-            },1500)
-        } else {
+             },1500)
+        }else{
             $("#response").html(data.response).css("color","red");
         }
-        setTimeout(() => {
+        setTimeout(()=>{
             $("#response").html("");
         },1500)
-    })
-})
-
+    });
+});

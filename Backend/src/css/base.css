@@ -126,7 +126,8 @@ img
     border-width: thin;
     transition: .2s all ease-in-out;
 }
-.skill:hover{
+
+.skill:hover {
     scale:1.15;
 }
 
