@@ -78,6 +78,7 @@ img
 /* User Icon */
 #usericon
 {
+    cursor: pointer;
     display: flex;
     justify-items: center;
     align-items: center;
