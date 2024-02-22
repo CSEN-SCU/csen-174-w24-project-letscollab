@@ -78,6 +78,7 @@ img
 /* User Icon */
 #usericon
 {
+    cursor: pointer;
     display: flex;
     justify-items: center;
     align-items: center;
@@ -120,10 +121,12 @@ img
     border-radius: 10px;
     border:0px;
     background-color: var(--background-color);
+    color: white;
     text-align: center;
     border-width: thin;
     transition: .2s all ease-in-out;
 }
+
 .skill:hover {
     scale:1.15;
 }

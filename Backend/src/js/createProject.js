@@ -1,4 +1,18 @@
 // On page load create event listeners
+const projectForm = document.getElementById("createproject");
+function toUnixTimestamp(date,time){
+    // Your date string
+const dateString = `${date} ${time}`
+
+// Create a Date object
+const date_ = new Date(dateString);
+
+// Convert to Unix timestamp (in seconds)
+const unixTimestamp = Math.floor(date_.getTime() / 1000);
+
+return unixTimestamp;
+
+}
 $(async () => {
     // Create input listener for uploading project image
     $("#photo").on("input", (event) => {
@@ -167,7 +181,6 @@ const createSkillElement = (container, skill, isPreview) => {
     const newSkill = $("<div>");
     const newSkillIcon = $("<p>");
     const newSkillName = $("<p>");
-
     // Add event listener to skills only if it is NOT a preview item
     if (!isPreview) {
         newSkill.click(() => {
@@ -209,3 +222,127 @@ const removeSkillElement = (skillName) => {
         if ($(skill).find(".skillname").html() === skillName) skills.eq(index).remove();
     })
 }
+
+function createSkill() {
+    let skillName = window.prompt("Enter skill name here:");
+    if (skillName !== null) {
+        let skillType = window.prompt("Enter \"cs\" for Computer Science and \"business\" for Business:");
+        if (skillType !== null) {
+            API.createSkill(skillName, skillType);
+            createSkillElement($("#selectskills"), {skillName: skillName, skillType: skillType}, false);
+        }
+    }
+}
+
+function validateObject(sendObj) {
+    let outObj ={
+        "status":true,
+        "response":"",
+    }
+    for (const key in sendObj) {
+        if (sendObj.hasOwnProperty(key)) {
+            if (sendObj[key] === "") {
+                outObj["response"] = `Missing ${key}`
+                outObj["status"] = false;
+                return outObj; // A null value is found
+            }
+
+            // Special handling for the nested 'Meetup' object
+            if (key === "Meetup") {
+                for (const meetupKey in sendObj.Meetup) {
+                    if (sendObj.Meetup.hasOwnProperty(meetupKey)) {
+                        if (sendObj.Meetup[meetupKey] === null) {
+                            outObj["response"] = `Missing ${key}`
+                            outObj["status"] = false;
+                            return outObj; // A null value is found in the nested object
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // Special handling for the 'Skills Desired' array
+    if (Array.isArray(sendObj["Skills Desired"])) {
+        if (sendObj["Skills Desired"].length === 0 || sendObj["Skills Desired"].includes(null)) {
+            outObj["response"] = `Missing Skills Desired`;
+            outObj["status"] = false;
+            return outObj; // The array is empty or contains null
+        }
+    } else {
+        outObj["response"] = `Missing Skills Desired`;
+        outObj["status"] = false;
+        return outObj; // 'Skills Desired' is not an array
+    }
+    outObj["status"] = true;
+    return outObj; // All checks passed
+}
+
+
+function getSkillNamesArray() {
+    // Initialize an array to hold the skill names
+    var skillNames = [];
+    // Use jQuery to select each .skillname element and iterate over them
+    $('#selectskills .selected .skillname').each(function() {
+      // Add the innerHTML (text content) of each .skillname element to the array
+      skillNames.push($(this).text());
+    });
+  
+    return skillNames;
+  }
+  
+  function setResponse(text, color){
+    $('#formSubmitResponse').html(`${text}`).css("color",color);
+    setTimeout(()=>{
+        $(this).html("");
+     },1500)
+}
+const fileToDataURL = async(file) =>{
+    var reader = new FileReader()
+    return new Promise(function (resolve, reject) {
+      reader.onload = function (event) {
+        var base64DataUrl = event.target.result;
+        var base64String = base64DataUrl.split(',')[1];
+        resolve(base64String);
+      }
+      reader.readAsDataURL(file)
+    })
+  }  
+
+
+projectForm.addEventListener("submit",async (event)=>{
+    event.preventDefault();
+    const form = new FormData(projectForm);
+    const obj = Object.fromEntries(form.entries());
+    let date = toUnixTimestamp(obj["date"],obj["time"]);
+    const file = document.getElementById("photo").files[0];
+    let imageBase64 = await fileToDataURL(file);
+    let sendObj = {
+        "Name":obj["name"],
+        "Description":obj["description"],
+        "Meetup":{
+            "Time":date,
+            "Location":obj["location"]
+        },        
+        "Skills Desired":getSkillNamesArray(),
+        "CoverImage":imageBase64,
+        "PeopleRequired":$('#peopleRequired').val()
+    }
+    let validObject = validateObject(sendObj);
+    if(!validObject.status){
+        setResponse(validObject.response,"red");
+        return;
+    }
+    API.createProject(sendObj).then(data=>{
+        if(data.status){
+            setResponse(data.response,"green")
+        }else{
+            setResponse(data.response,"green")
+        }
+    }).catch(err=>{
+        console.log(err);
+        setResponse("Network Error","Red")
+
+    });
+
+})

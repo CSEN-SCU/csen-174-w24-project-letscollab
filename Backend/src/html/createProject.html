@@ -6,7 +6,8 @@
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/createProject.css">
     <script src="../js/jquery-3.7.1.js"></script>
-    <script src="../js/createProject.js"></script>
+    <script src="../js/api.js" async defer></script>
+    <script src="../js/createProject.js" async defer></script>
 </head>
 <body>
     <main>
@@ -20,43 +21,54 @@
 
         <form id="createproject">
             <header>General</header>
-            <div class="row">
-                <label id="imageupload">
-                    Upload Cover Image
-                    <input type="file" id="photo" name="photo" accept="image/jpeg, image/png" />
-                </label>
-                <p id="uploadstatus"></p>
-                <br> <!-- Temporary. Will remove if we add image preview circle -->
-                <label for="name">Project Name:</label>
-                <input type="text" id="name" name="name" placeholder="My Project" />
-            </div>
+            <label id="imageupload">
+                Upload Cover Image
+                <input type="file" id="photo" name="photo" accept="image/jpeg, image/png" />
+            </label>
+            <p id="uploadstatus"></p>
+            <header>Project Details</header>
+            <label for="name">Project Name</label>
+            <input type="text" id="name" name="name" placeholder="My Project" />
 
-            <div class="row">
-                <label for="description">Project Description:</label>
-                <textarea name="description" id="description" rows="5" cols="50" spellcheck="true" placeholder="Give a detailed explanation of your project"></textarea>
-            </div>
-
+            <label for="description">Project Description</label>
+            <textarea name="description" id="description" rows="5" cols="50" spellcheck="true" placeholder="Give a detailed explanation of your project"></textarea>
             <header>Meetup Details</header>
-            <div class="row">
-                <label for="time">Time:</label>
+
+            <div class="meetup-details">
+                <label for="time">Time</label>
                 <input type="time" id="time" name="time" />
 
-                <label for="date">Date:</label>
+                <label for="date">Date</label>
                 <input type="date" id="date" name="date" />
 
-                <label for="location">Location:</label>
-                <input list="locations" id="location" name="location" />
-                <datalist id="locations">
+                <label for="location">Location</label>
+                <select id="locations" name="location">
                     <option value="Heafy">Heafy</option>
                     <option value="SCDI">SCDI</option>
                     <option value="Library">Library</option>
                     <option value="Benson">Benson</option>
-                </datalist>
+                </select>
             </div>
-
+            <header>People Required</header>
+            <label for="peopleRequired">Number of People Required</label>
+            <select id="peopleRequired" name="peopleRequired">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
             <header>Skills Desired</header>
             <div class="row">
                 <div class="skills" id="selectskills"></div>
+            </div>
+            <div class="row">
+                <button onclick="createSkill()" type="button" id="createNewSkill">Add Skill...</button>
             </div>
 
             <header>Preview</header>
@@ -72,7 +84,7 @@
                         <h3 class="meettime">Meetup Time: x</h3>
                         <h3 class="meetlocation">Location: x</h3>
                         <!-- TODO js population -->
-                        <h3>Desired Skills:</h3>
+                        <h3>Desired Skills</h3>
                         <div class="skills"></div>
                     </figure>
                     <!-- the aside is the side bar -->
@@ -87,6 +99,7 @@
             <div class="row endrow">
                 <input type="submit" id="submit" value="Create" />
                 <input type="button" id="home" value="Go Back" onclick="location.href='projects'" />
+                <p id="formSubmitResponse"></p>
             </div>
         </form>
     </main>

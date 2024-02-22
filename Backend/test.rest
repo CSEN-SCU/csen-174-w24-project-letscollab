@@ -22,7 +22,7 @@ GET http://127.0.0.1:8080/v1/getLogin?email=mark.brown@scu.edu&password=mb12345 
 GET http://127.0.0.1:8080/v1/getInterestedUsers?id=P1002
 
 ### GET
-GET http://127.0.0.1:8080/v1/getInterestedProjects?id=alice.smith@scu.edu
+GET http://127.0.0.1:8080/v1/getInterestedProjects
 
 ###
 
@@ -31,7 +31,7 @@ Content-Type: application/json
 
 {
 "id":"P1002",
-"setInterestTo":"false"
+"setInterestTo":"true"
 }
 
 ###
@@ -74,3 +74,12 @@ Content-Type: application/json
 "Email":"riley.smith@scu.edu", 
 "Description":"Junior year student that likes to"
 }
+
+//TEST EXPRESS SESSIONS
+//WHY? So client does not have to send sensitive credentials each time they login
+
+### 1. LOGIN USER
+GET http://127.0.0.1:8080/v1/getLogin?email=test@scu.edu&password=12345 HTTP/1.1
+
+### 2. Validate the users' session was stored server side to get back their user object
+GET http://127.0.0.1:8080/v1/getMyInfo
