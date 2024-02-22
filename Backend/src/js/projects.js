@@ -12,7 +12,6 @@ var currentTab = 0;
  * on page load
  */
 $(async () => {
-    console.log("loading projects asynchronously ...");
 
     // remove the demo project
     const demoProject = document.querySelector("section");
@@ -21,7 +20,6 @@ $(async () => {
     let projects = {};
     API.getAllProjects().then(response => {
         projects = response.data;
-        console.log(response.data);
 
         // iterate through each project in projects.json, creating html elements
         for (project in projects)
@@ -56,7 +54,6 @@ $(async () => {
 function createProjectElement(projObj)
 {
     // log
-    console.log(projObj);
 
     const projElement = document.createElement("section");
     projElement.classList.add("projectlist");
@@ -96,7 +93,6 @@ function createProjectElement(projObj)
     for (skill of projObj["Skills Desired"])
     {
         /** @TODO highlight skills */
-        console.log(skill);
 
         const skillDiv = document.createElement("div");
         skillDiv.classList.add("skill");
@@ -119,13 +115,16 @@ function createProjectElement(projObj)
     const interestButton = document.createElement("p");
     interestButton.classList.add("interestButton");
     interestButton.innerHTML = "Show Interest";
+    console.log(projObj["Interested Users"]);
+    if(projObj["Interested Users"].includes(localStorage.getItem("Email"))){
+        interestButton.classList.toggle("selected");
+        interestButton.textContent="I'm interested";  
+    }
 
-    // add event listener for the interest button
     interestButton.addEventListener("click", function() {
         showInterest(interestButton, projObj);
     });
 
-    // display number of interested students
     const peopleInterested = document.createElement("p");
     peopleInterested.classList.add("peopleInterested");
     let num = projObj["Interested Users"].length;
@@ -133,6 +132,10 @@ function createProjectElement(projObj)
         peopleInterested.innerHTML = num + " student is interested";
     else
         peopleInterested.innerHTML = num + " students are interested";
+
+
+
+    // display number of interested students
 
     // construct the section
     projElement.append(figure);
@@ -187,25 +190,20 @@ function selectTab (index)
  */
 function showInterest (button, projObj)
 {
-    console.log(projObj);
     /** @TODO add the user to the project's interested users? */
-    button.classList.toggle("selected");
-
-    // if we have now shown interest ...
-    if (button.classList.contains("selected"))
-    {
-        button.innerHTML = "I'm interested!";
-    }
-    else
-    {
-        button.innerHTML = "Show Interest";
-    }
-
-    // API.updateProject();
-
-    /*
-    // edit the text below the button
-    let tag = button.nextElementSibling.querySelector("mark");
-    let num = Number(tag.innerHTML);
-    */
+    let isSelected = button.classList.contains("selected");
+    API.setProjectInterest(projObj.ID,!isSelected).then(data=>{
+        console.log(data);
+        if(data.status){
+            if(data.data.ProjectsInterested.includes(projObj.ID)){
+                button.classList.toggle("selected",true);
+                button.innerHTML = "I'm interested!";
+            }else{
+                button.classList.toggle("selected",false);
+                button.innerHTML = "Show Interest";
+            }
+        }
+    }).catch(err=>{
+        console.log(err);
+    })
 }

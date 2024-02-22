@@ -8,7 +8,7 @@ module.exports = {
         let out_obj = {};
         return new Promise(resolve=>{
             let projectID = body.id;
-            let interested = body.setInterestTo==="true"?true:false; //boolean value passed from client, TRUE = add project interest, FALSE = remove it
+            let interested = body.setInterestTo; //boolean value passed from client, TRUE = add project interest, FALSE = remove it
             let email = req.session.Email || body.Email;
             let projectObject = projects.getItem(projectID);
             let userObject = users.getItem(email);

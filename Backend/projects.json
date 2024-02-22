@@ -11,7 +11,8 @@
             "NLP"
         ],
         "Interested Users": [
-            "alice.smith@scu.edu"
+            "alice.smith@scu.edu",
+            "test@scu.edu"
         ],
         "PeopleRequired": 3,
         "AuthorEmail": "john.doe@scu.edu",
@@ -30,9 +31,7 @@
             "GIS",
             "UI/UX Design"
         ],
-        "Interested Users": [
-            "test@scu.edu"
-        ],
+        "Interested Users": [],
         "PeopleRequired": 2,
         "AuthorEmail": "alice.smith@scu.edu",
         "CoverImage": "https://example.com/campus_nav_app.jpg",
@@ -176,5 +175,6 @@
         "ID": "3d30cd6b-5d91-4b2d-a234-d1f6b15d9a69",
         "Interested Users": [],
         "CreatedAt": 1708627056
-    }
+    },
+    "response": "Got all projects"
 }
