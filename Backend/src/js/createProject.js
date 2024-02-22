@@ -209,3 +209,10 @@ const removeSkillElement = (skillName) => {
         if ($(skill).find(".skillname").html() === skillName) skills.eq(index).remove();
     })
 }
+
+function createSkill() {
+    let skillName = window.prompt("Enter skill name here:");
+    let skillType = window.prompt("Enter \"cs\" for Computer Science and \"business\" for Business:");
+    API.createSkill(skillName, skillType);
+    createSkillElement($("#selectskills"), {skillName: skillName, skillType: skillType}, false);
+}
