@@ -99,5 +99,45 @@
         "CoverImage": "https://example.com/campus_nav_app.jpg",
         "ID": "P1005",
         "CreatedAt": 1708557400
+    },
+    "response": "Got all projects",
+    "6b6f3e57-5a07-437f-afdc-96121694fda6": {
+        "Name": "My New Project",
+        "Description": "AI TOOL TO DO MY HOMEWORK",
+        "Meetup": {
+            "Time": 1708561080,
+            "Location": "Heafy"
+        },
+        "Skills Desired": [
+            "Computer Science",
+            "TypeScript",
+            "Swift"
+        ],
+        "CoverImage": "",
+        "PeopleRequired": "6",
+        "ID": "6b6f3e57-5a07-437f-afdc-96121694fda6",
+        "Interested Users": [],
+        "CreatedAt": 1708561143
+    },
+    "7a42f1ad-a4c2-43b3-9238-f4a0cd864744": {
+        "Name": "My Project",
+        "Description": "Okay im done",
+        "Meetup": {
+            "Time": 1708562340,
+            "Location": "Library"
+        },
+        "Skills Desired": [
+            "JavaScript",
+            "TypeScript",
+            "MatLab",
+            "Accounting",
+            "Management",
+            "Economics"
+        ],
+        "CoverImage": "",
+        "PeopleRequired": "1",
+        "ID": "7a42f1ad-a4c2-43b3-9238-f4a0cd864744",
+        "Interested Users": [],
+        "CreatedAt": 1708562073
     }
 }
