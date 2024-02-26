@@ -1,6 +1,6 @@
-const submitFormButton = document.getElementById("submit");
-const loginForm = document.getElementById("login");
-const createButton = document.getElementById("create");
+//const submitFormButton = document.getElementById("submit");
+//const loginForm = document.getElementById("login");
+//const createButton = document.getElementById("create");
 
 function setElementShake(elementValue){
     $(elementValue).addClass('incorrect');
@@ -16,44 +16,52 @@ function setResponse(text, color){
         $("#response").html("");
      },1500)
 }
-createButton.addEventListener("click", () => {
-    window.location.href = "/signup";
-});
-loginForm.addEventListener("submit",(event)=>{
-    event.preventDefault();
-    const form = new FormData(loginForm);
-    if(form.get("email")==""){
-        setElementShake("#submit");
-        return setResponse("Missing Email","red");
-    }
-    if(form.get("password")==""){
-        setElementShake("#submit");
-        return setResponse("Missing Password","red");
-    }
-    $('#loader').show();
-    $('#response').html('');
-    setTimeout(()=>{
-    API.getLogin(form.get("email"),form.get("password")).then(data=>{
-        if(data.status){
+function checkStatusIsDone() {
+    // Create a URL object
+    const urlObj = new URL(window.location.href);
+    // Use URLSearchParams to easily access the query parameters
+    const queryParams = new URLSearchParams(urlObj.search);
+    // Check if the 'status' parameter is exactly 'done'
+    return queryParams.get('status') != null;
+}
+
+
+$(function(){
+    if(checkStatusIsDone()){
+        API.getMyInfo().then(data=>{
+            if(data.status){
+                console.log(data.data);
                 localStorage.clear();
                 for(const [key,value] of Object.entries(data.data)){                
                     localStorage.setItem(key,value);
                 }
                 setResponse(data.response,"green");
                 setTimeout(()=>{
-                    window.location.href = "/projects"
-                 },1500)
-             
+                    window.location.href = data.data.Skills.length===0?"/profile":"/projects";
+                    },1500)
             }else{
                 setResponse(data.response,"red");
                 setElementShake("#response");   
+                setTimeout(()=>{
+                    window.location.href = "/login"
+                    },1500)
             }
-        }).catch(err=>{//error handling
-            setResponse("Network Error","red");            
+        }).catch(err=>{
+            setResponse("Network err","red");
+            setTimeout(()=>{
+                window.location.href = "/login"
+                },1500)
         })
-    },500)
-})
-
-$(function(){
-    $('#loader').hide();
+    }else{
+        $('#loader').hide();
+        API.getGoogleAuthURL().then(data=>{
+            if(data.status){
+                $("#authUrl").attr("href",data.data.url);
+            }else{
+                setResponse(data.response,"red");
+            }
+        }).catch(err=>{
+            setResponse(err.message,"red");
+        })
+    }
 })

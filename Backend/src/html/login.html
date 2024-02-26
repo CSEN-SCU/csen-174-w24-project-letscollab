@@ -7,6 +7,8 @@
     <link rel="stylesheet" type="text/css" href="./css/login.css">
     <link rel="stylesheet" type="text/css" href="./css/spinner.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="../js/API.js"></script>
     <script src="../js/base.js"async defer></script>
     <script src="../js/login.js"async defer></script>
@@ -24,20 +26,9 @@
         <h1>Welcome to LetsCollab</h1>
         <h2>Collaborate with others</h2>
    
-    <form id="login">
-            <label for="email">Email:</label>
-            <input name="email" type="text" placeholder="example@scu.edu" />
-
-            <label for="password">Password:</label>
-
-        <div class="password-w-checkbox">
-            <input type="password" name="password" id="password" placeholder="••••••••••" />
-            <div id="showPasswordLogo"></div>
-        </div>
-
-        <button type="submit" id="submit" value="Login">Login</button>
-        <!-- <a href="signup">Or create an account</a> -->
-        <button type="button" id="create" value="Create an account">Create an account</button>
+    <form class="jumbotron text-center text-primary">
+        <p>Login or Register with:</p>
+        <a href="" id="authUrl" class="btn btn-danger"><span class="fa fa-google"></span> SignIn with Google</a>
         <div id="loader" class="loader"></div>
         <p id="response"></p>
     </form>

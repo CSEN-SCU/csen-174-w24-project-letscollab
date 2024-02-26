@@ -15,7 +15,8 @@ module.exports = {
                     }
                 }
                 users.setItem(email,userObject);
-                out_obj = users.getItem(email);
+                let userObj = users.getItem(email);
+                out_obj = {...userObj};
                 out_obj["response"]= "Updated user!";
             }else{
                 out_obj["response"]= "User does not exists!";
