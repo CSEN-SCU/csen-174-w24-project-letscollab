@@ -31,7 +31,7 @@ Content-Type: application/json
 
 {
 "id":"P1002",
-"setInterestTo":"false"
+"setInterestTo":"true"
 }
 
 ###
@@ -82,4 +82,4 @@ Content-Type: application/json
 GET http://127.0.0.1:8080/v1/getLogin?email=test@scu.edu&password=12345 HTTP/1.1
 
 ### 2. Validate the users' session was stored server side to get back their user object
-GET http://127.0.0.1:8080/v1/validateUser
+GET http://127.0.0.1:8080/v1/getMyInfo

@@ -41,7 +41,7 @@ loginForm.addEventListener("submit",(event)=>{
                 }
                 setResponse(data.response,"green");
                 setTimeout(()=>{
-                    window.location.href = "/profile"
+                    window.location.href = "/projects"
                  },1500)
              
             }else{

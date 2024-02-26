@@ -11,7 +11,8 @@
             "NLP"
         ],
         "Interested Users": [
-            "alice.smith@scu.edu"
+            "alice.smith@scu.edu",
+            "test@scu.edu"
         ],
         "PeopleRequired": 3,
         "AuthorEmail": "john.doe@scu.edu",
@@ -30,9 +31,7 @@
             "GIS",
             "UI/UX Design"
         ],
-        "Interested Users": [
-            "test@scu.edu"
-        ],
+        "Interested Users": [],
         "PeopleRequired": 2,
         "AuthorEmail": "alice.smith@scu.edu",
         "CoverImage": "https://example.com/campus_nav_app.jpg",
@@ -100,7 +99,6 @@
         "ID": "P1005",
         "CreatedAt": 1708557400
     },
-    "response": "Got all projects",
     "6b6f3e57-5a07-437f-afdc-96121694fda6": {
         "Name": "My New Project",
         "Description": "AI TOOL TO DO MY HOMEWORK",
@@ -139,5 +137,44 @@
         "ID": "7a42f1ad-a4c2-43b3-9238-f4a0cd864744",
         "Interested Users": [],
         "CreatedAt": 1708562073
-    }
+    },
+    "1dca3ca8-95ee-4b64-8026-4b42fbab1b04": {
+        "Name": "testproject",
+        "Description": "testprojct",
+        "Meetup": {
+            "Time": 1708627080,
+            "Location": "Heafy"
+        },
+        "Skills Desired": [
+            "C",
+            "Computer Science",
+            "CSS",
+            "PHP"
+        ],
+        "CoverImage": {},
+        "PeopleRequired": "4",
+        "ID": "1dca3ca8-95ee-4b64-8026-4b42fbab1b04",
+        "Interested Users": [],
+        "CreatedAt": 1708627006
+    },
+    "3d30cd6b-5d91-4b2d-a234-d1f6b15d9a69": {
+        "Name": "testproject",
+        "Description": "testprojct",
+        "Meetup": {
+            "Time": 1708627080,
+            "Location": "Heafy"
+        },
+        "Skills Desired": [
+            "C",
+            "Computer Science",
+            "CSS",
+            "PHP"
+        ],
+        "CoverImage": {},
+        "PeopleRequired": "4",
+        "ID": "3d30cd6b-5d91-4b2d-a234-d1f6b15d9a69",
+        "Interested Users": [],
+        "CreatedAt": 1708627056
+    },
+    "response": "Got all projects"
 }

@@ -99,6 +99,16 @@ class LetsCollab {
             });
         });
     }
+    getMyInfo() {
+        const params = `getMyInfo`;
+        return new Promise((resolve, reject) => {
+            this.apiRequest(params).then(data => {
+                resolve(data);
+            }).catch(err => {
+                reject(err);
+            });
+        });
+    }
     createSkill(skillName, skillType){
         const params = `createSkill`;
         let body = {

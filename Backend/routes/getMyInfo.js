@@ -1,6 +1,6 @@
 const users = require('../user-storage.js');
 module.exports = {
-    name: "validateUser",
+    name: "getMyInfo",
     method:'GET',
     execute(params,req){
         let out_obj = {};
@@ -14,7 +14,7 @@ module.exports = {
             if(userObject != null){
                 const { ["Password"]: _, ...new_obj } = userObject;
                 out_obj = new_obj;
-                out_obj["response"] = "Validated User";
+                out_obj["response"] = "User info sent";
             }else{
                 out_obj["response"] = `Error fetching user with token ${req.session.Email}`;
             }

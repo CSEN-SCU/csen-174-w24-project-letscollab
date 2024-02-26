@@ -93,6 +93,7 @@ input,textarea,select{
 .selected {
     opacity: 1.0;
     border-color: green;
+    opacity: 1.0;
 }
 
 #selectskills * {
@@ -100,10 +101,10 @@ input,textarea,select{
     user-select: none;
 }
 
-#selectskills .skill{
-    opacity: 0.7;
+#selectskills .skill {
+    opacity: 0.5;
 }
 
-#selectskills .selected{
+#selectskills .selected {
     opacity: 1.0;
 }
