@@ -9,7 +9,7 @@ module.exports = {
             if(projectObject == null){
                 out_obj["response"] = "Project does not exist";
             }else{
-                out_obj = projectObject;
+                out_obj = {...projectObject};
                 out_obj["response"] = "Successfully fetched project";    
             }
             resolve(out_obj);            

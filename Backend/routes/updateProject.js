@@ -15,7 +15,8 @@ module.exports = {
                     }
                 }
                 projects.setItem(project_id,projectObject);
-                out_obj = projects.getItem(project_id);
+                let projObj = projects.getItem(project_id);
+                let out_obj = {...projObj};
                 out_obj["response"]="Project has been updated!"
 
             }else{

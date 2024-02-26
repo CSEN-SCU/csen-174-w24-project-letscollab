@@ -32,7 +32,7 @@ module.exports = {
             projects.setItem(project_id,body);
             let projectObject = projects.getData(project_id);
             if(projectObject!=null){
-                out_obj = projectObject;
+                out_obj = {...projectObject};
                 out_obj["response"] = "Created Project!";
             }else{
                 out_obj["response"] = "Error Creating Project!";
