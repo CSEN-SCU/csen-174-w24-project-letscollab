@@ -34,7 +34,7 @@ $(async () => {
     })
 
     console.log("done");
-}
+})
 
 /**
  * createProjectElement ()

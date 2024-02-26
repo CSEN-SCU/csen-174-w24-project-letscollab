@@ -16,7 +16,7 @@ module.exports = {
                 out_obj = new_obj;
                 out_obj["response"] = "User info sent";
             }else{
-                out_obj["response"] = `Error fetching user with token ${req.session.Email}`;
+                out_obj["response"] = `Error fetching user with email ${req.session.Email}`;
             }
             resolve(out_obj);            
         });
