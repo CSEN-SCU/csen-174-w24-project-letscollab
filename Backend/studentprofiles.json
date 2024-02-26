@@ -163,10 +163,17 @@
         "LastName": "Salinas",
         "Email": "fsalinas@scu.edu",
         "GoogleID": "110594390120746253458",
-        "Password": "",
+        "Password": "feqf",
         "Year": "Freshman",
-        "Description": "",
-        "Skills": [],
+        "Description": "Hello hi",
+        "Skills": [
+            "Java",
+            "JavaScript",
+            "Rust",
+            "TypeScript",
+            "SQL",
+            "Go"
+        ],
         "ProjectsCreated": [],
         "ProjectsInterested": []
     }
