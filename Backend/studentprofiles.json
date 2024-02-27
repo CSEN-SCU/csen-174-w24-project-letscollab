@@ -157,5 +157,24 @@
         ],
         "ProjectsCreated": [],
         "ProjectsInterested": []
+    },
+    "fsalinas@scu.edu": {
+        "FirstName": "Francisco",
+        "LastName": "Salinas",
+        "Email": "fsalinas@scu.edu",
+        "GoogleID": "110594390120746253458",
+        "Password": "feqf",
+        "Year": "Freshman",
+        "Description": "Hello hi",
+        "Skills": [
+            "Java",
+            "JavaScript",
+            "Rust",
+            "TypeScript",
+            "SQL",
+            "Go"
+        ],
+        "ProjectsCreated": [],
+        "ProjectsInterested": []
     }
 }

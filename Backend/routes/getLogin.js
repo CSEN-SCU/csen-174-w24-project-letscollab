@@ -12,7 +12,7 @@ module.exports = {
             if(userObject != null){
                 if(userObject.Password === password){
                     //const { ["Password"]: _, ...new_obj } = userObject;
-                    out_obj = userObject;
+                    out_obj = {...userObject};
                     req.session.Email = userObject.Email;
                     out_obj["response"] = "Login Success";
                 }else{
