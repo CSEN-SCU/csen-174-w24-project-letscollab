@@ -176,5 +176,19 @@
         ],
         "ProjectsCreated": [],
         "ProjectsInterested": []
+    },
+    "rguioguio@scu.edu": {
+        "FirstName": "Riley",
+        "LastName": "Guioguio",
+        "Email": "rguioguio@scu.edu",
+        "GoogleID": "101361941904596584741",
+        "Password": "123",
+        "Year": "Junior",
+        "Description": "hello.",
+        "Skills": [
+            "C++"
+        ],
+        "ProjectsCreated": [],
+        "ProjectsInterested": []
     }
 }
