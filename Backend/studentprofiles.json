@@ -176,5 +176,28 @@
         ],
         "ProjectsCreated": [],
         "ProjectsInterested": []
+    },
+    "undefined": {
+        "FirstName": "Shreyas",
+        "LastName": "Raghunath",
+        "GoogleID": "103466865663969918212",
+        "Password": "",
+        "Year": "Freshman",
+        "Description": "",
+        "Skills": [],
+        "ProjectsCreated": [],
+        "ProjectsInterested": []
+    },
+    "sraghunath@scu.edu": {
+        "FirstName": "Shreyas",
+        "LastName": "Raghunath",
+        "Email": "sraghunath@scu.edu",
+        "GoogleID": "103466865663969918212",
+        "Password": "",
+        "Year": "Freshman",
+        "Description": "",
+        "Skills": [],
+        "ProjectsCreated": [],
+        "ProjectsInterested": []
     }
 }
