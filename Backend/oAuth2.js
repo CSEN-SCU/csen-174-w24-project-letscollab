@@ -12,7 +12,7 @@ const oauth2ClientConfig = {
 };
 
 // Scopes define the level of access you are requesting from the user
-const scopes = ['email'];
+const scopes = ['https://www.googleapis.com/auth/userinfo.profile'];
 
 // Initialize the OAuth2 client with the config
 const oauth2Client = new google.auth.OAuth2(
@@ -39,9 +39,9 @@ async function getTokens(code) {
 
 // Function to get user information
 async function getUserInfo() {
-    var oauth2 = google.oauth2({
+    let oauth2 = google.oauth2({
         auth: oauth2Client,
-        version: 'v2'
+        version: 'v2',
     });
     return new Promise((resolve, reject) => {
         oauth2.userinfo.get((err, response) => {
@@ -55,7 +55,9 @@ async function getUserInfo() {
 }
 
 async function createUserFromOAuth2(googleProfile){
-    return new Promise(resolve=>{
+    console.log("Received Google Profile Data: ");
+    console.log(googleProfile);
+    return new Promise((resolve)=>{
         let email = googleProfile.email;
         let userObject = users.getItem(email);
         if(userObject==null){
