@@ -46,6 +46,12 @@ $(async () => {
 
     // Load skill list
     await loadSkillList();
+
+    // Create keyup listener for skill search bar
+    const searchBar = $("#searchskills");
+    searchBar.on("keyup", () => {
+        manageDisplayedSkills(searchBar.val());
+    })
 });
 
 /**

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../css/createProject.css">
     <script src="../js/jquery-3.7.1.js"></script>
     <script src="../js/api.js" async defer></script>
+    <script src="../js/base.js" async defer></script>
     <script src="../js/createProject.js" async defer></script>
 </head>
 <body>
@@ -41,7 +42,7 @@
                 <label for="date">Date</label>
                 <input type="date" id="date" name="date" />
 
-                <label for="location">Location</label>
+                <label for="locations">Location</label>
                 <select id="locations" name="location">
                     <option value="Heafy">Heafy</option>
                     <option value="SCDI">SCDI</option>
@@ -61,12 +62,16 @@
                 <option value="7">7</option>
                 <option value="8">8</option>
                 <option value="9">9</option>
-                <option value="10">10</option>
+                <option value="10">10+</option>
             </select>
+
             <header>Skills Desired</header>
             <div class="row">
+                <input type="search" id="searchskills" placeholder="Find Skills..." />
+                <br/>
                 <div class="skills" id="selectskills"></div>
             </div>
+
             <div class="row">
                 <button onclick="createSkill()" type="button" id="createNewSkill">Add Skill...</button>
             </div>
