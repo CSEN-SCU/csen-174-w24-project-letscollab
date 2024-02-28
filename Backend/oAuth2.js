@@ -12,7 +12,7 @@ const oauth2ClientConfig = {
 };
 
 // Scopes define the level of access you are requesting from the user
-const scopes = ['email','profile'];
+const scopes = ['email', 'profile'];
 
 // Initialize the OAuth2 client with the config
 const oauth2Client = new google.auth.OAuth2(
@@ -48,7 +48,6 @@ async function getUserInfo() {
             if (err) {
                 reject(err);
             } else {
-                console.log(response.data);
                 resolve(response.data);
             }
         });
