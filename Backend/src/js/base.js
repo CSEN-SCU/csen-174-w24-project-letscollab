@@ -84,6 +84,7 @@ function validateForm(formDataObj){
  */
 const manageDisplayedSkills = (search) => {
     search = search.toLowerCase();
+    console.log(search);
     const allSkills = $(".skill");
     allSkills.each((index, skill) => { // For every skill...
         if ($(skill).find(".skillname").html().toLowerCase().includes(search)) { // If it is in the search params remove the hidden attribute
