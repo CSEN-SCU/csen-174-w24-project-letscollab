@@ -12,6 +12,7 @@ var projectList = document.querySelector("main");
  */
 var currentTab = 0;
 var projArray = [];
+var userInfo;
 var userSkills;
 
 /**
@@ -21,8 +22,10 @@ $(async () => {
     /** remove demo project */
     document.querySelector("section").remove();
 
-    const userinfo = await API.getMyInfo();
-    userSkills = userinfo.data["Skills"];
+    userInfo = await API.getMyInfo();
+    userInfo = userInfo.data;
+    console.log(userInfo);
+    userSkills = userInfo["Skills"];
     console.log(userSkills);
     
     if (userSkills.includes("C++"))
@@ -41,13 +44,8 @@ $(async () => {
 
             /** match skills on each project */
             for (skill of proj["Skills Desired"])
-            {
                 if (userSkills.includes(skill))
-                {
-                    //console.log("matched skill " + skill);
                     ++proj.matchedSkills;
-                }
-            }
 
             projArray.push(proj);
         }
@@ -73,12 +71,13 @@ $(async () => {
  *
  * create a `section` element for each project
  *
- * @param projObj project object being iterated on page load
+ * @projObj project object being iterated on page load
  */
 function createProjectElement(projObj)
 {
     const projElement = document.createElement("section");
     projElement.classList.add("projectlist");
+    projElement.setAttribute("id", "_" + projObj["ID"]);
 
     // append project element to projectList (in main)
     projectList.append(projElement);
@@ -101,7 +100,7 @@ function createProjectElement(projObj)
 
     const meetTime = document.createElement("h3");
     meetTime.classList.add("meettime");
-    // projObj.Meetup.Time is saved as a unix timestamp
+    /** projObj.Meetup.Time is saved as a unix timestamp */
     let date = new Date(projObj.Meetup.Time * 1000);
     meetTime.innerHTML = "Meetup Time: " + projObj.Meetup.Time;
     meetTime.innerHTML = "Meetup Time: " + date.toLocaleString();
@@ -144,7 +143,7 @@ function createProjectElement(projObj)
     interestButton.classList.add("interestButton");
     interestButton.innerHTML = "Show Interest";
     console.log(projObj["Interested Users"]);
-    if(projObj["Interested Users"].includes(localStorage.getItem("Email"))){
+    if (projObj["Interested Users"].includes(localStorage.getItem("Email"))){
         interestButton.classList.toggle("selected");
         interestButton.textContent="I'm interested";  
     }
@@ -182,10 +181,10 @@ function createProjectElement(projObj)
 
 /**
  * selectTab ()
- * @param index which tab was pressed
+ * @index which tab was pressed
  *
- * changes selected tab in header
- * displays/hides projects accordingly
+ * changes selected header tab 
+ * display/hide projects accordingly
  */
 function selectTab (index)
 {
@@ -209,17 +208,38 @@ function selectTab (index)
     if (index == 1) {
         /** @TODO based on user, show projects that user marked `interested` */
         console.log("showing interested projects");
+
+        for (project of projects)
+        {
+            projID = project.getAttribute("ID").substring(1);
+            if (!userInfo["ProjectsInterested"].includes(projID))
+            {
+                console.log("hiding " + projID);
+                project.classList.add("hidden");
+            }
+        }
     }
-    else
+    else if (index == 2)
     {
         /** @TODO only show projects that the user created */
         console.log("showing created projects");
+
+        for (project of projects)
+        {
+            projID = project.getAttribute("ID").substring(1);
+            console.log(projID);
+            if (!userInfo["ProjectsCreated"].includes(projID))
+            {
+                console.log("hiding " + projID);
+                project.classList.add("hidden");
+            }
+        }
     }
 }
 
 /**
  * showInterest ()
- * @param button button that was pressed
+ * @button was pressed
  *
  * @TODO add to studentprofiles.json that user is interested in ___ project,
  * @TODO add to projects.json that another student was interested

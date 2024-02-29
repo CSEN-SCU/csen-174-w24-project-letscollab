@@ -190,8 +190,12 @@
             "JavaScript",
             "TypeScript"
         ],
-        "ProjectsCreated": [],
-        "ProjectsInterested": []
+        "ProjectsCreated": [
+            "P1001"
+        ],
+        "ProjectsInterested": [
+            "P1002"
+        ]
     },
     "sraghunath@scu.edu": {
         "FirstName": "Shreyas",
