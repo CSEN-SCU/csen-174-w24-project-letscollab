@@ -7,6 +7,7 @@ var header = document.querySelector("header");
 var tabs = header.querySelectorAll("li");
 var projectList = document.querySelector("main");
 var currentTab = 0;
+var projectIDs = [];
 
 /**
  * on page load
@@ -20,13 +21,15 @@ $(async () => {
     let projects = {};
     await API.getAllProjects().then(response => {
         projects = response.data;
-
+        console.log(projects["P1001"]);
         // iterate through each project in projects.json, creating html elements
         /** @TODO matching by skills? */
-        for (project in projects)
+        for (let id in projects)
         {
-            createProjectElement(projects[project]);
+            createProjectElement(projects[id]);
+            projectIDs.push(id);
         }
+        console.log(projectIDs);
 
         console.log("loaded all projects");
     }).catch(err => {
@@ -169,11 +172,11 @@ function selectTab (index)
     // initially unhide all projects
     for (project of projects)
     {
-       project.classList.remove("hidden");
+        project.classList.remove("hidden");
     }
 
     /** @TODO call API function that display/hide projects according to currentTab */
-    if (index == 1) {
+    if (index === 1) {
         /** @TODO based on user, show projects that user marked `interested` */
         console.log("showing interested projects");
     }
@@ -181,6 +184,12 @@ function selectTab (index)
     {
         /** @TODO only show projects that the user created */
         console.log("showing created projects");
+        console.log(projects[0]);
+        for (let i = 0; i < projects.length; ++i) {
+            if (localStorage.getItem("ProjectsCreated").split(',').indexOf(projectIDs[i]) === -1) {
+                projects[i].classList.add("hidden");
+            }
+        }
     }
 }
 

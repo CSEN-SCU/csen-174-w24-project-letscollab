@@ -133,7 +133,7 @@ const updatePreviewDateTime = () => {
         const day = parseInt(dateContent.split("-")[2]);
 
 
-        const dateResult = `${months[month]} ${day}, ${year}`;
+        const dateResult = `${months[month-1]} ${day}, ${year}`;
 
         // Update preview element
         previewElement.html(previewElement.html().replace(/(Meetup Time:\s)(.+)/g, `$1${dateResult} at $2`));
