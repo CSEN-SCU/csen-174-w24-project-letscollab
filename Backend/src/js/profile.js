@@ -22,7 +22,7 @@ $(async () => {
 
     // Add event listener for searching for skills
     const searchBar = $("#searchskills");
-    searchBar.on("keyup", () => {
+    searchBar.on("input", () => {
         manageDisplayedSkills(searchBar.val());
     });
 });
