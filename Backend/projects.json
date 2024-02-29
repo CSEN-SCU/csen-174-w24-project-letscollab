@@ -15,7 +15,7 @@
             "test@scu.edu"
         ],
         "PeopleRequired": 3,
-        "AuthorEmail": "john.doe@scu.edu",
+        "AuthorEmail": "rguioguio@scu.edu",
         "CoverImage": "https://example.com/chatbot_project.jpg",
         "ID": "P1001",
         "CreatedAt": 1708557400
@@ -31,7 +31,9 @@
             "GIS",
             "UI/UX Design"
         ],
-        "Interested Users": [],
+        "Interested Users": [
+            "rguioguio@scu.edu"
+        ],
         "PeopleRequired": 2,
         "AuthorEmail": "alice.smith@scu.edu",
         "CoverImage": "https://example.com/campus_nav_app.jpg",
