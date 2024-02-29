@@ -192,5 +192,26 @@
         ],
         "ProjectsCreated": [],
         "ProjectsInterested": []
+    },
+    "sraghunath@scu.edu": {
+        "FirstName": "Shreyas",
+        "LastName": "Raghunath",
+        "Email": "sraghunath@scu.edu",
+        "GoogleID": "103466865663969918212",
+        "Password": "ass",
+        "Year": "Freshman",
+        "Description": "hello i m big brain dumbass dude",
+        "Skills": [
+            "C++",
+            "C",
+            "Python",
+            "Java",
+            "Computer Science"
+        ],
+        "ProjectsCreated": [
+            "P1001",
+            "P1002"
+        ],
+        "ProjectsInterested": []
     }
 }

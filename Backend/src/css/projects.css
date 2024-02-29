@@ -22,3 +22,7 @@ header ul li
     background-color: var(--scuRed);
     text-decoration: solid underline;
 }
+.hidden
+{
+    display: none;
+}
