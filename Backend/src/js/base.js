@@ -6,16 +6,16 @@ $(function() {
         let type = $('#password').attr('type') === 'password' ? 'text' : 'password';
         $('#password').attr('type', type);
         $('#showPasswordLabel').text(type === 'password' ? 'Show:' : 'Hide:');
-      });
+    });
 });
 
 /**
  * Password hover icon functionality
  */
 $(function() {
-  $('#showPasswordLogo').hover(function(){
-      let type = $('#password').attr('type') === 'password' ? 'text' : 'password';
-      $('#password').attr('type', type);
+    $('#showPasswordLogo').hover(function(){
+        let type = $('#password').attr('type') === 'password' ? 'text' : 'password';
+        $('#password').attr('type', type);
     });
 });
 
@@ -24,6 +24,7 @@ $(function() {
  */
 $(() => {
     $("#usericon p").html(`${localStorage.getItem("FirstName").charAt(0).toUpperCase()}${localStorage.getItem("LastName").charAt(0).toUpperCase()}`);
+    $("#usericon").click(() => {window.location.href = "/profile"});
 });
 
 /**
