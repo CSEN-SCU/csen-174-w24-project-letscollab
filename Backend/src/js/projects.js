@@ -6,34 +6,64 @@ console.log("projects.js loaded ...")
 var header = document.querySelector("header");
 var tabs = header.querySelectorAll("li");
 var projectList = document.querySelector("main");
-var currentTab = 0;
 
 /**
- * on page load
+ * global variables
+ */
+var currentTab = 0;
+var projArray = [];
+var userInfo;
+var userSkills;
+
+/**
+ * asynchronous function on page load
  */
 $(async () => {
+    /** remove demo project */
+    document.querySelector("section").remove();
 
-    // remove the demo project
-    const demoProject = document.querySelector("section");
-    demoProject.remove();
+    userInfo = await API.getMyInfo();
+    userInfo = userInfo.data;
+    console.log(userInfo);
+    userSkills = userInfo["Skills"];
+    console.log(userSkills);
+    
+    if (userSkills.includes("C++"))
+        console.log("hi");
 
-    let projects = {};
+    /** get object of all projects from API call */
     await API.getAllProjects().then(response => {
-        projects = response.data;
+        let projects = response.data;
+        console.log(projects);
 
-        // iterate through each project in projects.json, creating html elements
-        /** @TODO matching by skills? */
+        /** proj == projects[project] is an object */
         for (project in projects)
         {
-            createProjectElement(projects[project]);
+            let proj = projects[project];
+            proj.matchedSkills = 0;
+
+            /** match skills on each project */
+            for (skill of proj["Skills Desired"])
+                if (userSkills.includes(skill))
+                    ++proj.matchedSkills;
+
+            projArray.push(proj);
+        }
+
+        /** sort projArray descending by # of matching skills */
+        projArray.sort((a, b) => b.matchedSkills - a.matchedSkills);
+        console.log(projArray);
+
+        /** `proj` is an object */
+        for (proj of projArray)
+        {
+            createProjectElement(proj);
         }
 
         console.log("loaded all projects");
     }).catch(err => {
         console.log('error' + err);
     })
-
-    console.log("done");
 })
 
 /**
@@ -41,15 +71,15 @@ $(async () => {
  *
  * create a `section` element for each project
  *
- * @param projObj project object being iterated on page load
+ * @projObj project object being iterated on page load
  */
 function createProjectElement(projObj)
 {
-    // log
-
     const projElement = document.createElement("section");
     projElement.classList.add("projectlist");
-    // append our new project element to the project list (in main)
+    projElement.setAttribute("id", "_" + projObj["ID"]);
+
+    // append project element to projectList (in main)
     projectList.append(projElement);
 
     // construct section elements
@@ -70,7 +100,7 @@ function createProjectElement(projObj)
 
     const meetTime = document.createElement("h3");
     meetTime.classList.add("meettime");
-    // projObj.Meetup.Time is saved as a unix timestamp
+    /** projObj.Meetup.Time is saved as a unix timestamp */
     let date = new Date(projObj.Meetup.Time * 1000);
     meetTime.innerHTML = "Meetup Time: " + projObj.Meetup.Time;
     meetTime.innerHTML = "Meetup Time: " + date.toLocaleString();
@@ -87,10 +117,12 @@ function createProjectElement(projObj)
     skills.classList.add("skills");
     for (skill of projObj["Skills Desired"])
     {
-        /** @TODO highlight skills */
-
         const skillDiv = document.createElement("div");
         skillDiv.classList.add("skill");
+
+        /** highlight matched skills */
+        if (userSkills.includes(skill))
+            skillDiv.style.backgroundColor = "green";
 
         const skillIcon = document.createElement("p");
         skillIcon.classList.add("skillicon");
@@ -111,7 +143,7 @@ function createProjectElement(projObj)
     interestButton.classList.add("interestButton");
     interestButton.innerHTML = "Show Interest";
     console.log(projObj["Interested Users"]);
-    if(projObj["Interested Users"].includes(localStorage.getItem("Email"))){
+    if (projObj["Interested Users"].includes(localStorage.getItem("Email"))){
         interestButton.classList.toggle("selected");
         interestButton.textContent="I'm interested";  
     }
@@ -149,10 +181,10 @@ function createProjectElement(projObj)
 
 /**
  * selectTab ()
- * @param index which tab was pressed
+ * @index which tab was pressed
  *
- * changes selected tab in header
- * displays/hides projects accordingly
+ * changes selected header tab 
+ * display/hide projects accordingly
  */
 function selectTab (index)
 {
@@ -176,17 +208,38 @@ function selectTab (index)
     if (index == 1) {
         /** @TODO based on user, show projects that user marked `interested` */
         console.log("showing interested projects");
+
+        for (project of projects)
+        {
+            projID = project.getAttribute("ID").substring(1);
+            if (!userInfo["ProjectsInterested"].includes(projID))
+            {
+                console.log("hiding " + projID);
+                project.classList.add("hidden");
+            }
+        }
     }
-    else
+    else if (index == 2)
     {
         /** @TODO only show projects that the user created */
         console.log("showing created projects");
+
+        for (project of projects)
+        {
+            projID = project.getAttribute("ID").substring(1);
+            console.log(projID);
+            if (!userInfo["ProjectsCreated"].includes(projID))
+            {
+                console.log("hiding " + projID);
+                project.classList.add("hidden");
+            }
+        }
     }
 }
 
 /**
  * showInterest ()
- * @param button button that was pressed
+ * @button was pressed
  *
  * @TODO add to studentprofiles.json that user is interested in ___ project,
  * @TODO add to projects.json that another student was interested

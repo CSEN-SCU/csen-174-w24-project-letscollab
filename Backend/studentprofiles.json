@@ -186,9 +186,35 @@
         "Year": "Junior",
         "Description": "hello.",
         "Skills": [
-            "C++"
+            "C",
+            "JavaScript",
+            "TypeScript"
         ],
-        "ProjectsCreated": [],
+        "ProjectsCreated": [
+            "P1001"
+        ],
+        "ProjectsInterested": [
+            "P1002"
+        ]
+    },
+    "sraghunath@scu.edu": {
+        "FirstName": "Shreyas",
+        "LastName": "Raghunath",
+        "Email": "sraghunath@scu.edu",
+        "GoogleID": "103466865663969918212",
+        "Password": "ass",
+        "Year": "Freshman",
+        "Description": "hello i m big brain dumbass dude",
+        "Skills": [
+            "C++",
+            "C",
+            "Python",
+            "Java"
+        ],
+        "ProjectsCreated": [
+            "P1001",
+            "P1002"
+        ],
         "ProjectsInterested": []
     }
 }

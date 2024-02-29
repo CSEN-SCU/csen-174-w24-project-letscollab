@@ -1,0 +1,4 @@
+default: 
+  clientId: 156390762129-04bqllsmeep3ptmfn53c2ri5e0snlka1.apps.googleusercontent.com
+  clientSecret: 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
+  redirectUri: 'http://localhost/auth/google/callback'
