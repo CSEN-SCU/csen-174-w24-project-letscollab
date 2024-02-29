@@ -6,37 +6,66 @@ console.log("projects.js loaded ...")
 var header = document.querySelector("header");
 var tabs = header.querySelectorAll("li");
 var projectList = document.querySelector("main");
-var currentTab = 0;
-var projectIDs = [];
 
 /**
- * on page load
+ * global variables
+ */
+var currentTab = 0;
+var projArray = [];
+var userSkills;
+
+/**
+ * asynchronous function on page load
  */
 $(async () => {
+    /** remove demo project */
+    document.querySelector("section").remove();
 
-    // remove the demo project
-    const demoProject = document.querySelector("section");
-    demoProject.remove();
+    const userinfo = await API.getMyInfo();
+    userSkills = userinfo.data["Skills"];
+    console.log(userSkills);
+    
+    if (userSkills.includes("C++"))
+        console.log("hi");
 
-    let projects = {};
+    /** get object of all projects from API call */
     await API.getAllProjects().then(response => {
-        projects = response.data;
-        console.log(projects["P1001"]);
-        // iterate through each project in projects.json, creating html elements
-        /** @TODO matching by skills? */
-        for (let id in projects)
+        let projects = response.data;
+        console.log(projects);
+
+        /** proj == projects[project] is an object */
+        for (project in projects)
         {
-            createProjectElement(projects[id]);
-            projectIDs.push(id);
+            let proj = projects[project];
+            proj.matchedSkills = 0;
+
+            /** match skills on each project */
+            for (skill of proj["Skills Desired"])
+            {
+                if (userSkills.includes(skill))
+                {
+                    //console.log("matched skill " + skill);
+                    ++proj.matchedSkills;
+                }
+            }
+
+            projArray.push(proj);
         }
-        console.log(projectIDs);
+
+        /** sort projArray descending by # of matching skills */
+        projArray.sort((a, b) => b.matchedSkills - a.matchedSkills);
+        console.log(projArray);
+
+        /** `proj` is an object */
+        for (proj of projArray)
+        {
+            createProjectElement(proj);
+        }
 
         console.log("loaded all projects");
     }).catch(err => {
         console.log('error' + err);
     })
-
-    console.log("done");
 })
 
 /**
@@ -48,11 +77,10 @@ $(async () => {
  */
 function createProjectElement(projObj)
 {
-    // log
-
     const projElement = document.createElement("section");
     projElement.classList.add("projectlist");
-    // append our new project element to the project list (in main)
+
+    // append project element to projectList (in main)
     projectList.append(projElement);
 
     // construct section elements
@@ -90,10 +118,12 @@ function createProjectElement(projObj)
     skills.classList.add("skills");
     for (skill of projObj["Skills Desired"])
     {
-        /** @TODO highlight skills */
-
         const skillDiv = document.createElement("div");
         skillDiv.classList.add("skill");
+
+        /** highlight matched skills */
+        if (userSkills.includes(skill))
+            skillDiv.style.backgroundColor = "green";
 
         const skillIcon = document.createElement("p");
         skillIcon.classList.add("skillicon");
@@ -172,11 +202,11 @@ function selectTab (index)
     // initially unhide all projects
     for (project of projects)
     {
-        project.classList.remove("hidden");
+       project.classList.remove("hidden");
     }
 
     /** @TODO call API function that display/hide projects according to currentTab */
-    if (index === 1) {
+    if (index == 1) {
         /** @TODO based on user, show projects that user marked `interested` */
         console.log("showing interested projects");
     }
@@ -184,12 +214,6 @@ function selectTab (index)
     {
         /** @TODO only show projects that the user created */
         console.log("showing created projects");
-        console.log(projects[0]);
-        for (let i = 0; i < projects.length; ++i) {
-            if (localStorage.getItem("ProjectsCreated").split(',').indexOf(projectIDs[i]) === -1) {
-                projects[i].classList.add("hidden");
-            }
-        }
     }
 }
 
