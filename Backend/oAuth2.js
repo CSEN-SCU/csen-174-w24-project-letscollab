@@ -88,11 +88,33 @@ async function createUserFromOAuth2(googleProfile){
  
     });
 }
+// Function to log out user
+function logout() {
+    // Clear local session, perform any other necessary cleanup
+    // Revoke the OAuth token
+    const accessToken = oauth2Client.credentials.access_token;
+    if (accessToken) {
+        fetch(`https://accounts.google.com/o/oauth2/revoke?token=${accessToken}`, {
+            method: 'POST',
+        }).then(response => {
+            // Handle the response
+            // Clear any client-side storage
+            // Redirect to login page
+            console.log("Logging out...");
+            window.location.href = '/login';
+        }).catch(error => {
+            console.error('Error revoking token:', error);
+            // If there's an error, still attempt to redirect to login page
+            window.location.href = '/login';
+        });
+    }
+}
 
 // Export the functions and variables that are necessary for other modules
 module.exports = {
     generateAuthorizationUrl,
     getTokens,
     getUserInfo,
-    createUserFromOAuth2
+    createUserFromOAuth2,
+    logout
 };

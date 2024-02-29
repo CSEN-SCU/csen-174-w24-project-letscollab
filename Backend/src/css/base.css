@@ -5,7 +5,7 @@ html, body
     --dark-gray: #999;
     --gray: #ccc;
     --white: #eee;
-    --scuRed: #b30738;
+    --scuRed: #b30707;
     --scuDarkRed: #930028;
 
     background-image: url("../images/background-upscaled.jpg");
@@ -295,7 +295,4 @@ section.projectlist h3, section#projectlist #skills {
 section.projectlist.hidden
 {
     display: none;
-}
-[hidden] {
-    display: none !important;
 }
