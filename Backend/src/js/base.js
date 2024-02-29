@@ -90,6 +90,5 @@ const manageDisplayedSkills = (search) => {
         } else { // Otherwise hide it
             $(skill).addClass("hidden");
         }
-
     });
 }
