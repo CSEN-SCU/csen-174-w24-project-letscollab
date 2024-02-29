@@ -160,6 +160,10 @@ img
     color: green;
 }
 
+.skill.engr .skillicon {
+    color: darkred;
+}
+
 /* Project List Item */
 section.projectlist figure
 {
