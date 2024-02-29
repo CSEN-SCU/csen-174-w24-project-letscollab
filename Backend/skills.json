@@ -110,5 +110,13 @@
     "Economics": {
         "skillName": "Economics",
         "skillType": "business"
+    },
+    "Arduino": {
+        "skillName": "Arduino",
+        "skillType": "engr"
+    },
+    "Sensors": {
+        "skillName": "Sensors",
+        "skillType": "engr"
     }
 }

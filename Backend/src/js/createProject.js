@@ -232,7 +232,7 @@ const removeSkillElement = (skillName) => {
 function createSkill() {
     let skillName = window.prompt("Enter skill name here:");
     if (skillName !== null) {
-        let skillType = window.prompt("Enter \"cs\" for Computer Science and \"business\" for Business:");
+        let skillType = window.prompt("Enter \"cs\" for Computer Science, \"business\" for Business, and \"engr\" for Engineering:");
         if (skillType !== null) {
             API.createSkill(skillName, skillType);
             createSkillElement($("#selectskills"), {skillName: skillName, skillType: skillType}, false);
