@@ -51,7 +51,7 @@ $(async () => {
     const searchBar = $("#searchskills");
     searchBar.on("input", () => {
         manageDisplayedSkills(searchBar.val());
-    })
+    });
 });
 
 /**

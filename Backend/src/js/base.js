@@ -6,17 +6,25 @@ $(function() {
         let type = $('#password').attr('type') === 'password' ? 'text' : 'password';
         $('#password').attr('type', type);
         $('#showPasswordLabel').text(type === 'password' ? 'Show:' : 'Hide:');
-      });
+    });
 });
 
 /**
  * Password hover icon functionality
  */
 $(function() {
-  $('#showPasswordLogo').hover(function(){
-      let type = $('#password').attr('type') === 'password' ? 'text' : 'password';
-      $('#password').attr('type', type);
+    $('#showPasswordLogo').hover(function(){
+        let type = $('#password').attr('type') === 'password' ? 'text' : 'password';
+        $('#password').attr('type', type);
     });
+});
+
+/**
+ * Initializes user icon text on every page (the thing in the top right)
+ */
+$(() => {
+    $("#usericon p").html(`${localStorage.getItem("FirstName").charAt(0).toUpperCase()}${localStorage.getItem("LastName").charAt(0).toUpperCase()}`);
+    $("#usericon").click(() => {window.location.href = "/profile"});
 });
 
 /**
@@ -68,4 +76,20 @@ function validateForm(formDataObj){
     if(formDataObj["Description"] == "")return false;
     if(formDataObj["Password"] == "") return false;
     return true;
+}
+
+/**
+ * Function used by the skill search bar to manage the hiding and showing of skills
+ * @param {string}search the .val() property of a search bar
+ */
+const manageDisplayedSkills = (search) => {
+    search = search.toLowerCase();
+    const allSkills = $(".skill");
+    allSkills.each((index, skill) => { // For every skill...
+        if ($(skill).find(".skillname").html().toLowerCase().includes(search)) { // If it is in the search params remove the hidden attribute
+            $(skill).removeClass("hidden");
+        } else { // Otherwise hide it
+            $(skill).addClass("hidden");
+        }
+    });
 }

@@ -8,12 +8,12 @@
     <script src="../js/jquery-3.7.1.js"></script>
     <script src="../js/api.js"></script>
     <script src="../js/base.js" async defer></script>
-    <script src="../js/profile.js" async defer></script>
+    <script src="../js/manageProject.js" async defer></script>
 </head>
 <body>
     <main>
         <header>
-            <h1>View Project</h1>
+            <h2>View Project</h2>
 
             <div id="usericon">
                 <p>JD</p>
@@ -22,22 +22,24 @@
 
         <div id="project">
             <header id="projectheader">
-                <img src="../images/background.jpeg" alt="project icon" />
+                <figure>
+                    <img src="../images/background.jpeg" alt="project icon" />
+                </figure>
                 <aside>
                     <h1>My Project</h1>
                     <p id="description">Detailed explanation</p>
+                    <h3>Meetup Time: x</h3>
+                    <h3>Meetup Location: x</h3>
                 </aside>
+                <div id="interestpanel">
+                    <h3 class="peopleInterested"><mark>0</mark> people are interested</h3>
+                    <figure id="interest"><p class="interestButton" onclick="showInterest(this)">Show Interest</p></figure>
+                </div>
             </header>
 
             <div id="projectbody">
-                <h3>Meetup Time: x</h3>
-                <h3>Meetup Location: x</h3>
-                <h3 class="peopleInterested"><mark>0</mark> people are interested</h3>
                 <h3>Desired Skills</h3>
-                <input type="search" id="searchskills" placeholder="Find Skills..." />
-                <br/>
                 <div class="skills"></div>
-                <p class="interestButton" onclick="showInterest(this)">Show Interest</p>
             </div>
         </div>
     </main>
