@@ -40,7 +40,7 @@ $(async () => {
     });
 
     // Create input listener for project location
-    $("#location").on("input", () => {
+    $("#locations").on("input", () => {
         updatePreviewLocation();
     });
 
@@ -133,7 +133,7 @@ const updatePreviewDateTime = () => {
         const day = parseInt(dateContent.split("-")[2]);
 
 
-        const dateResult = `${months[month]} ${day}, ${year}`;
+        const dateResult = `${months[month-1]} ${day}, ${year}`;
 
         // Update preview element
         previewElement.html(previewElement.html().replace(/(Meetup Time:\s)(.+)/g, `$1${dateResult} at $2`));
@@ -144,7 +144,7 @@ const updatePreviewDateTime = () => {
  * Updates the location of the preview in realtime
  */
 const updatePreviewLocation = () => {
-    const locationContent = $("#location").val();
+    const locationContent = $("#locations").val();
     const previewElement = $(".projectlist .meetlocation");
 
     if (locationContent.length > 1) {
@@ -304,11 +304,11 @@ function getSkillNamesArray() {
      },1500)
 }
 const fileToDataURL = async(file) =>{
-    var reader = new FileReader()
+    let reader = new FileReader();
     return new Promise(function (resolve, reject) {
       reader.onload = function (event) {
-        var base64DataUrl = event.target.result;
-        var base64String = base64DataUrl.split(',')[1];
+        let base64DataUrl = event.target.result;
+        let base64String = base64DataUrl.split(',')[1];
         resolve(base64String);
       }
       reader.readAsDataURL(file)

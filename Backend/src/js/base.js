@@ -23,7 +23,12 @@ $(function() {
  * Initializes user icon text on every page (the thing in the top right)
  */
 $(() => {
-    $("#usericon p").html(`${localStorage.getItem("FirstName").charAt(0).toUpperCase()}${localStorage.getItem("LastName").charAt(0).toUpperCase()}`);
+    const userIcon = $("#usericon");
+    const userIconContent = $("#usericon p");
+    userIconContent.html(`${localStorage.getItem("FirstName").charAt(0).toUpperCase()}${localStorage.getItem("LastName").charAt(0).toUpperCase()}`);
+    userIcon.click(() => {
+        window.location.href = "/profile";
+    })
 });
 
 /**

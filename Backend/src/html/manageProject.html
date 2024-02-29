@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LetsCollab: Project</title>
+    <link rel="stylesheet" type="text/css" href="../css/base.css">
+    <link rel="stylesheet" type="text/css" href="../css/manageProject.css">
+    <script src="../js/jquery-3.7.1.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/base.js" async defer></script>
+    <script src="../js/profile.js" async defer></script>
+</head>
+<body>
+    <main>
+        <header>
+            <h1>View Project</h1>
+
+            <div id="usericon">
+                <p>JD</p>
+            </div>
+        </header>
+
+        <div id="project">
+            <header id="projectheader">
+                <img src="../images/background.jpeg" alt="project icon" />
+                <aside>
+                    <h1>My Project</h1>
+                    <p id="description">Detailed explanation</p>
+                </aside>
+            </header>
+
+            <div id="projectbody">
+                <h3>Meetup Time: x</h3>
+                <h3>Meetup Location: x</h3>
+                <h3 class="peopleInterested"><mark>0</mark> people are interested</h3>
+                <h3>Desired Skills</h3>
+                <input type="search" id="searchskills" placeholder="Find Skills..." />
+                <br/>
+                <div class="skills"></div>
+                <p class="interestButton" onclick="showInterest(this)">Show Interest</p>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

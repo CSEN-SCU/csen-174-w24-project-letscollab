@@ -1,0 +1,9 @@
+#project {
+    display: flex;
+    flex-direction: column;
+}
+
+#projectheader {
+    display: flex;
+
+}
