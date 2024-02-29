@@ -322,7 +322,13 @@ projectForm.addEventListener("submit",async (event)=>{
     const obj = Object.fromEntries(form.entries());
     let date = toUnixTimestamp(obj["date"],obj["time"]);
     const file = document.getElementById("photo").files[0];
-    let imageBase64 = await fileToDataURL(file);
+    let imageBase64 = "";
+    try {
+        imageBase64 = await fileToDataURL(file);
+    } catch (e) {
+        setResponse("Please upload an image file to your project!", "red");
+        return;
+    }
     let sendObj = {
         "Name":obj["name"],
         "Description":obj["description"],
@@ -339,16 +345,25 @@ projectForm.addEventListener("submit",async (event)=>{
         setResponse(validObject.response,"red");
         return;
     }
-    API.createProject(sendObj).then(data=>{
+    API.createProject(sendObj).then(async data=>{
         if(data.status){
             setResponse(data.response,"green")
         }else{
             setResponse(data.response,"green")
         }
+
+        await delay(2000);
+
+        window.location.href = "/projects";
+
     }).catch(err=>{
         console.log(err);
         setResponse("Network Error","Red")
 
     });
 
-})
+});
+
+const delay = (time) => {
+    return new Promise(resolve => setTimeout(resolve, time));
+}

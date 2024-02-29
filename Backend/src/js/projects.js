@@ -88,7 +88,11 @@ function createProjectElement(projObj)
 
     /** @TODO make this the project's image */
     const image = document.createElement("img");
-    image.src = "../images/background.jpeg";
+    if (projObj.CoverImage.length > 0) {
+        image.src = "data:image/png;base64," + projObj.CoverImage;
+    } else {
+        image.src = "../images/background.jpeg";
+    }
     image.alt = "project icon";
 
     const projName = document.createElement("h1");
