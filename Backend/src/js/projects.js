@@ -143,14 +143,24 @@ function createProjectElement(projObj)
     interestButton.classList.add("interestButton");
     interestButton.innerHTML = "Show Interest";
     console.log(projObj["Interested Users"]);
-    if (projObj["Interested Users"].includes(localStorage.getItem("Email"))){
-        interestButton.classList.toggle("selected");
-        interestButton.textContent="I'm interested";  
-    }
 
-    interestButton.addEventListener("click", function() {
-        showInterest(interestButton, projObj);
-    });
+    /** separate behavior if its your project */
+    if (userInfo["ProjectsCreated"].includes(projObj["ID"]))
+    {
+        interestButton.classList.add("dis");
+        interestButton.innerHTML = "your project";
+    }
+    else if (userInfo["ProjectsInterested"].includes(projObj["ID"]))
+    {
+        interestButton.classList.add("selected");
+        interestButton.innerHTML = "I'm interested";
+    }
+    else
+    {
+        interestButton.addEventListener("click", function() {
+            showInterest(interestButton, projObj);
+        });
+    }
 
     const peopleInterested = document.createElement("p");
     peopleInterested.classList.add("peopleInterested");

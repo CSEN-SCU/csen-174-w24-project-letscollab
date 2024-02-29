@@ -260,6 +260,18 @@ section.projectlist .interestButton:hover
     background-color: var(--background-color);
 }
 
+/** disabled if you created this project */
+section.projectlist .interestButton.dis
+{
+    background-color: var(--dark-gray);
+    cursor: default;
+}
+
+section.projectlist .interestButton.dis:hover
+{
+    background-color: var(--dark-gray);
+}
+
 section.projectlist .peopleInterested
 {
     font-style: italic;
