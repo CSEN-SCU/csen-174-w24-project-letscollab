@@ -212,9 +212,9 @@ function selectTab (index)
         for (project of projects)
         {
             projID = project.getAttribute("ID").substring(1);
-            console.log(projID);
             if (!userInfo["ProjectsInterested"].includes(projID))
             {
+                console.log("hiding " + projID);
                 project.classList.add("hidden");
             }
         }
@@ -230,6 +230,7 @@ function selectTab (index)
             console.log(projID);
             if (!userInfo["ProjectsCreated"].includes(projID))
             {
+                console.log("hiding " + projID);
                 project.classList.add("hidden");
             }
         }
