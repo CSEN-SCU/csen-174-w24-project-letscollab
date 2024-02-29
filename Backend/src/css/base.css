@@ -19,11 +19,6 @@ html, body
     font-family: 'Trebuchet MS', sans-serif;
 }
 
-.hidden
-{
-    display: none;
-}
-
 #homePageButton{
     display: block;
     padding: 0.3rem;
@@ -291,4 +286,9 @@ section.projectlist h1 {
 
 section.projectlist h3, section#projectlist #skills {
     margin-bottom: 0;
+}
+
+section.projectlist.hidden
+{
+    display: none;
 }
