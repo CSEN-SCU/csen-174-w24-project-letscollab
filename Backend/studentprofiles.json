@@ -186,7 +186,9 @@
         "Year": "Junior",
         "Description": "hello.",
         "Skills": [
-            "C++"
+            "C",
+            "JavaScript",
+            "TypeScript"
         ],
         "ProjectsCreated": [],
         "ProjectsInterested": []
