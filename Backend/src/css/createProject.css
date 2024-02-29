@@ -109,7 +109,7 @@ input,textarea,select{
     opacity: 1.0;
 }
 
-section.projectlist.hidden
+#selectskills .hidden
 {
     display: none;
 }

@@ -48,11 +48,8 @@ $(async () => {
     await loadSkillList();
 
     // Create keyup listener for skill search bar
-    const searchBar = $("#searchskills");
-    let el = "input";
-    console.log(`Event listener: ${el}`);
-    searchBar.on(el, () => {
-        console.log("event listener triggered");
+    const searchBar = $("#searchskills");]
+    searchBar.on("input", () => {
         manageDisplayedSkills(searchBar.val());
     })
 });
