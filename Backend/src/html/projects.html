@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/projects.css">
     <script src="../js/jquery-3.7.1.js"></script>
-    <script src="../js/api.js"></script>
+    <script src="../js/api.js"  async defer></script>
     <script src="../js/base.js" async defer></script>
     <script defer src="../js/projects.js"></script>
 </head>
@@ -20,6 +20,7 @@
                 <li class="active" onclick="selectTab(0)">All Projects</li>
                 <li onclick="selectTab(1)">Projects You're Interested In</li>
                 <li onclick="selectTab(2)">Your Projects</li>
+                <li id="createProject" onclick="selectTab(3)">Create a Project</li>
             </ul>
             <div id="usericon" onclick="location.href='profile'">
                 <p>JD</p>

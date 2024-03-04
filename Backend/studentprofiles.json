@@ -164,7 +164,7 @@
         "Email": "fsalinas@scu.edu",
         "GoogleID": "110594390120746253458",
         "Password": "feqf",
-        "Year": "Freshman",
+        "Year": "Senior",
         "Description": "Hello hi",
         "Skills": [
             "Java",
@@ -174,7 +174,9 @@
             "SQL",
             "Go"
         ],
-        "ProjectsCreated": [],
+        "ProjectsCreated": [
+            "6b6697f4-f3a8-4e17-87a3-ae35bb2ce4f6"
+        ],
         "ProjectsInterested": []
     },
     "rguioguio@scu.edu": {

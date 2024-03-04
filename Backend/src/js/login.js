@@ -38,7 +38,7 @@ $(function(){
                 setResponse(data.response,"green");
                 setTimeout(()=>{
                     window.location.href = data.data.Skills.length===0?"/profile":"/projects";
-                    },1500)
+                    },500)
             }else{
                 setResponse(data.response,"red");
                 setElementShake("#response");   

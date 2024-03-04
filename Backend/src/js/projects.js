@@ -156,6 +156,7 @@ function createProjectElement(projObj)
         showInterest(interestButton, projObj);
     });
 
+
     const peopleInterested = document.createElement("p");
     peopleInterested.classList.add("peopleInterested");
     let num = projObj["Interested Users"].length;
@@ -195,7 +196,10 @@ function selectTab (index)
     // trivial case: active tab clicked on
     if (currentTab == index)
         return;
-
+    if(index == 3){
+        window.location.href = '/createProject'
+        return;
+    }
     // change active tab
     tabs[currentTab].classList.remove("active");
     currentTab = index;
