@@ -5,8 +5,9 @@ module.exports = {
     execute(body){
         let out_obj = {};
         return new Promise(resolve=>{
-            out_obj = projects.getData();  
-            if(out_obj!=null){
+            let projectData = projects.getData();  
+            if(projectData!=null){
+                out_obj = {...projectData};
                 out_obj["response"] = "Got all projects"
             }else{
                 out_obj["response"] = "Could not fetch projects"
