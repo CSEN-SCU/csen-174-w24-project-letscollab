@@ -6,16 +6,16 @@ $(function() {
         let type = $('#password').attr('type') === 'password' ? 'text' : 'password';
         $('#password').attr('type', type);
         $('#showPasswordLabel').text(type === 'password' ? 'Show:' : 'Hide:');
-      });
+    });
 });
 
 /**
  * Password hover icon functionality
  */
 $(function() {
-  $('#showPasswordLogo').hover(function(){
-      let type = $('#password').attr('type') === 'password' ? 'text' : 'password';
-      $('#password').attr('type', type);
+    $('#showPasswordLogo').hover(function(){
+        let type = $('#password').attr('type') === 'password' ? 'text' : 'password';
+        $('#password').attr('type', type);
     });
 });
 
@@ -24,6 +24,7 @@ $(function() {
  */
 $(() => {
     $("#usericon p").html(`${localStorage.getItem("FirstName").charAt(0).toUpperCase()}${localStorage.getItem("LastName").charAt(0).toUpperCase()}`);
+    $("#usericon").click(() => {window.location.href = "/profile"});
 });
 
 /**
@@ -83,6 +84,7 @@ function validateForm(formDataObj){
  */
 const manageDisplayedSkills = (search) => {
     search = search.toLowerCase();
+    console.log(search);
     const allSkills = $(".skill");
     allSkills.each((index, skill) => { // For every skill...
         if ($(skill).find(".skillname").html().toLowerCase().includes(search)) { // If it is in the search params remove the hidden attribute
@@ -91,4 +93,17 @@ const manageDisplayedSkills = (search) => {
             $(skill).addClass("hidden");
         }
     });
+}
+
+const updateLocalStorageInfo = ()=>{
+    API.getMyInfo().then(data=>{
+        if(data.status){
+            localStorage.clear();
+            for(const [key,value] of Object.entries(data.data)){                
+                localStorage.setItem(key,value);
+            }
+        }else{
+            console.log('Could not updateLocalStorageInfo')
+        }
+    })
 }

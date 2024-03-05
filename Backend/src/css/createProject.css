@@ -108,3 +108,8 @@ input,textarea,select{
 #selectskills .selected {
     opacity: 1.0;
 }
+
+#selectskills .hidden
+{
+    display: none;
+}
