@@ -1,4 +1,7 @@
+const { composer_v1beta1 } = require('googleapis');
 const projects = require('../project-storage.js');
+const users = require('../user-storage.js');
+
 const { uuid } = require('uuidv4');
 function validateProject(project) {
     // Check if the Name field exists and is not empty
@@ -23,16 +26,20 @@ module.exports = {
                 out_obj["response"] = "Invalid Project Format";
                 resolve(out_obj);
             }
-            console.log(body);
             let project_id = uuid();
             body["ID"] = project_id;
             body["Interested Users"] = [];
             body["AuthorEmail"] = req.session.Email;
             body["CreatedAt"] = toTimestampString();
             projects.setItem(project_id,body);
-            let projectObject = projects.getData(project_id);
+            let projectObject = projects.getItem(project_id);
             if(projectObject!=null){
                 out_obj = {...projectObject};
+                let userobj = users.getItem(req.session.Email);
+                if(userobj!=null){
+                    userobj["ProjectsCreated"].push(projectObject.ID);
+                    users.setItem(req.session.Email,userobj);
+                }
                 out_obj["response"] = "Created Project!";
             }else{
                 out_obj["response"] = "Error Creating Project!";
