@@ -236,7 +236,6 @@ section.projectlist aside *
 section.projectlist .interestButton
 {
     background-color: var(--white);
-    color:black;
     border-radius: 1rem;
     cursor: pointer;
     padding: 1rem;
@@ -274,8 +273,7 @@ section.projectlist mark
 
 section.projectlist
 {
-    background-color: #1a1a1a;
-    color: white;
+    background-color: var(--gray);
     border-radius: 1rem;
     box-sizing: border-box;
     display: flex;
