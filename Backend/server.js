@@ -36,7 +36,7 @@ function ImportCommands() {
 }
 
 function validateToken(req, res, next) {
-    if(req.params.page.replace(/\.html$/,'') != "login" && req.session.Email == null){
+    if(req.params.page.replace(/\.html$/,'') !== "login" && req.session.Email == null){
         res.redirect('/login');
     }else{
         next();

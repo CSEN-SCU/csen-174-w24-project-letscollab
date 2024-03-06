@@ -94,3 +94,16 @@ const manageDisplayedSkills = (search) => {
         }
     });
 }
+
+const updateLocalStorageInfo = ()=>{
+    API.getMyInfo().then(data=>{
+        if(data.status){
+            localStorage.clear();
+            for(const [key,value] of Object.entries(data.data)){                
+                localStorage.setItem(key,value);
+            }
+        }else{
+            console.log('Could not updateLocalStorageInfo')
+        }
+    })
+}
