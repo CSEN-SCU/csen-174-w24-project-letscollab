@@ -92,6 +92,15 @@ app.get("/:page",validateToken,(req,res)=>{
     }
 });
 
+app.get('/auth/google/logout',(req,res)=>{
+    if(req.session.Email){
+        req.session.destroy();
+        res.redirect('/login');
+    }else{
+        res.redirect(`/login`);
+    }
+})
+
 app.listen(port,()=>{
     
     console.log(`Now listening on port ${port}`);
