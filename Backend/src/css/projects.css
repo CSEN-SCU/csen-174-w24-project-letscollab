@@ -26,3 +26,7 @@ header ul li
 {
     display: none;
 }
+
+.projectlist * {
+    cursor: pointer;
+}

@@ -79,6 +79,11 @@ function createProjectElement(projObj)
     projElement.classList.add("projectlist");
     projElement.setAttribute("id", "_" + projObj["ID"]);
 
+    // Project should go to project management page after click
+    projElement.addEventListener("click", () => {
+       window.location.href = `/manageProject?id=${projObj.ID}`
+    });
+
     // append project element to projectList (in main)
     projectList.append(projElement);
 
@@ -148,6 +153,10 @@ function createProjectElement(projObj)
     interestButton.innerHTML = "Show Interest";
     console.log(projObj["Interested Users"]);
 
+    interestButton.addEventListener("click", function(event) {
+        showInterest(interestButton, projObj);
+        event.stopPropagation();
+    });
     /** separate behavior if its your project */
     if (userInfo["ProjectsCreated"].includes(projObj["ID"]))
     {
