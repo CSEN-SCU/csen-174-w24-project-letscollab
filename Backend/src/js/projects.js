@@ -79,6 +79,11 @@ function createProjectElement(projObj)
     projElement.classList.add("projectlist");
     projElement.setAttribute("id", "_" + projObj["ID"]);
 
+    // Project should go to project management page after click
+    projElement.addEventListener("click", () => {
+       window.location.href = `/manageProject?id=${projObj.ID}`
+    });
+
     // append project element to projectList (in main)
     projectList.append(projElement);
 
@@ -152,8 +157,9 @@ function createProjectElement(projObj)
         interestButton.textContent="I'm interested";  
     }
 
-    interestButton.addEventListener("click", function() {
+    interestButton.addEventListener("click", function(event) {
         showInterest(interestButton, projObj);
+        event.stopPropagation();
     });
 
     const peopleInterested = document.createElement("p");
