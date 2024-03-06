@@ -85,6 +85,7 @@ app.get("/auth/google/callback",async(req,res)=>{
 
 app.get("/:page",validateToken,(req,res)=>{
     let page = req.params.page;
+    console.log(`${req.session.Email}`);
     if(page.includes(".html")){
         res.redirect(page.replace(/\.html$/, ''))
     }else{
