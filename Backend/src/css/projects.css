@@ -39,3 +39,7 @@ header ul li:hover
 {
     display: none;
 }
+
+.projectlist * {
+    cursor: pointer;
+}

@@ -36,7 +36,7 @@ function ImportCommands() {
 }
 
 function validateToken(req, res, next) {
-    if(req.params.page.replace(/\.html$/,'') != "login" && req.session.Email == null){
+    if(req.params.page.replace(/\.html$/,'') !== "login" && req.session.Email == null){
         res.redirect('/login');
     }else{
         next();
@@ -91,6 +91,15 @@ app.get("/:page",validateToken,(req,res)=>{
         res.sendFile(path.join(__dirname, `/src/html/${req.params.page}${page.includes(".html")?"":".html"}`));
     }
 });
+
+app.get('/auth/google/logout',(req,res)=>{
+    if(req.session.Email){
+        req.session.destroy();
+        res.redirect('/login');
+    }else{
+        res.redirect(`/login`);
+    }
+})
 
 app.listen(port,()=>{
     

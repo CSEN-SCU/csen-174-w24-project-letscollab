@@ -1,7 +1,3 @@
-//const submitFormButton = document.getElementById("submit");
-//const loginForm = document.getElementById("login");
-//const createButton = document.getElementById("create");
-
 function setElementShake(elementValue){
     $(elementValue).addClass('incorrect');
     setTimeout(()=>{

@@ -73,7 +73,7 @@ input,textarea,select{
     background-color: var(--scuRed);
 }
 
-.submit:hover, .home:hover {
+.submit:hover, .home:hover, .logout:hover {
     scale:1.05;
     opacity: 1.0; 
     cursor: pointer;
