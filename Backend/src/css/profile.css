@@ -42,8 +42,23 @@ main {
     gap: 2%;
     margin-top: 10px;
 }
-
-.submit, .home, .logout {
+#userform {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    gap:10px;
+}
+input,textarea,select{
+    border: 0px;
+    border-radius: 12px;
+    padding:0.3rem;
+    font-size: large;
+    opacity: 0.6;
+    resize: none;
+    transition: .2s all ease-in-out;
+    max-width: 75%;
+}
+.submit, .home {
     background-color: var(--scuRed);
     color: white;
     border-style: solid;
@@ -51,6 +66,7 @@ main {
     padding: 2% 4% 2% 4%;
     margin-right: 3%;
     border-width: thin;
+    transform: .2s all ease-in;
 }
 
 .home {
@@ -58,7 +74,8 @@ main {
 }
 
 .submit:hover, .home:hover, .logout:hover {
-    font-weight: bold;
+    scale:1.05;
+    opacity: 1.0; 
     cursor: pointer;
 }
 
