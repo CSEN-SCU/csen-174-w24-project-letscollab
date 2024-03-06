@@ -70,7 +70,5 @@ const getSkillNamesArray = () => {
 }
 
 function logout() {
-    API.logout().then(r => {
-        console.log("Logged out (from api.js)");
-    });
+    window.location.href = "/auth/google/logout";
 }
