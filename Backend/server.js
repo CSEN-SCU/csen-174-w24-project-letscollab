@@ -85,8 +85,6 @@ app.get("/auth/google/callback",async(req,res)=>{
 
 app.get("/:page",validateToken,(req,res)=>{
     let page = req.params.page;
-    console.log(`${req.session.Email}`);
-    console.log(`${typeof req.session.Email}`);
     if(page.includes(".html")){
         res.redirect(page.replace(/\.html$/, ''))
     }else{
@@ -94,20 +92,16 @@ app.get("/:page",validateToken,(req,res)=>{
     }
 });
 
-
-app.get('/logout', (req, res) => {
-    req.session.destroy((err) => {
-        if (err) {
-            console.error('Error destroying session:', err);
-            res.status(500).send('Internal Server Error');
-        } else {
-            // Redirect to the login page or any other desired page
-            res.redirect('/login');
-        }
-    });
-});
+app.get('/auth/google/logout',(req,res)=>{
+    if(req.session.Email){
+        req.session.destroy();
+        res.redirect('/login');
+    }else{
+        res.redirect(`/login`);
+    }
+})
 
 app.listen(port,()=>{
     
-    console.log(`Now listening on port ${port}\n${Commands}`);
+    console.log(`Now listening on port ${port}`);
 })

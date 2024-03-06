@@ -79,6 +79,11 @@ function createProjectElement(projObj)
     projElement.classList.add("projectlist");
     projElement.setAttribute("id", "_" + projObj["ID"]);
 
+    // Project should go to project management page after click
+    projElement.addEventListener("click", () => {
+       window.location.href = `/manageProject?id=${projObj.ID}`
+    });
+
     // append project element to projectList (in main)
     projectList.append(projElement);
 
@@ -147,14 +152,28 @@ function createProjectElement(projObj)
     interestButton.classList.add("interestButton");
     interestButton.innerHTML = "Show Interest";
     console.log(projObj["Interested Users"]);
-    if (projObj["Interested Users"].includes(localStorage.getItem("Email"))){
-        interestButton.classList.toggle("selected");
-        interestButton.textContent="I'm interested";  
-    }
 
-    interestButton.addEventListener("click", function() {
+    interestButton.addEventListener("click", function(event) {
         showInterest(interestButton, projObj);
+        event.stopPropagation();
     });
+    /** separate behavior if its your project */
+    if (userInfo["ProjectsCreated"].includes(projObj["ID"]))
+    {
+        interestButton.classList.add("dis");
+        interestButton.innerHTML = "your project";
+    }
+    else if (userInfo["ProjectsInterested"].includes(projObj["ID"]))
+    {
+        interestButton.classList.add("selected");
+        interestButton.innerHTML = "I'm interested";
+    }
+    else
+    {
+        interestButton.addEventListener("click", function() {
+            showInterest(interestButton, projObj);
+        });
+    }
 
     const peopleInterested = document.createElement("p");
     peopleInterested.classList.add("peopleInterested");
