@@ -2,12 +2,13 @@ header ul
 {
     display: flex;
     flex-direction: row;
+    width: 90%;
     align-items: center;
 }
 
 header ul li
 {
-    background-color: var(--dark-gray);
+    background-color: #1a1a1a;
     color: var(--white);
     cursor: pointer;
     padding: 2%;
@@ -15,14 +16,30 @@ header ul li
     transition: all .2s;
     width: fit-content;
     height: min-content;
+    transition: .2s all ease-in;
+    opacity: 0.5;
+    border-radius: 12px;
+}
+header ul li:hover
+{
+    scale:1.05;
+    opacity: 0.8;
 }
 
+#createProject{
+    margin-left: auto;
+    opacity: 1.0;
+}
 .active
 {
+    opacity: 1.0;
     background-color: var(--scuRed);
-    text-decoration: solid underline;
 }
 .hidden
 {
     display: none;
+}
+
+.projectlist * {
+    cursor: pointer;
 }
