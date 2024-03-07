@@ -32,10 +32,10 @@ main {
 
 #projectheader aside {
     display: flex;
-    gap: 8%;
+    gap: 3%;
     flex-direction: column;
     margin-left: 2%;
-    width: 30%;
+    width: 40%;
 }
 
 #projectheader h1 {
@@ -46,7 +46,7 @@ main {
     font-size: large;
 }
 
-#interestpanel {
+#skillspanel {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -54,6 +54,7 @@ main {
     flex-direction: column;
     margin: auto;
     padding: 0;
+    width: 30%;
 }
 
 .interestButton
@@ -88,7 +89,105 @@ mark {
     background-color: transparent;
 }
 
-#projectheader *:not(#interestpanel *) {
+#projectheader *:not(#skillspanel *) {
     margin: 0;
     padding: 0;
+}
+
+#skillspanel #maintainsize {
+    overflow-y: auto;
+    height: 15vw;
+}
+
+#projectskills, #projectbody .skills {
+    justify-content: center;
+}
+
+#participantscontainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    border-radius: 1rem;
+    background-color: var(--gray);
+    padding: 2%;
+}
+
+#participants {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 5%;
+}
+
+#participants li *:not(.skills *) {
+    margin: 0;
+    padding: 2%;
+}
+
+#participants li {
+    display: flex;
+    flex-direction: column;
+    border-radius: 1rem;
+    border-style: solid;
+    border-width: medium;
+    border-color: var(--dark-gray);
+    padding: 1%;
+}
+
+#participants .name {
+    font-weight: bold;
+}
+
+#projectmanagercontrols {
+    display: flex;
+    flex-direction: column;
+    gap: 2%;
+    padding: 3%;
+    border-radius: 1rem;
+    background-color: var(--gray);
+    text-align: center;
+}
+
+#projectmanagercontrols #managebuttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2%;
+}
+
+#projectmanagercontrols #managebuttons p {
+    display: flex;
+    justify-content: center;
+    padding: 2%;
+    background-color: var(--dark-gray);
+    border-radius: 1rem;
+    transition: background-color 0.2s ease-in, color 0.2s ease-in;
+}
+
+#projectmanagercontrols #managebuttons p:hover {
+    cursor: pointer;
+    background-color: var(--scuRed);
+    color: white;
+}
+
+#homebuttoncontainer {
+    display: flex;
+    justify-content: center;
+}
+
+#homebutton {
+    text-align: center;
+    padding: 2%;
+    background-color: var(--scuRed);
+    color: white;
+    border-radius: 1rem;
+    transition: background-color 0.2s ease-in;
+    width: 15vw;
+    font-size: large;
+}
+
+#homebutton:hover {
+    cursor: pointer;
+    background-color: var(--scuDarkRed);
 }
