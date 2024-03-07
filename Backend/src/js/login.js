@@ -32,9 +32,8 @@ $(function(){
                     localStorage.setItem(key,value);
                 }
                 setResponse(data.response,"green");
-                setTimeout(()=>{
-                    window.location.href = data.data.Skills.length===0?"/profile":"/projects";
-                    },500)
+                window.location.href = data.data.Skills.length===0?"/profile":"/projects";
+
             }else{
                 setResponse(data.response,"red");
                 setElementShake("#response");   
