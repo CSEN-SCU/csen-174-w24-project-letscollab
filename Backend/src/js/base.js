@@ -103,7 +103,7 @@ const updateLocalStorageInfo = ()=>{
                 localStorage.setItem(key,value);
             }
         }else{
-            console.log('Could not updateLocalStorageInfo')
+            console.log('Could not updateLocalStorageInfo');
         }
     })
 }
