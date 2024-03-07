@@ -47,11 +47,14 @@ const createProfileSkill = (container, skill, userSkills) => {
     newSkillName.text(skill.skillName);
 
     newSkill.append(newSkillIcon, newSkillName);
-    container.append(newSkill);
+    
 
     // Check if the skill is in the user's skill list and make it selected if it is
     if (userSkills.includes(skill.skillName)) {
         newSkill.addClass("selected");
+        container.prepend(newSkill);
+    }else{
+        container.append(newSkill);
     }
 
     // Create event listener for skill buttons
@@ -64,6 +67,44 @@ const createProfileSkill = (container, skill, userSkills) => {
     });
 }
 
+/**
+ * Creates a skill element in the proper container
+ * @param container JQuery element where the skill will go
+ * @param skill Skill object data
+ */
+const addNewSkill = async(container, skill) => {
+    const res = await API.createSkill(skill);
+    if(res.status){
+    skill = res.data.Skill;
+    // Create new element and append it to the appropriate container
+    const newSkill = $("<div>");
+    newSkill.addClass(`skill ${skill.skillType}`);
+
+    const newSkillIcon = $("<p>");
+    newSkillIcon.addClass("skillicon");
+    newSkillIcon.text("•");
+
+    const newSkillName = $("<p>");
+    newSkillName.addClass("skillname");
+    newSkillName.text(skill.skillName);
+
+    newSkill.append(newSkillIcon, newSkillName);
+    container.prepend(newSkill);
+    newSkill.addClass("selected");
+
+    // Create event listener for skill buttons
+    newSkill.click(() => {
+        if (newSkill.hasClass("selected")) {
+            newSkill.removeClass("selected");
+        } else {
+            newSkill.addClass("selected");
+        }
+    });
+    return true;
+}else{
+    return false;
+}
+}
 /**
  * Ensures that a form's data is not empty
  * @param formDataObj Form data
@@ -84,7 +125,6 @@ function validateForm(formDataObj){
  */
 const manageDisplayedSkills = (search) => {
     search = search.toLowerCase();
-    console.log(search);
     const allSkills = $(".skill");
     allSkills.each((index, skill) => { // For every skill...
         if ($(skill).find(".skillname").html().toLowerCase().includes(search)) { // If it is in the search params remove the hidden attribute
@@ -106,4 +146,11 @@ const updateLocalStorageInfo = ()=>{
             console.log('Could not updateLocalStorageInfo');
         }
     })
+}
+
+function setElementShake(element){
+    element.addClass('incorrect');
+    setTimeout(()=>{
+        $(element).removeClass("incorrect");
+    },1500)
 }
