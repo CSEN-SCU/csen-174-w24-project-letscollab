@@ -153,15 +153,11 @@ function createProjectElement(projObj)
     interestButton.innerHTML = "Show Interest";
     console.log(projObj["Interested Users"]);
 
-    interestButton.addEventListener("click", function(event) {
-        showInterest(interestButton, projObj);
-        event.stopPropagation();
-    });
     /** separate behavior if its your project */
     if (userInfo["ProjectsCreated"].includes(projObj["ID"]))
     {
         interestButton.classList.add("dis");
-        interestButton.innerHTML = "your project";
+        interestButton.innerHTML = "Your Project";
     }
     else if (userInfo["ProjectsInterested"].includes(projObj["ID"]))
     {
@@ -170,8 +166,9 @@ function createProjectElement(projObj)
     }
     else
     {
-        interestButton.addEventListener("click", function() {
+        interestButton.addEventListener("click", function(event) {
             showInterest(interestButton, projObj);
+            event.stopPropagation();
         });
     }
 
