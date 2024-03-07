@@ -163,8 +163,9 @@ function createProjectElement(projObj)
     /** other people's projects -> add click listener */
     else
     {
-        interestButton.addEventListener("click", function() {
+        interestButton.addEventListener("click", function(event) {
             showInterest(interestButton, projObj);
+            event.stopPropagation();
         });
 
         /** properly display if you are already interested in this project */
@@ -185,6 +186,11 @@ function createProjectElement(projObj)
         peopleInterested.innerHTML = num + " students are interested";
 
     // display number of interested students
+
+    // Project should go to project management page after click
+    projElement.addEventListener("click", () => {
+        window.location.href = `/manageProject?id=${projObj.ID}`
+    });
 
     // construct the section
     projElement.append(figure);
