@@ -76,3 +76,4 @@ workspace.xml
 .idea
 .idea/workspace.xml
 Backend/config
+Backend/config/*
