@@ -7,6 +7,7 @@ module.exports = {
         return new Promise(resolve=>{
             let skillName = body.name;
             let skillType = body.type;
+            if(skillType==null || skillType == ""){skillType="cs"}
             if(skillName!=null && skillType !=null){
                 let skillObject = skills.getItem(skillName);
                 if(skillObject==null){
@@ -25,6 +26,8 @@ module.exports = {
                 }else{
                     out_obj["response"] = "Skill already exists";
                 }
+            }else{
+                out_obj["response"] = "Skilltype or skillname is null";
             }
             resolve(out_obj);   
      

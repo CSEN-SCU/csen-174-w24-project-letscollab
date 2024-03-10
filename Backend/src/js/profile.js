@@ -21,10 +21,28 @@ $(async () => {
     });
 
     // Add event listener for searching for skills
+    $('#userform').on('keypress', function(e) {
+        if (e.which == 13 || e.keyCode == 13) {
+            e.preventDefault();
+        }
+    });
     const searchBar = $("#searchskills");
     searchBar.on("input", () => {
         manageDisplayedSkills(searchBar.val());
     });
+    searchBar.on("keypress", (event) => {
+        if (event.which == 13 || event.keyCode == 13) {
+            if (searchBar.val().trim() !== "") {
+                if(addNewSkill($("#addskills"),searchBar.val())){
+                    searchBar.val("");
+                    manageDisplayedSkills(searchBar.val());
+                }else{
+                    setElementShake(searchBar);
+                }
+            }
+        }
+    });    
+    
 });
 
 editProfileForm.addEventListener("submit",(event)=>{

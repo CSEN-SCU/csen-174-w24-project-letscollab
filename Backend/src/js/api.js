@@ -119,12 +119,13 @@ class LetsCollab {
             });
         });
     }
-    createSkill(skillName, skillType){
+    createSkill(skillName, skillType="cs"){
         const params = `createSkill`;
         let body = {
             "name":skillName,
             "type":skillType
         }
+        console.log(body);
         return new Promise((resolve, reject) => {
             this.apiRequest(params,body,"POST").then(data => {
                 resolve(data);
