@@ -328,13 +328,13 @@ searchBar.addEventListener('input', function() {
     let input = searchBar.value.toLowerCase();
     if (input.length > 0) {
         for (let i = 0; i < projectHTMLs.length; ++i) {
-            if (!projArray[i].Name.toLowerCase().includes(input)) {
+            if (projArray[i].Name.toLowerCase().includes(input)) {
+                projectHTMLs[i].classList.remove("hidden");
+            } else {
                 projectHTMLs[i].classList.add("hidden");
             }
         }
     } else {
-        for (let i = 0; i < projectHTMLs.length; ++i) {
-            projectHTMLs[i].classList.remove("hidden");
-        }
+        for (let html of projectHTMLs) html.classList.remove('hidden');
     }
 });
