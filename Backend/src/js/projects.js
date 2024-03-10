@@ -1,19 +1,24 @@
 console.log("projects.js loaded ...")
-
 /**
  * document selectors
  */
-var header = document.querySelector("header");
-var tabs = header.querySelectorAll("li");
-var projectList = document.querySelector("main");
+const header = document.querySelector("header");
+const tabs = header.querySelectorAll("li");
+const projectList = document.querySelector("main");
+
+/**
+ * Search bar functionality
+ */
+const searchBar = document.getElementById("searchprojects");
+const projectHTMLs = document.getElementsByClassName("projectlist");
 
 /**
  * global variables
  */
-var currentTab = 0;
-var projArray = [];
-var userInfo;
-var userSkills;
+let currentTab = 0;
+const projArray = [];
+let userInfo;
+let userSkills;
 
 /**
  * asynchronous function on page load
@@ -228,31 +233,25 @@ function selectTab (index)
     }
 
     /** @TODO call API function that display/hide projects according to currentTab */
-    if (index == 1) {
+    if (index === 1) {
         /** @TODO based on user, show projects that user marked `interested` */
         console.log("showing interested projects");
 
-        for (project of projects)
-        {
-            projID = project.getAttribute("ID").substring(1);
-            if (!userInfo["ProjectsInterested"].includes(projID))
-            {
+        for (project of projects) {
+            let projID = project.getAttribute("ID").substring(1);
+            if (!userInfo["ProjectsInterested"].includes(projID)) {
                 console.log("hiding " + projID);
                 project.classList.add("hidden");
             }
         }
-    }
-    else if (index == 2)
-    {
+    } else if (index === 2) {
         /** @TODO only show projects that the user created */
         console.log("showing created projects");
 
-        for (project of projects)
-        {
-            projID = project.getAttribute("ID").substring(1);
+        for (project of projects) {
+            let projID = project.getAttribute("ID").substring(1);
             console.log(projID);
-            if (!userInfo["ProjectsCreated"].includes(projID))
-            {
+            if (!userInfo["ProjectsCreated"].includes(projID)) {
                 console.log("hiding " + projID);
                 project.classList.add("hidden");
             }
@@ -288,3 +287,17 @@ function showInterest (button, projObj)
         console.log(err);
     })
 }
+
+searchBar.addEventListener('input', function() {
+    if (searchBar.value.length > 0) {
+        for (let i = 0; i < projectHTMLs.length; ++i) {
+            if (!projArray[i].Name.toLowerCase().includes(searchBar.value.toLowerCase())) {
+                projectHTMLs[i].classList.add("hidden");
+            }
+        }
+    } else {
+        for (let i = 0; i < projectHTMLs.length; ++i) {
+            projectHTMLs[i].classList.remove("hidden");
+        }
+    }
+});
