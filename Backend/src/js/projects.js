@@ -42,7 +42,7 @@ $(async () => {
         console.log(projects);
 
         /** proj == projects[project] is an object */
-        for (project in projects)
+        for (let project in projects)
         {
             let proj = projects[project];
             proj.matchedSkills = 0;
@@ -60,7 +60,7 @@ $(async () => {
         console.log(projArray);
 
         /** `proj` is an object */
-        for (proj of projArray)
+        for (let proj of projArray)
         {
             createProjectElement(proj);
         }
@@ -183,8 +183,8 @@ function createProjectElement(projObj)
     const peopleInterested = document.createElement("p");
     peopleInterested.classList.add("peopleInterested");
     let num = projObj["Interested Users"].length;
-    if (num == 1)
-        peopleInterested.innerHTML = num + " student is interested";
+    if (num === 1)
+        peopleInterested.innerHTML = "1 student is interested";
     else
         peopleInterested.innerHTML = num + " students are interested";
 
@@ -289,9 +289,10 @@ function showInterest (button, projObj)
 }
 
 searchBar.addEventListener('input', function() {
-    if (searchBar.value.length > 0) {
+    let input = searchBar.value.toLowerCase();
+    if (input.length > 0) {
         for (let i = 0; i < projectHTMLs.length; ++i) {
-            if (!projArray[i].Name.toLowerCase().includes(searchBar.value.toLowerCase())) {
+            if (!projArray[i].Name.toLowerCase().includes(input)) {
                 projectHTMLs[i].classList.add("hidden");
             }
         }
