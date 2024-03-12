@@ -88,19 +88,5 @@ const getSkillNamesArray = () => {
 }
 
 function logout() {
-    console.log("logout");
-    localStorage.clear();
-    //window.location.href = "login";
-    // Call server-side logout function for further cleanup
-    fetch('/logout', {
-        method: 'POST', // or 'GET' depending on your server implementation
-    }).then(response => {
-        // Handle the response if needed
-        console.log("logout successful");
-        window.location.href = "login"; // Redirect to the login page
-    }).catch(error => {
-        console.error('Error during logout:', error);
-        // Still attempt to redirect to login page even if there's an error
-        window.location.href = "login";
-    });
+    window.location.href = "/auth/google/logout";
 }

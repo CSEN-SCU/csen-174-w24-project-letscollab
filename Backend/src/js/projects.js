@@ -1,19 +1,24 @@
 console.log("projects.js loaded ...")
-
 /**
  * document selectors
  */
-var header = document.querySelector("header");
-var tabs = header.querySelectorAll("li");
-var projectList = document.querySelector("main");
+const header = document.querySelector("header");
+const tabs = header.querySelectorAll("li");
+const projectList = document.querySelector("main");
+
+/**
+ * Search bar functionality
+ */
+const searchBar = document.getElementById("searchprojects");
+const projectHTMLs = document.getElementsByClassName("projectlist");
 
 /**
  * global variables
  */
-var currentTab = 0;
-var projArray = [];
-var userInfo;
-var userSkills;
+let currentTab = 0;
+const projArray = [];
+let userInfo;
+let userSkills;
 
 /**
  * asynchronous function on page load
@@ -40,7 +45,7 @@ $(async () => {
         let projects = response.data;
 
         /** proj == projects[project] is an object */
-        for (project in projects)
+        for (let project in projects)
         {
             let proj = projects[project];
             /** track number of skills that user matches */
@@ -60,7 +65,7 @@ $(async () => {
         console.log(projArray);
 
         /** `proj` is an object */
-        for (proj of projArray)
+        for (let proj of projArray)
         {
             createProjectElement(proj);
         }
@@ -163,8 +168,9 @@ function createProjectElement(projObj)
     /** other people's projects -> add click listener */
     else
     {
-        interestButton.addEventListener("click", function() {
+        interestButton.addEventListener("click", function(event) {
             showInterest(interestButton, projObj);
+            event.stopPropagation();
         });
 
         /** properly display if you are already interested in this project */
@@ -179,12 +185,17 @@ function createProjectElement(projObj)
     const peopleInterested = document.createElement("p");
     peopleInterested.classList.add("peopleInterested");
     let num = projObj["Interested Users"].length;
-    if (num == 1)
-        peopleInterested.innerHTML = num + " student is interested";
+    if (num === 1)
+        peopleInterested.innerHTML = "1 student is interested";
     else
         peopleInterested.innerHTML = num + " students are interested";
 
     // display number of interested students
+
+    // Project should go to project management page after click
+    projElement.addEventListener("click", () => {
+        window.location.href = `/manageProject?id=${projObj.ID}`
+    });
 
     // construct the section
     projElement.append(figure);
@@ -230,31 +241,25 @@ function selectTab (index)
     }
 
     /** @TODO call API function that display/hide projects according to currentTab */
-    if (index == 1) {
+    if (index === 1) {
         /** @TODO based on user, show projects that user marked `interested` */
         console.log("showing interested projects");
 
-        for (project of projects)
-        {
-            projID = project.getAttribute("ID").substring(1);
-            if (!userInfo["ProjectsInterested"].includes(projID))
-            {
+        for (project of projects) {
+            let projID = project.getAttribute("ID").substring(1);
+            if (!userInfo["ProjectsInterested"].includes(projID)) {
                 console.log("hiding " + projID);
                 project.classList.add("hidden");
             }
         }
-    }
-    else if (index == 2)
-    {
+    } else if (index === 2) {
         /** @TODO only show projects that the user created */
         console.log("showing created projects");
 
-        for (project of projects)
-        {
-            projID = project.getAttribute("ID").substring(1);
+        for (project of projects) {
+            let projID = project.getAttribute("ID").substring(1);
             console.log(projID);
-            if (!userInfo["ProjectsCreated"].includes(projID))
-            {
+            if (!userInfo["ProjectsCreated"].includes(projID)) {
                 console.log("hiding " + projID);
                 project.classList.add("hidden");
             }
@@ -318,3 +323,18 @@ async function showInterest (button, projObj)
         console.log("error updating user info: " + err);
     })
 }
+
+searchBar.addEventListener('input', function() {
+    let input = searchBar.value.toLowerCase();
+    if (input.length > 0) {
+        for (let i = 0; i < projectHTMLs.length; ++i) {
+            if (projArray[i].Name.toLowerCase().includes(input)) {
+                projectHTMLs[i].classList.remove("hidden");
+            } else {
+                projectHTMLs[i].classList.add("hidden");
+            }
+        }
+    } else {
+        for (let html of projectHTMLs) html.classList.remove('hidden');
+    }
+});
