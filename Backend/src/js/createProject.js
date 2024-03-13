@@ -1,18 +1,21 @@
 // On page load create event listeners
 const projectForm = document.getElementById("createproject");
-function toUnixTimestamp(date,time){
+
+function toUnixTimestamp (date,time)
+{
     // Your date string
-const dateString = `${date} ${time}`
+    const dateString = `${date} ${time}`
 
-// Create a Date object
-const date_ = new Date(dateString);
+    // Create a Date object
+    const date_ = new Date(dateString);
 
-// Convert to Unix timestamp (in seconds)
-const unixTimestamp = Math.floor(date_.getTime() / 1000);
+    // Convert to Unix timestamp (in seconds)
+    const unixTimestamp = Math.floor(date_.getTime() / 1000);
 
-return unixTimestamp;
-
+    return unixTimestamp;
 }
+
+/** asynchronously add event listeners on page load */
 $(async () => {
     // Create input listener for uploading project image
     $("#photo").on("input", (event) => {
@@ -86,11 +89,11 @@ const updatePreviewImage = (event) => {
 const updatePreviewName = () => {
     const titleContent = $("#name").val();
     const previewElement = $("article h1");
-    if (titleContent.length < 1) {
+
+    if (titleContent.length < 1)
         previewElement.text("My Project");
-    } else {
+    else
         previewElement.text(titleContent)
-    }
 }
 
 /**
@@ -99,11 +102,11 @@ const updatePreviewName = () => {
 const updatePreviewDescription = () => {
     const descriptionContent = $("#description").val();
     const previewElement = $("p.description");
-    if (descriptionContent.length < 1) {
+
+    if (descriptionContent.length < 1)
         previewElement.html("Give a detailed explanation of your project");
-    } else {
+    else
         previewElement.html(descriptionContent);
-    }
 }
 
 /**
@@ -120,10 +123,14 @@ const updatePreviewDateTime = () => {
         let timeSuffix = "AM";
         let hour = parseInt(timeContent.split(":")[0]);
         let minutes = timeContent.split(":")[1];
-        if (hour > 12) { // Account for 24 hour time
+
+        // account for 24 hour time
+        if (hour > 12)
+        {
             hour -= 12;
             timeSuffix = "PM";
         }
+
         const timeResult = `${hour}:${minutes} ${timeSuffix}`;
 
         // Update preview element
@@ -132,11 +139,11 @@ const updatePreviewDateTime = () => {
 
     // Gather date data
     const dateContent = $("#date").val();
-    if (dateContent) {
+    if (dateContent)
+    {
         const year = parseInt(dateContent.split("-")[0]);
         const month = parseInt(dateContent.split("-")[1]);
         const day = parseInt(dateContent.split("-")[2]);
-
 
         const dateResult = `${months[month-1]} ${day}, ${year}`;
 
@@ -152,11 +159,10 @@ const updatePreviewLocation = () => {
     const locationContent = $("#locations").val();
     const previewElement = $(".projectlist .meetlocation");
 
-    if (locationContent.length > 1) {
+    if (locationContent.length > 1)
         previewElement.html(previewElement.html().replace(/(Location:\s)(.+)/g, `$1${locationContent}`));
-    } else {
+    else
         previewElement.html(previewElement.html().replace(/(Location:\s)(.+)/g, "$1x"));
-    }
 }
 
 /**
@@ -165,9 +171,8 @@ const updatePreviewLocation = () => {
 const updatePeopleRequired = () => {
     const peopleRequired = $("#peopleRequired").val();
     const previewElement = $(".peopleSlash");
-    console.log(peopleRequired, previewElement);
 
-    // previewElement.html(previewElement.html().replace(/(Location:\s)(.+)/g, `$1${peopleRequired}`));
+    /** when selecting by class, we get an array back so we index for the `p` */
     previewElement[0].innerHTML = "/" + peopleRequired;
 }
 

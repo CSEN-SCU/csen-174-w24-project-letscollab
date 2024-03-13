@@ -1,4 +1,5 @@
 console.log("projects.js loaded ...")
+
 /**
  * document selectors
  */
@@ -27,12 +28,12 @@ $(async () => {
     /** remove demo project */
     document.querySelector("section").remove();
 
-    /** fetch user's info from the API */
+    /** fetch user info from the API */
     await API.getMyInfo().then(response => {
         console.log(response.data);
         userInfo = response.data;
     }).catch(err => {
-        console.log("error fetching user info: " + err);
+        console.error("error fetching user info: " + err);
     })
 
     /** extract user skills */
@@ -64,7 +65,7 @@ $(async () => {
         projArray.sort((a, b) => b.matchedSkills - a.matchedSkills);
         console.log(projArray);
 
-        /** `proj` is an object */
+        /** `proj` is an object -> create it's HTML element */
         for (let proj of projArray)
         {
             createProjectElement(proj);
@@ -72,7 +73,7 @@ $(async () => {
 
         console.log("loaded all projects");
     }).catch(err => {
-        console.log('error' + err);
+        console.error("error" + err);
     })
 })
 
@@ -159,6 +160,7 @@ function createProjectElement(projObj)
     interestButton.classList.add("interestButton");
     interestButton.innerHTML = "Show Interest";
     console.log(projObj["Interested Users"]);
+    /** boolean - is the user interested in this project */
     const USERINTERESTED = userInfo["ProjectsInterested"].includes(projObj["ID"]);
 
     /** disable interest button for your own projects */
@@ -171,13 +173,14 @@ function createProjectElement(projObj)
     else if ((projObj["Interested Users"].length == projObj["PeopleRequired"]) && !USERINTERESTED)
     {
         interestButton.classList.add("dis");
-        interestButton.innerHTML = "project is full";
+        interestButton.innerHTML = "Project is full";
     }
     /** other people's projects -> add click listener */
     else
     {
         interestButton.addEventListener("click", function(event) {
             showInterest(interestButton, projObj);
+            /** don't trigger the event listener of the underlying `section` */
             event.stopPropagation();
         });
 
@@ -189,16 +192,11 @@ function createProjectElement(projObj)
         }
     }
 
-    // display number of interested students
+    /** display number of interested students */
     const peopleNav = document.createElement("nav");
     const people1 = document.createElement("p");
     const people2 = document.createElement("p");
     const people3 = document.createElement("p");
-
-    peopleNav.setAttribute("id", "peopleNav");
-    people1.classList.add("peopleInterested");
-    people2.classList.add("peopleInterested");
-    people3.classList.add("peopleInterested");
 
     /** `Interested Users` is an array of emails */
     let num = projObj["Interested Users"].length;
@@ -211,12 +209,12 @@ function createProjectElement(projObj)
     else
         people3.innerHTML = "students are interested";
 
-    // Project should go to project management page after click
+    /** project redirects to `manageProject` page on click */
     projElement.addEventListener("click", () => {
-        window.location.href = `/manageProject?id=${projObj.ID}`
+        window.location.href = `/manageProject?id=${projObj.ID}`;
     });
 
-    // construct the section
+    /** construct project section */
     projElement.append(figure);
     figure.append(article);
     article.append(image);
@@ -233,8 +231,6 @@ function createProjectElement(projObj)
     peopleNav.append(people2);
     peopleNav.append(people3);
     aside.append(peopleNav);
-    // aside.append(people1);
-    // aside.append(people2);
 }
 
 /**
@@ -249,10 +245,13 @@ function selectTab (index)
     // trivial case: active tab clicked on
     if (currentTab == index)
         return;
-    if(index == 3){
+
+    if(index == 3)
+    {
         window.location.href = '/createProject'
         return;
     }
+
     // change active tab
     tabs[currentTab].classList.remove("active");
     currentTab = index;
@@ -265,29 +264,22 @@ function selectTab (index)
        project.classList.remove("hidden");
     }
 
-    /** @TODO call API function that display/hide projects according to currentTab */
+    /** only show projects the user is interested in */
     if (index === 1) {
-        /** @TODO based on user, show projects that user marked `interested` */
-        console.log("showing interested projects");
-
-        for (project of projects) {
+        /** show projects that user marked `interested` */
+        for (project of projects)
+        {
             let projID = project.getAttribute("ID").substring(1);
-            if (!userInfo["ProjectsInterested"].includes(projID)) {
-                console.log("hiding " + projID);
+            if (!userInfo["ProjectsInterested"].includes(projID))
                 project.classList.add("hidden");
-            }
         }
+    /** only show projects created by the user */
     } else if (index === 2) {
-        /** @TODO only show projects that the user created */
-        console.log("showing created projects");
-
-        for (project of projects) {
+        for (project of projects)
+        {
             let projID = project.getAttribute("ID").substring(1);
-            console.log(projID);
-            if (!userInfo["ProjectsCreated"].includes(projID)) {
-                console.log("hiding " + projID);
+            if (!userInfo["ProjectsCreated"].includes(projID))
                 project.classList.add("hidden");
-            }
         }
     }
 }
@@ -306,7 +298,6 @@ async function showInterest (button, projObj)
     let peopleNav = button.nextSibling;
     let people1 = peopleNav.childNodes[0];
     let people3 = peopleNav.childNodes[2];
-    
 
     /** update userProfiles and projects json files with API call */
     await API.setProjectInterest(projObj.ID, !isSelected).then(response => {
@@ -342,30 +333,36 @@ async function showInterest (button, projObj)
             people3.innerHTML = "students are interested";
 
     }).catch(err => {
-        console.log("error marking interest in project: " + err);
+        console.error("error marking interest in project: " + err);
     })
 
-
-    /** UPDATE user's info from the API */
+    /** UPDATE user info from the API */
     await API.getMyInfo().then(response => {
         console.log(response.data);
         userInfo = response.data;
     }).catch(err => {
-        console.log("error updating user info: " + err);
+        console.error("error updating user info: " + err);
     })
 }
 
+/**
+ * event listener for the search bar
+ */
 searchBar.addEventListener('input', function() {
+    /** sanitize user input */
     let input = searchBar.value.toLowerCase();
-    if (input.length > 0) {
-        for (let i = 0; i < projectHTMLs.length; ++i) {
-            if (projArray[i].Name.toLowerCase().includes(input)) {
+
+    /** filter if user added input */
+    if (input.length > 0)
+    {
+        for (let i = 0; i < projectHTMLs.length; ++i)
+        {
+            if (projArray[i].Name.toLowerCase().includes(input))
                 projectHTMLs[i].classList.remove("hidden");
-            } else {
+            else
                 projectHTMLs[i].classList.add("hidden");
-            }
         }
-    } else {
-        for (let html of projectHTMLs) html.classList.remove('hidden');
-    }
+    } else
+        for (html of projectHTMLs)
+            html.classList.remove('hidden');
 });
