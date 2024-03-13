@@ -216,6 +216,11 @@ function createProjectElement(projObj)
         window.location.href = `/manageProject?id=${projObj.ID}`
     });
 
+    // Project should go to project management page after click
+    projElement.addEventListener("click", () => {
+        window.location.href = `/manageProject?id=${projObj.ID}`
+    });
+
     // construct the section
     projElement.append(figure);
     figure.append(article);
