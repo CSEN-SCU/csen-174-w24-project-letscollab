@@ -165,7 +165,6 @@ const updatePreviewLocation = () => {
 const updatePeopleRequired = () => {
     const peopleRequired = $("#peopleRequired").val();
     const previewElement = $(".peopleSlash");
-    console.log(peopleRequired, previewElement);
 
     // previewElement.html(previewElement.html().replace(/(Location:\s)(.+)/g, `$1${peopleRequired}`));
     previewElement[0].innerHTML = "/" + peopleRequired;

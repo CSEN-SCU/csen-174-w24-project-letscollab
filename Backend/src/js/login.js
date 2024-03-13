@@ -26,7 +26,6 @@ $(function(){
     if(checkStatusIsDone()){
         API.getMyInfo().then(data=>{
             if(data.status){
-                console.log(data.data);
                 localStorage.clear();
                 for(const [key,value] of Object.entries(data.data)){                
                     localStorage.setItem(key,value);
