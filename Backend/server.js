@@ -37,6 +37,8 @@ function ImportCommands() {
 
 function validateToken(req, res, next) {
     if(req.params.page.replace(/\.html$/,'') !== "login" && req.session.Email == null){
+        console.log('original url is',req.originalUrl)
+        req.session.redirectTo = req.originalUrl
         res.redirect('/login');
     }else{
         next();
@@ -78,7 +80,7 @@ app.get("/auth/google/callback",async(req,res)=>{
         let userProfile = await oAuth2.getUserInfo();
         let response = await oAuth2.createUserFromOAuth2(userProfile).catch((err) => console.log("WAAAAAAAAAAAAAA"));
         req.session.Email = userProfile.email;
-        res.redirect(`/login?status=done`);
+        res.redirect(`/login?status=done&redirectTo=${req.session.redirectTo}`);
     }
 })
 
