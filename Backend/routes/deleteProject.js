@@ -13,7 +13,6 @@ module.exports = {
             } else {
                 // Get data of project
                 const projectData = projects.getItem(body.id);
-                console.log(projects.getItem(body.id));
 
                 // Clean out the project from interested users' array
                 projectData["Interested Users"].forEach((user) => {

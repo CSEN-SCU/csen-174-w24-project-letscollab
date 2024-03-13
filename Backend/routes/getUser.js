@@ -5,7 +5,6 @@ module.exports = {
     execute(params){
         let out_obj = {};
         return new Promise(resolve=>{
-            console.log(params);
             let userObject = users.getItem(params.id);
             if(userObject != null){
                 const { ["Password"]: _, ...new_obj } = userObject;

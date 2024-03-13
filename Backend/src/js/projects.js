@@ -1,5 +1,3 @@
-console.log("projects.js loaded ...")
-
 /**
  * document selectors
  */
@@ -30,7 +28,6 @@ $(async () => {
 
     /** fetch user info from the API */
     await API.getMyInfo().then(response => {
-        console.log(response.data);
         userInfo = response.data;
     }).catch(err => {
         console.error("error fetching user info: " + err);
@@ -38,11 +35,9 @@ $(async () => {
 
     /** extract user skills */
     userSkills = userInfo["Skills"];
-    console.log(userSkills);
     
     /** fetch object of all projects from API */
     await API.getAllProjects().then(response => {
-        console.log(response.data);
         let projects = response.data;
 
         /** proj == projects[project] is an object */
@@ -63,15 +58,12 @@ $(async () => {
 
         /** sort projArray descending by # of matching skills */
         projArray.sort((a, b) => b.matchedSkills - a.matchedSkills);
-        console.log(projArray);
 
         /** `proj` is an object -> create it's HTML element */
         for (let proj of projArray)
         {
             createProjectElement(proj);
         }
-
-        console.log("loaded all projects");
     }).catch(err => {
         console.error("error" + err);
     })
@@ -159,7 +151,7 @@ function createProjectElement(projObj)
     const interestButton = document.createElement("p");
     interestButton.classList.add("interestButton");
     interestButton.innerHTML = "Show Interest";
-    console.log(projObj["Interested Users"]);
+  
     /** boolean - is the user interested in this project */
     const USERINTERESTED = userInfo["ProjectsInterested"].includes(projObj["ID"]);
 
@@ -167,7 +159,7 @@ function createProjectElement(projObj)
     if (userInfo["ProjectsCreated"].includes(projObj["ID"]))
     {
         interestButton.classList.add("dis");
-        interestButton.innerHTML = "your project";
+        interestButton.innerHTML = "Your Project";
     }
     /** disable button if project is full and user is not already interested */
     else if ((projObj["Interested Users"].length == projObj["PeopleRequired"]) && !USERINTERESTED)
@@ -202,12 +194,17 @@ function createProjectElement(projObj)
     let num = projObj["Interested Users"].length;
     let num2 = projObj["PeopleRequired"];
     people1.innerHTML = num ;
-    people2.innerHTML = "/" + num2;
+    people2.innerHTML = " of " + num2;
 
     if (num === 1)
-        people3.innerHTML = "student is interested";
+        people3.innerHTML = " students are interested";
     else
-        people3.innerHTML = "students are interested";
+        people3.innerHTML = " students are interested";
+
+    // Project should go to project management page after click
+    projElement.addEventListener("click", () => {
+        window.location.href = `/manageProject?id=${projObj.ID}`
+    });
 
     /** project redirects to `manageProject` page on click */
     projElement.addEventListener("click", () => {
@@ -301,12 +298,11 @@ async function showInterest (button, projObj)
 
     /** update userProfiles and projects json files with API call */
     await API.setProjectInterest(projObj.ID, !isSelected).then(response => {
-        console.log(response);
 
         /** at the time of pressing button, if it's selected */
         if (!isSelected)
         {
-            button.innerHTML = "I'm interested!";
+            button.innerHTML = "I'm Interested!";
 
             /** (statically) add user to project `interested users` array */
             projObj["Interested Users"].push(userInfo["Email"]);
@@ -338,7 +334,6 @@ async function showInterest (button, projObj)
 
     /** UPDATE user info from the API */
     await API.getMyInfo().then(response => {
-        console.log(response.data);
         userInfo = response.data;
     }).catch(err => {
         console.error("error updating user info: " + err);
