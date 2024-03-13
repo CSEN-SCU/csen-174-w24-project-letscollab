@@ -203,6 +203,15 @@ class LetsCollab {
             });
         });
     }
+  
+    logout() {
+        return new Promise((resolve, reject) => {
+            this.apiRequest(`logout`, null).then(data => {
+                localStorage.clear();
+                window.location.href = "/login";
+            })
+        });
+    }
     
 
     /**

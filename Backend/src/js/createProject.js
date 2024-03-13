@@ -44,6 +44,11 @@ $(async () => {
         updatePreviewLocation();
     });
 
+    // Create input listener for peopleRequired
+    $("#peopleRequired").on("input", () => {
+        updatePeopleRequired();
+    });
+
     // Load skill list
     await loadSkillList();
 
@@ -152,6 +157,18 @@ const updatePreviewLocation = () => {
     } else {
         previewElement.html(previewElement.html().replace(/(Location:\s)(.+)/g, "$1x"));
     }
+}
+
+/**
+ * Updates the location of the preview in realtime
+ */
+const updatePeopleRequired = () => {
+    const peopleRequired = $("#peopleRequired").val();
+    const previewElement = $(".peopleSlash");
+    console.log(peopleRequired, previewElement);
+
+    // previewElement.html(previewElement.html().replace(/(Location:\s)(.+)/g, `$1${peopleRequired}`));
+    previewElement[0].innerHTML = "/" + peopleRequired;
 }
 
 /**

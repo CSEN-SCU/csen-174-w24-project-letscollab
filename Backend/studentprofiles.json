@@ -13,7 +13,8 @@
         "Year": "Senior",
         "Major": "Computer Science",
         "ProjectsCreated": [
-            "P1001"
+            "P1001",
+            "7a42f1ad-a4c2-43b3-9238-f4a0cd864744"
         ],
         "ProjectsInterested": []
     },
@@ -196,7 +197,7 @@
             "P1001"
         ],
         "ProjectsInterested": [
-            "P1002"
+            "6b6697f4-f3a8-4e17-87a3-ae35bb2ce4f6"
         ]
     },
     "sraghunath@scu.edu": {
@@ -217,6 +218,8 @@
             "P1001",
             "P1002"
         ],
-        "ProjectsInterested": []
+        "ProjectsInterested": [
+            "P1001"
+        ]
     }
 }
