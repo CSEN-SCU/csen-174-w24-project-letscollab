@@ -21,17 +21,20 @@ $(async () => {
     // Fill out relevant project information
     console.log(projectData);
     id = projectData.ID;
-
     $("#project aside h1").html(projectData.Name); // Name
     $("#project aside #description").html(projectData.Description); // Description
     $("#project figure img").attr("src", projectData.CoverImage.length > 0 ? "data:image/png;base64," + projectData.CoverImage : "../images/background.jpeg"); // Cover image
     $("#project aside #meetlocation").html(`Meetup Location: ${projectData.Meetup.Location}`); // Meetup location
     $("#project aside #projectowner").html(`Project Creator: ${projectData.AuthorEmail}`);
-
     // Project date
     const date = new Date(projectData.Meetup.Time * 1000);
     $("#project aside #meettime").html("Meetup Time: " + date.toLocaleString());
-
+    let emailMembersBtn = $("#emailmembers");
+    emailMembersBtn.click(async () => {
+        console.log(`Notify interested users of prjoect ${projectData.ID} ${projectData.Name}`)
+        let data = await API.notifyInterestedUsers(projectData.ID);
+        console.log(data);
+    });
     // Project skills
     const projectSkillContainer = $("#projectskills");
     projectData["Skills Desired"].forEach((skill) => {
@@ -54,7 +57,6 @@ $(async () => {
 
         interestedUsers.push(userData.data);
     }
-    console.log(interestedUsers);
 
     const participantsList = $("#participants");
     interestedUsers.forEach((user) => {
@@ -100,9 +102,9 @@ $("#emailmembers").click(function() {
 $("#editproject").click(function() {
     window.location.href = `/editProject?id=${id}`;
 });
-
-$("#deleteproject").click(function() {
-
+$("#deleteproject").click(async () => {
+        await API.deleteProject(projectData.ID);
+        window.location.href = "/projects";
 });
 
 const loadSkillList = async () => {

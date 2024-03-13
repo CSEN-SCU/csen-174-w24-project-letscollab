@@ -21,24 +21,35 @@ function checkStatusIsDone() {
     return queryParams.get('status') != null;
 }
 
+function getRedirectTo() {
+    // Create a URL object
+    const urlObj = new URL(window.location.href);
+    // Use URLSearchParams to easily access the query parameters
+    const queryParams = new URLSearchParams(urlObj.search);
+    // Check if the 'status' parameter is exactly 'done'
+    console.log('Redirect to set to ' + queryParams.get('redirectTo'));
+    return queryParams.get('redirectTo')
+}
+
 
 $(function(){
     if(checkStatusIsDone()){
         API.getMyInfo().then(data=>{
             if(data.status){
-                console.log(data.data);
                 localStorage.clear();
                 for(const [key,value] of Object.entries(data.data)){                
                     localStorage.setItem(key,value);
                 }
                 setResponse(data.response,"green");
-                window.location.href = data.data.Skills.length===0?"/profile":"/projects";
+                let redirectTo = getRedirectTo();
+                let basePath = window.location.origin;
+                window.location.href = redirectTo?basePath+redirectTo:"/projects";
 
             }else{
                 setResponse(data.response,"red");
                 setElementShake("#response");   
                 setTimeout(()=>{
-                    window.location.href = "/login"
+                    window.location.href = "/login";
                     },1500)
             }
         }).catch(err=>{
