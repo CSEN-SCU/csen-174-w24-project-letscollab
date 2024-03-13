@@ -84,6 +84,13 @@ $(async () => {
     if (localStorage.getItem("Email") !== projectData.AuthorEmail) {
         $("#projectmanagercontrols *, #projectmanagercontrols").hide();
     }
+
+    // Create functionality for project control
+    const deleteButton = $("#deleteproject");
+    deleteButton.click(async () => {
+        await API.deleteProject(projectData.ID);
+        window.location.href = "/projects";
+    });
 });
 
 $("#emailmembers").click(function() {

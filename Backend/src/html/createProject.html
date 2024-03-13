@@ -57,7 +57,7 @@
                 <option value="7">7</option>
                 <option value="8">8</option>
                 <option value="9">9</option>
-                <option value="10">10+</option>
+                <option value="10">10</option>
             </select>
 
             <header>Skills Desired</header>
@@ -91,7 +91,11 @@
                     <aside>
                         <!-- TODO css/js to update between `Show Interest` \ `I'm interested!` ; and to display interest number -->
                         <p class="interestButton" onclick="showInterest(this)">Show Interest</p>
-                        <p class="peopleInterested"><mark>0</mark> people are interested</p>
+                        <nav>
+                            <p class="peopleInterested">0</p>
+                            <p class="peopleInterested peopleSlash">/1</p>
+                            <p class="peopleInterested">students are interested</p>
+                        </nav>
                     </aside>
                 </section>
             </div>
