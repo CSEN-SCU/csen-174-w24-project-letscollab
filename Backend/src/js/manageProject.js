@@ -21,7 +21,6 @@ $(async () => {
     // Fill out relevant project information
     console.log(projectData);
     id = projectData.ID;
-
     $("#project aside h1").html(projectData.Name); // Name
     $("#project aside #description").html(projectData.Description); // Description
     $("#project figure img").attr("src", projectData.CoverImage.length > 0 ? "data:image/png;base64," + projectData.CoverImage : "../images/background.jpeg"); // Cover image
@@ -54,7 +53,6 @@ $(async () => {
 
         interestedUsers.push(userData.data);
     }
-    console.log(interestedUsers);
 
     const participantsList = $("#participants");
     interestedUsers.forEach((user) => {
@@ -102,7 +100,8 @@ $("#editproject").click(function() {
 });
 
 $("#deleteproject").click(function() {
-
+        await API.deleteProject(projectData.ID);
+        window.location.href = "/projects";
 });
 
 const loadSkillList = async () => {

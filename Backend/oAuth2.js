@@ -55,8 +55,6 @@ async function getUserInfo() {
 }
 
 async function createUserFromOAuth2(googleProfile){
-    console.log("Received Google Profile Data: ");
-    console.log(googleProfile);
     return new Promise((resolve)=>{
         let email = googleProfile.email;
         let userObject = users.getItem(email);
@@ -100,7 +98,6 @@ function logout() {
             // Handle the response
             // Clear any client-side storage
             // Redirect to login page
-            console.log("Logging out...");
             window.location.href = '/login';
         }).catch(error => {
             console.error('Error revoking token:', error);
