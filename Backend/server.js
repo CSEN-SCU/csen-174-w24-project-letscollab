@@ -99,9 +99,9 @@ app.get('/auth/google/logout',(req,res)=>{
     }else{
         res.redirect(`/login`);
     }
-})
+});
 
 app.listen(port,()=>{
     
     console.log(`Now listening on port ${port}`);
-})
+});
