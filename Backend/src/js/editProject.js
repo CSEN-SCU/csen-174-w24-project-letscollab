@@ -222,8 +222,6 @@ const loadSkillList = async () => {
     // Add all skills to the proper container
     const container = $("#selectskills");
     skills.forEach((skill) => {
-        console.log(typeof skill);
-        console.log(skill);
         let selected = false;
         for (let i of projectData["Skills Desired"]) {
             if (i === skill.skillName) selected = true;
@@ -231,7 +229,11 @@ const loadSkillList = async () => {
         createSkillElement(container, skill, false, selected);
     });
     for (let i of projectData["Skills Desired"]) {
-        createSkillElement(container, {skillName: i, skillType: "cs"}, false, true);
+        let add = true;
+        skills.forEach((skill) => {
+            if (i === skill.skillName) add = false;
+        });
+        if (add) createSkillElement(container, {skillName: i, skillType: "cs"}, false, true);
     }
 }
 
