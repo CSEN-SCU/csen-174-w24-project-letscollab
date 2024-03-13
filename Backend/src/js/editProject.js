@@ -50,16 +50,10 @@ $(async () => {
             fff[i].selected = true;
         }
     }
-    //updatePreviewImage(null);
 
     const previewElement = $(".projectlist img");
     const image = projectData.CoverImage;
     previewElement.attr("src", image);
-    updatePreviewName();
-    updatePreviewDescription();
-    updatePreviewDateTime();
-    updatePreviewDateTime();
-    updatePreviewLocation();
 
     // Create input listener for uploading project image
     $("#photo").on("input", (event) => {
@@ -106,12 +100,10 @@ $(async () => {
  */
 const updatePreviewImage = (event) => {
     // Check if there is an image in the upload list
-    console.log(event);
     const images = event.target.files;
     if (images.length < 0) return;
-    console.log(images[0]);
+
     const image = URL.createObjectURL(images[0]);
-    console.log(image);
     const previewElement = $(".projectlist img");
     previewElement.attr("src", image);
 
