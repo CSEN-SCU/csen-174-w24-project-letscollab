@@ -1,3 +1,5 @@
+let id;
+
 $(async () => {
     // Get list of all current skills
     let allSkills = await API.getSkills();
@@ -18,6 +20,7 @@ $(async () => {
 
     // Fill out relevant project information
     console.log(projectData);
+    id = projectData.ID;
 
     $("#project aside h1").html(projectData.Name); // Name
     $("#project aside #description").html(projectData.Description); // Description
@@ -90,6 +93,18 @@ $(async () => {
     });
 });
 
+$("#emailmembers").click(function() {
+    console.log("Email sent");
+});
+
+$("#editproject").click(function() {
+    window.location.href = `/editProject?id=${id}`;
+});
+
+$("#deleteproject").click(function() {
+
+});
+
 const loadSkillList = async () => {
     let skills = {};
     await $.ajax({
@@ -116,7 +131,8 @@ const createSkillElement = (container, skill) => {
     const newSkillName = $("<p>");
 
     // Add proper classes and content
-    newSkill.addClass(`skill ${skill.skillType}`);
+    newSkill.addClass(`
+}skill ${skill.skillType}`);
 
     newSkillIcon.addClass("skillicon");
     newSkillIcon.text("•");
