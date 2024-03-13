@@ -43,3 +43,14 @@ header ul li:hover
 .projectlist * {
     cursor: pointer;
 }
+
+#searchprojects {
+    border-width: thin;
+    border-radius: 12px;
+    padding:0.3rem;
+    font-size: large;
+    opacity: 0.6;
+    resize: none;
+    transition: .2s all ease-in-out;
+    max-width: 20%;
+}

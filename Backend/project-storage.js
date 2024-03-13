@@ -31,4 +31,8 @@ module.exports = {
     data[key] = value;
     fs.writeFile("./projects.json", JSON.stringify(data,0,4));
   },
+  deleteItem: (key) => {
+    delete data[key];
+    fs.writeFile("./projects.json", JSON.stringify(data, 0, 4));
+  }
 };

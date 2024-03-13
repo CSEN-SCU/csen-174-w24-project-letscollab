@@ -125,7 +125,6 @@ class LetsCollab {
             "name":skillName,
             "type":skillType
         }
-        console.log(body);
         return new Promise((resolve, reject) => {
             this.apiRequest(params,body,"POST").then(data => {
                 resolve(data);
@@ -189,6 +188,21 @@ class LetsCollab {
         });
     }
 
+    deleteProject(projectID) {
+        let body = {
+            "id":projectID
+        };
+
+        const params = "deleteProject";
+        return new Promise((resolve, reject) => {
+            this.apiRequest(params, body, "POST").then(data => {
+                resolve(data);
+            }).catch(err => {
+                reject(err);
+            });
+        });
+    }
+  
     notifyInterestedUsers(projectID){
         let body = {
             "id":projectID
