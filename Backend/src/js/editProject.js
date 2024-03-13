@@ -51,12 +51,15 @@ $(async () => {
         }
     }
     //updatePreviewImage(null);
-    /*
+
+    const previewElement = $(".projectlist img");
+    const image = projectData.CoverImage;
+    previewElement.attr("src", image);
     updatePreviewName();
     updatePreviewDescription();
     updatePreviewDateTime();
     updatePreviewDateTime();
-    updatePreviewLocation();*/
+    updatePreviewLocation();
 
     // Create input listener for uploading project image
     $("#photo").on("input", (event) => {
@@ -103,10 +106,12 @@ $(async () => {
  */
 const updatePreviewImage = (event) => {
     // Check if there is an image in the upload list
+    console.log(event);
     const images = event.target.files;
     if (images.length < 0) return;
-
+    console.log(images[0]);
     const image = URL.createObjectURL(images[0]);
+    console.log(image);
     const previewElement = $(".projectlist img");
     previewElement.attr("src", image);
 
@@ -217,10 +222,17 @@ const loadSkillList = async () => {
     // Add all skills to the proper container
     const container = $("#selectskills");
     skills.forEach((skill) => {
+        console.log(typeof skill);
+        console.log(skill);
         let selected = false;
-        console.log(typeof projectData["Interested Users"]);
+        for (let i of projectData["Skills Desired"]) {
+            if (i === skill.skillName) selected = true;
+        }
         createSkillElement(container, skill, false, selected);
     });
+    for (let i of projectData["Skills Desired"]) {
+        createSkillElement(container, {skillName: i, skillType: "cs"}, false, true);
+    }
 }
 
 /**
@@ -235,7 +247,10 @@ const createSkillElement = (container, skill, isPreview, selected) => {
     const newSkillName = $("<p>");
     // Add event listener to skills only if it is NOT a preview item
     if (!isPreview) {
-        if (selected) newSkill.addClass("selected");
+        if (selected) {
+            newSkill.addClass("selected");
+            createSkillElement($(".projectlist .skills"), skill, true, true);
+        }
         //newSkill.addClass("selected");
         newSkill.click(() => {
             // If the skill exists in the project, remove it
@@ -245,7 +260,7 @@ const createSkillElement = (container, skill, isPreview, selected) => {
             } else { // Otherwise, add it
                 newSkill.addClass("selected");
                 const previewContainer = $(".projectlist .skills");
-                createSkillElement(previewContainer, skill, true)
+                createSkillElement(previewContainer, skill, true, true);
             }
         });
     }
