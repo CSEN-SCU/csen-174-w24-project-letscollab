@@ -189,6 +189,19 @@ class LetsCollab {
         });
     }
 
+    notifyInterestedUsers(projectID){
+        let body = {
+            "id":projectID
+        }
+        const params = `notifyInterestedUsers`;
+        return new Promise((resolve, reject) => {
+            this.apiRequest(params,body,"POST").then(data => {
+                resolve(data);
+            }).catch(err => {
+                reject(err);
+            });
+        });
+    }    
     logout() {
         return new Promise((resolve, reject) => {
             this.apiRequest(`logout`, null).then(data => {
