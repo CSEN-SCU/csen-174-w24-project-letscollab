@@ -31,20 +31,12 @@ $(async () => {
 
     $("#name").val(projectData.Name);
     $("#description").val(projectData.Description);
-
     const date = new Date(projectData.Meetup.Time * 1000); // Convert seconds to milliseconds
     // Get the individual date and time components
-    const year = date.getFullYear();
-    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Month starts from 0
-    const day = date.getDate().toString().padStart(2, '0');
-    const hours = date.getHours().toString().padStart(2, '0');
-    const minutes = date.getMinutes().toString().padStart(2, '0');
-    const seconds = date.getSeconds().toString().padStart(2, '0');
-    $("#time").val(`${hours}:${minutes}:${seconds}`);
-    $("#date").val(`${year}-${month}-${day}`);
+    $("#time").val(`${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}:${date.getSeconds().toString().padStart(2, '0')}`);
+    $("#date").val(`${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`);
     $("#locations").val(projectData.Meetup.Location);
     const fff = document.getElementById("peopleRequired").options;
-    console.log(projectData.PeopleRequired);
     for (let i = 0; i < fff.length; ++i) {
         if (fff[i].value === projectData.PeopleRequired) {
             fff[i].selected = true;
@@ -54,6 +46,10 @@ $(async () => {
     const previewElement = $(".projectlist img");
     const image = projectData.CoverImage;
     previewElement.attr("src", image);
+    updatePreviewName();
+    updatePreviewDescription();
+    updatePreviewDateTime();
+    updatePreviewLocation();
 
     // Create input listener for uploading project image
     $("#photo").on("input", (event) => {
