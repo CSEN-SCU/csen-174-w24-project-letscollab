@@ -1,8 +1,7 @@
 // On page load create event listeners
-const projectForm = document.getElementById("createproject");
-
-function toUnixTimestamp (date,time)
-{
+const projectForm = document.getElementById("editproject");
+let projectData;
+function toUnixTimestamp(date,time){
     // Your date string
     const dateString = `${date} ${time}`
 
@@ -13,10 +12,52 @@ function toUnixTimestamp (date,time)
     const unixTimestamp = Math.floor(date_.getTime() / 1000);
 
     return unixTimestamp;
-}
 
-/** asynchronously add event listeners on page load */
+}
 $(async () => {
+    // Fetch project data from URL param
+    const url = new URL(window.location.href);
+    let pd;
+    try {
+        pd = await API.getProject(url.searchParams.get("id"));
+    } catch (e) {
+        console.log("improper project id given");
+        window.location.href = "/projects";
+    }
+
+    if (!pd.status) window.location.href = "/projects";
+    projectData = pd.data;
+    console.log(projectData);
+
+    $("#name").val(projectData.Name);
+    $("#description").val(projectData.Description);
+
+    const date = new Date(projectData.Meetup.Time * 1000); // Convert seconds to milliseconds
+    // Get the individual date and time components
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Month starts from 0
+    const day = date.getDate().toString().padStart(2, '0');
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    const seconds = date.getSeconds().toString().padStart(2, '0');
+    $("#time").val(`${hours}:${minutes}:${seconds}`);
+    $("#date").val(`${year}-${month}-${day}`);
+    $("#locations").val(projectData.Meetup.Location);
+    const fff = document.getElementById("peopleRequired").options;
+    console.log(projectData.PeopleRequired);
+    for (let i = 0; i < fff.length; ++i) {
+        if (fff[i].value === projectData.PeopleRequired) {
+            fff[i].selected = true;
+        }
+    }
+    //updatePreviewImage(null);
+    /*
+    updatePreviewName();
+    updatePreviewDescription();
+    updatePreviewDateTime();
+    updatePreviewDateTime();
+    updatePreviewLocation();*/
+
     // Create input listener for uploading project image
     $("#photo").on("input", (event) => {
         updatePreviewImage(event);
@@ -45,11 +86,6 @@ $(async () => {
     // Create input listener for project location
     $("#locations").on("input", () => {
         updatePreviewLocation();
-    });
-
-    // Create input listener for peopleRequired
-    $("#peopleRequired").on("input", () => {
-        updatePeopleRequired();
     });
 
     // Load skill list
@@ -89,11 +125,11 @@ const updatePreviewImage = (event) => {
 const updatePreviewName = () => {
     const titleContent = $("#name").val();
     const previewElement = $("article h1");
-
-    if (titleContent.length < 1)
+    if (titleContent.length < 1) {
         previewElement.text("My Project");
-    else
+    } else {
         previewElement.text(titleContent)
+    }
 }
 
 /**
@@ -102,11 +138,11 @@ const updatePreviewName = () => {
 const updatePreviewDescription = () => {
     const descriptionContent = $("#description").val();
     const previewElement = $("p.description");
-
-    if (descriptionContent.length < 1)
+    if (descriptionContent.length < 1) {
         previewElement.html("Give a detailed explanation of your project");
-    else
+    } else {
         previewElement.html(descriptionContent);
+    }
 }
 
 /**
@@ -123,14 +159,10 @@ const updatePreviewDateTime = () => {
         let timeSuffix = "AM";
         let hour = parseInt(timeContent.split(":")[0]);
         let minutes = timeContent.split(":")[1];
-
-        // account for 24 hour time
-        if (hour > 12)
-        {
+        if (hour > 12) { // Account for 24 hour time
             hour -= 12;
             timeSuffix = "PM";
         }
-
         const timeResult = `${hour}:${minutes} ${timeSuffix}`;
 
         // Update preview element
@@ -139,11 +171,11 @@ const updatePreviewDateTime = () => {
 
     // Gather date data
     const dateContent = $("#date").val();
-    if (dateContent)
-    {
+    if (dateContent) {
         const year = parseInt(dateContent.split("-")[0]);
         const month = parseInt(dateContent.split("-")[1]);
         const day = parseInt(dateContent.split("-")[2]);
+
 
         const dateResult = `${months[month-1]} ${day}, ${year}`;
 
@@ -159,21 +191,11 @@ const updatePreviewLocation = () => {
     const locationContent = $("#locations").val();
     const previewElement = $(".projectlist .meetlocation");
 
-    if (locationContent.length > 1)
+    if (locationContent.length > 1) {
         previewElement.html(previewElement.html().replace(/(Location:\s)(.+)/g, `$1${locationContent}`));
-    else
+    } else {
         previewElement.html(previewElement.html().replace(/(Location:\s)(.+)/g, "$1x"));
-}
-
-/**
- * Updates the location of the preview in realtime
- */
-const updatePeopleRequired = () => {
-    const peopleRequired = $("#peopleRequired").val();
-    const previewElement = $(".peopleSlash");
-
-    /** when selecting by class, we get an array back so we index for the `p` */
-    previewElement[0].innerHTML = "/" + peopleRequired;
+    }
 }
 
 /**
@@ -195,7 +217,9 @@ const loadSkillList = async () => {
     // Add all skills to the proper container
     const container = $("#selectskills");
     skills.forEach((skill) => {
-        createSkillElement(container, skill, false);
+        let selected = false;
+        console.log(typeof projectData["Interested Users"]);
+        createSkillElement(container, skill, false, selected);
     });
 }
 
@@ -205,12 +229,14 @@ const loadSkillList = async () => {
  * @param {object}skill What the skill is in format {skillName: "name", skillType: "type"}
  * @param {boolean}isPreview Whether the skill is being appended to the preview view or not
  */
-const createSkillElement = (container, skill, isPreview) => {
+const createSkillElement = (container, skill, isPreview, selected) => {
     const newSkill = $("<div>");
     const newSkillIcon = $("<p>");
     const newSkillName = $("<p>");
     // Add event listener to skills only if it is NOT a preview item
     if (!isPreview) {
+        if (selected) newSkill.addClass("selected");
+        //newSkill.addClass("selected");
         newSkill.click(() => {
             // If the skill exists in the project, remove it
             if (newSkill.hasClass("selected")) {
@@ -319,11 +345,11 @@ function getSkillNamesArray() {
     return skillNames;
   }
   
-  function setResponse(text, color){
+function setResponse(text, color){
     $('#formSubmitResponse').html(`${text}`).css("color",color);
     setTimeout(()=>{
         $(this).html("");
-     },1500)
+    },1500)
 }
 const fileToDataURL = async(file) =>{
     let reader = new FileReader();
@@ -367,7 +393,7 @@ projectForm.addEventListener("submit",async (event)=>{
         setResponse(validObject.response,"red");
         return;
     }
-    API.createProject(sendObj).then(async data=>{
+    API.updateProject(sendObj).then(async data=>{
         if(data.status){
             setResponse(data.response,"green")
         }else{

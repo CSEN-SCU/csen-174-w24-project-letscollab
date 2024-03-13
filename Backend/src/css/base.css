@@ -282,7 +282,7 @@ section.projectlist nav
     text-wrap: nowrap;
 }
 
-section.projectlist .peopleInterested
+section.projectlist nav p
 {
     font-style: italic;
     text-align: center;
