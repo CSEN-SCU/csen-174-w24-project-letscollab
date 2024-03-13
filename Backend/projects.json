@@ -115,7 +115,9 @@
         "CoverImage": "",
         "PeopleRequired": "6",
         "ID": "6b6f3e57-5a07-437f-afdc-96121694fda6",
-        "Interested Users": [],
+        "Interested Users": [
+            "rguioguio@scu.edu"
+        ],
         "CreatedAt": 1708561143
     },
     "7a42f1ad-a4c2-43b3-9238-f4a0cd864744": {
