@@ -67,9 +67,7 @@ $(async () => {
 
         /** `proj` is an object -> create it's HTML element */
         for (let proj of projArray)
-        {
             createProjectElement(proj);
-        }
 
         console.log("loaded all projects");
     }).catch(err => {
@@ -258,14 +256,14 @@ function selectTab (index)
     tabs[index].classList.add("active");
 
     const projects = document.getElementsByClassName("projectlist");
+
     // initially unhide all projects
     for (project of projects)
-    {
        project.classList.remove("hidden");
-    }
 
     /** only show projects the user is interested in */
-    if (index === 1) {
+    if (index === 1)
+    {
         /** show projects that user marked `interested` */
         for (project of projects)
         {
@@ -274,7 +272,9 @@ function selectTab (index)
                 project.classList.add("hidden");
         }
     /** only show projects created by the user */
-    } else if (index === 2) {
+    }
+    else if (index === 2)
+    {
         for (project of projects)
         {
             let projID = project.getAttribute("ID").substring(1);
