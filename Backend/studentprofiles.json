@@ -13,8 +13,7 @@
         "Year": "Senior",
         "Major": "Computer Science",
         "ProjectsCreated": [
-            "P1001",
-            "7a42f1ad-a4c2-43b3-9238-f4a0cd864744"
+            "P1001"
         ],
         "ProjectsInterested": []
     },
@@ -217,7 +216,8 @@
         ],
         "ProjectsCreated": [
             "P1001",
-            "P1002"
+            "P1002",
+            "681d6db7-0c54-4bf2-946b-efd8e467873d"
         ],
         "ProjectsInterested": [
             "P1001"

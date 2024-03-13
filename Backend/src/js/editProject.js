@@ -50,13 +50,10 @@ $(async () => {
             fff[i].selected = true;
         }
     }
-    //updatePreviewImage(null);
-    /*
-    updatePreviewName();
-    updatePreviewDescription();
-    updatePreviewDateTime();
-    updatePreviewDateTime();
-    updatePreviewLocation();*/
+
+    const previewElement = $(".projectlist img");
+    const image = projectData.CoverImage;
+    previewElement.attr("src", image);
 
     // Create input listener for uploading project image
     $("#photo").on("input", (event) => {
@@ -218,9 +215,18 @@ const loadSkillList = async () => {
     const container = $("#selectskills");
     skills.forEach((skill) => {
         let selected = false;
-        console.log(typeof projectData["Interested Users"]);
+        for (let i of projectData["Skills Desired"]) {
+            if (i === skill.skillName) selected = true;
+        }
         createSkillElement(container, skill, false, selected);
     });
+    for (let i of projectData["Skills Desired"]) {
+        let add = true;
+        skills.forEach((skill) => {
+            if (i === skill.skillName) add = false;
+        });
+        if (add) createSkillElement(container, {skillName: i, skillType: "cs"}, false, true);
+    }
 }
 
 /**
@@ -235,7 +241,10 @@ const createSkillElement = (container, skill, isPreview, selected) => {
     const newSkillName = $("<p>");
     // Add event listener to skills only if it is NOT a preview item
     if (!isPreview) {
-        if (selected) newSkill.addClass("selected");
+        if (selected) {
+            newSkill.addClass("selected");
+            createSkillElement($(".projectlist .skills"), skill, true, true);
+        }
         //newSkill.addClass("selected");
         newSkill.click(() => {
             // If the skill exists in the project, remove it
@@ -245,7 +254,7 @@ const createSkillElement = (container, skill, isPreview, selected) => {
             } else { // Otherwise, add it
                 newSkill.addClass("selected");
                 const previewContainer = $(".projectlist .skills");
-                createSkillElement(previewContainer, skill, true)
+                createSkillElement(previewContainer, skill, true, true);
             }
         });
     }
