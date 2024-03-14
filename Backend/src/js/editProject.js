@@ -20,6 +20,7 @@ $(async () => {
     let pd;
     try {
         pd = await API.getProject(url.searchParams.get("id"));
+        
     } catch (e) {
         console.log("improper project id given");
         window.location.href = "/projects";
@@ -43,6 +44,7 @@ $(async () => {
     $("#time").val(`${hours}:${minutes}:${seconds}`);
     $("#date").val(`${year}-${month}-${day}`);
     $("#locations").val(projectData.Meetup.Location);
+    $("#projectID").val(projectData.ID);
     const fff = document.getElementById("peopleRequired").options;
     console.log(projectData.PeopleRequired);
     for (let i = 0; i < fff.length; ++i) {
@@ -50,6 +52,11 @@ $(async () => {
             fff[i].selected = true;
         }
     }
+    updatePreviewFromBinarySource(projectData["CoverImage"]);
+    updatePreviewDescription();
+    updatePreviewName();
+    updatePreviewLocation();
+    updatePreviewDateTime();
     //updatePreviewImage(null);
     /*
     updatePreviewName();
@@ -59,7 +66,7 @@ $(async () => {
     updatePreviewLocation();*/
 
     // Create input listener for uploading project image
-    $("#photo").on("input", (event) => {
+    $("#fileUpload").on("input", (event) => {
         updatePreviewImage(event);
     });
 
@@ -72,7 +79,11 @@ $(async () => {
     $("#description").on("keyup", () => {
         updatePreviewDescription();
     });
-
+    $("#removeImage").on("click", () => {
+        $('#preview').hide();
+        $('.upload-label').show(); // Show the "Upload" text if no image
+        $("#removeImage").hide();
+    })
     // Create input listener for project time
     $("#time").on("input", () => {
         updatePreviewDateTime();
@@ -88,8 +99,12 @@ $(async () => {
         updatePreviewLocation();
     });
 
+    $("#home").on("click", () => {
+        window.location.href = "/projects";
+    });
+
     // Load skill list
-    await loadSkillList();
+    await loadSkillList(projectData["Skills Desired"]);
 
     // Create keyup listener for skill search bar
     const searchBar = $("#searchskills");
@@ -104,20 +119,46 @@ $(async () => {
 const updatePreviewImage = (event) => {
     // Check if there is an image in the upload list
     const images = event.target.files;
-    if (images.length < 0) return;
+    if (images.length > 0){
+        const image = URL.createObjectURL(images[0]);
+        const previewElement = $(".projectlist img");
+        previewElement.attr("src", image);
+        $('#preview').attr('src', image).show();
+        $('.upload-label').hide(); // Hide the "Upload" text
+        $('#removeImage').show(); // Show the "Remove" button
 
-    const image = URL.createObjectURL(images[0]);
-    const previewElement = $(".projectlist img");
-    previewElement.attr("src", image);
+        const status = $("#uploadstatus");
+        status.html("Upload Successful!");
+        status.css({
+            "color": "green",
+            "font-size": "small",
+        });
+    }else{
+        $('#preview').hide();
+        $('.upload-label').show(); // Show the "Upload" text if no image
+    }
 
-    // Create status message
-    const status = $("#uploadstatus");
-    status.html("Upload Successful!");
-    status.css({
-        "color": "green",
-        "font-size": "small",
-    });
+    
 }
+
+
+/**
+ * Updates the image of the preview display from a base64 string
+ */
+const updatePreviewFromBinarySource = (base64String) => {
+    // Construct the src for the image
+    const imageSrc = `data:image/jpeg;base64,${base64String}`; // Assume JPEG for simplicity, adjust if necessary
+
+    // Use jQuery to find the preview image element and set its src attribute
+    const previewElement = $(".projectlist img");
+    previewElement.attr("src", imageSrc);
+    $('#preview').attr('src', imageSrc).show();
+    $("#removeImage").show();
+    $('.upload-label').hide(); // Hide the "Upload" text
+    // Create and update the status message
+
+}
+
 
 /**
  * Updates the title of the preview display in realtime
@@ -201,8 +242,10 @@ const updatePreviewLocation = () => {
 /**
  * Loads the general index of skills from skills.json
  */
-const loadSkillList = async () => {
+const loadSkillList = async (skillsDesired) => {
     let skills = {};
+    console.log(`Logging skillsDesired`)
+    console.log(skillsDesired)
     await $.ajax({
         url: "/v1/getSkills",
         type: "GET",
@@ -217,9 +260,7 @@ const loadSkillList = async () => {
     // Add all skills to the proper container
     const container = $("#selectskills");
     skills.forEach((skill) => {
-        let selected = false;
-        console.log(typeof projectData["Interested Users"]);
-        createSkillElement(container, skill, false, selected);
+        createSkillElement(container, skill, false, skillsDesired.includes(skill.skillName));
     });
 }
 
@@ -228,6 +269,7 @@ const loadSkillList = async () => {
  * @param {object}container Where to put the skill
  * @param {object}skill What the skill is in format {skillName: "name", skillType: "type"}
  * @param {boolean}isPreview Whether the skill is being appended to the preview view or not
+ * @param {boolean}selected Whether the skill exist in the desired project skills or not
  */
 const createSkillElement = (container, skill, isPreview, selected) => {
     const newSkill = $("<div>");
@@ -235,7 +277,12 @@ const createSkillElement = (container, skill, isPreview, selected) => {
     const newSkillName = $("<p>");
     // Add event listener to skills only if it is NOT a preview item
     if (!isPreview) {
-        if (selected) newSkill.addClass("selected");
+        if (selected){
+            newSkill.addClass("selected");
+            const previewContainer = $(".projectlist .skills");
+            createSkillElement(previewContainer,skill, true)
+
+        }
         //newSkill.addClass("selected");
         newSkill.click(() => {
             // If the skill exists in the project, remove it
@@ -348,8 +395,8 @@ function getSkillNamesArray() {
 function setResponse(text, color){
     $('#formSubmitResponse').html(`${text}`).css("color",color);
     setTimeout(()=>{
-        $(this).html("");
-    },1500)
+        $('#formSubmitResponse').html("");
+    },800)
 }
 const fileToDataURL = async(file) =>{
     let reader = new FileReader();
@@ -363,22 +410,50 @@ const fileToDataURL = async(file) =>{
     })
   }  
 
+function getBase64FromImage() {
+    // Assuming the image has an id="preview"
+    var imageData = $('#preview').attr('src');
+    if (imageData) {
+        // Optional: Check if it's indeed base64 data
+        if (imageData.indexOf('data:image') === 0) {
+            // Image data is in base64 format
+            return imageData.split(',')[1]; // Split by comma and take the second part, which is the base64 data
+        } else {
+            console.log('The image src does not contain base64 data.');
+            return null;
+        }
+    } else {
+        console.log('No image found.');
+        return null;
+    }
+}
 
 projectForm.addEventListener("submit",async (event)=>{
+    console.log('submit from form')
     event.preventDefault();
+    let projectID = $("#projectID").val();
     const form = new FormData(projectForm);
     const obj = Object.fromEntries(form.entries());
     let date = toUnixTimestamp(obj["date"],obj["time"]);
-    const file = document.getElementById("photo").files[0];
-    let imageBase64 = "";
-    try {
-        imageBase64 = await fileToDataURL(file);
-    } catch (e) {
-        setResponse("Please upload an image file to your project!", "red");
-        return;
+    const file = document.getElementById("fileUpload").files[0];
+    let imageBase64 = null;
+    if(!file){
+        imageBase64 = getBase64FromImage();
+        if(!imageBase64){
+            setResponse("No image selected","red");
+            return;
+        }
+    }else{
+        try {
+            imageBase64 = await fileToDataURL(file);
+        } catch (e) {
+            setResponse("Please upload an image file to your project!", "red");
+            return;
+        }    
     }
     let sendObj = {
         "Name":obj["name"],
+        "ID":projectID,
         "Description":obj["description"],
         "Meetup":{
             "Time":date,
@@ -388,6 +463,7 @@ projectForm.addEventListener("submit",async (event)=>{
         "CoverImage":imageBase64,
         "PeopleRequired":$('#peopleRequired').val()
     }
+    console.log(obj);
     let validObject = validateObject(sendObj);
     if(!validObject.status){
         setResponse(validObject.response,"red");
@@ -399,11 +475,6 @@ projectForm.addEventListener("submit",async (event)=>{
         }else{
             setResponse(data.response,"green")
         }
-
-        await delay(2000);
-
-        window.location.href = "/projects";
-
     }).catch(err=>{
         console.log(err);
         setResponse("Network Error","Red")

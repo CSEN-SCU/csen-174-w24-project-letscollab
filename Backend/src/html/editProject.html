@@ -22,13 +22,17 @@
 
         <form id="editproject">
             <header>General</header>
-            <label id="imageupload">
-                Upload Cover Image
-                <input type="file" id="photo" name="photo" accept="image/jpeg, image/png" />
-            </label>
+            <div class="upload-container">
+                <input type="file" id="fileUpload" name="photo" accept="image/jpeg, image/png" />
+                <label for="fileUpload" class="upload-label">Upload</label>
+                <img id="preview" src="" alt="Image preview" style="display: none;"/>
+            </div>
+            <button id="removeImage" hidden>Remove Image</button>
+
             <p id="uploadstatus"></p>
             <header>Project Details</header>
             <label for="name">Project Name</label>
+            <input type="text" id="projectID" name="projectID" hidden />
             <input type="text" id="name" name="name" placeholder="My Project" />
 
             <label for="description">Project Description</label>
@@ -43,7 +47,7 @@
                 <input type="date" id="date" name="date" />
 
                 <label for="locations">Location</label>
-                <input type="search" id="locations" placeholder="Enter Location" />
+                <input type="text" id="locations" name="location" placeholder="Enter Location" />
             </div>
             <header>People Required</header>
             <label for="peopleRequired">Number of People Required</label>

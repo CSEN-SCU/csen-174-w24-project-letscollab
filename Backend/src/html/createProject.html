@@ -22,10 +22,12 @@
 
         <form id="createproject">
             <header>General</header>
-            <label id="imageupload">
-                Upload Cover Image
-                <input type="file" id="photo" name="photo" accept="image/jpeg, image/png" />
-            </label>
+            <div class="upload-container">
+                <input type="file" id="fileUpload" name="photo" accept="image/jpeg, image/png" />
+                <label for="fileUpload" class="upload-label">Upload</label>
+                <img id="preview" src="" alt="Image preview" style="display: none;"/>
+            </div>
+            <button id="removeImage" hidden>Remove Image</button>
             <p id="uploadstatus"></p>
             <header>Project Details</header>
             <label for="name">Project Name</label>

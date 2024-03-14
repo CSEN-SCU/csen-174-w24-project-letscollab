@@ -18,7 +18,7 @@ function toUnixTimestamp (date,time)
 /** asynchronously add event listeners on page load */
 $(async () => {
     // Create input listener for uploading project image
-    $("#photo").on("input", (event) => {
+    $("#fileUpload").on("input", (event) => {
         updatePreviewImage(event);
     });
 
@@ -51,7 +51,11 @@ $(async () => {
     $("#peopleRequired").on("input", () => {
         updatePeopleRequired();
     });
-
+    $("#removeImage").on("click", () => {
+        $('#preview').hide();
+        $('.upload-label').show(); // Show the "Upload" text if no image
+        $("#removeImage").hide();
+    })
     // Load skill list
     await loadSkillList();
 
@@ -73,7 +77,9 @@ const updatePreviewImage = (event) => {
     const image = URL.createObjectURL(images[0]);
     const previewElement = $(".projectlist img");
     previewElement.attr("src", image);
-
+    $('#preview').attr('src', image).show();
+    $('.upload-label').hide(); // Hide the "Upload" text
+    $('#removeImage').show(); // Show the "Remove" button
     // Create status message
     const status = $("#uploadstatus");
     status.html("Upload Successful!");
@@ -343,7 +349,7 @@ projectForm.addEventListener("submit",async (event)=>{
     const form = new FormData(projectForm);
     const obj = Object.fromEntries(form.entries());
     let date = toUnixTimestamp(obj["date"],obj["time"]);
-    const file = document.getElementById("photo").files[0];
+    const file = document.getElementById("fileUpload").files[0];
     let imageBase64 = "";
     try {
         imageBase64 = await fileToDataURL(file);

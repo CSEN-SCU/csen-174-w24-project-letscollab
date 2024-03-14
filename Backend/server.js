@@ -65,6 +65,7 @@ app.post('/v1/:post',async(req,res)=>{
     const command = Commands.get(req.params.post);
     let resObj = await command.execute(req.body,req);
     let response = resObj["response"];
+    console.log(`response is ${response}`);
     const { ["response"]: _, ...out_obj } = resObj;
     res.status(200).send({
         "data":out_obj,

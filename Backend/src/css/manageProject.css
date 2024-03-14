@@ -20,6 +20,8 @@ main {
     gap: 2%;
 }
 
+
+
 #projectheader figure {
     width: 15vw;
     height: 15vw;
@@ -162,13 +164,14 @@ mark {
     padding: 2%;
     background-color: var(--dark-gray);
     border-radius: 1rem;
-    transition: background-color 0.2s ease-in, color 0.2s ease-in;
+    transition: all 0.2s ease-in
 }
 
 #projectmanagercontrols #managebuttons p:hover {
     cursor: pointer;
     background-color: var(--scuRed);
     color: white;
+    scale:1.05;
 }
 
 #homebuttoncontainer {

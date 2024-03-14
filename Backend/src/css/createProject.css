@@ -23,6 +23,7 @@ input,textarea,select{
     max-width: 75%;
 }
 
+
 .meetup-details{
     display: flex;
     flex-direction: row;
@@ -32,7 +33,7 @@ input,textarea,select{
 #peopleRequired{
     max-width: 30%;
 }
-#createproject header {
+#createproject header, #editproject header {
     font-size: x-large;
     font-weight: bold;
     color: var(--dark-gray);
@@ -57,7 +58,6 @@ input,textarea,select{
 
 #imageupload:hover {
     color: blue;
-    font-style: italic;
 }
 
 .row textarea {
@@ -67,15 +67,14 @@ input,textarea,select{
 #submit, #home {
     background-color: var(--scuRed);
     color: white;
-    border-style: solid;
-    border-color: black;
     padding: 2% 4% 2% 4%;
     margin-right: 3%;
     border-width: thin;
+    transition: all 0.2s ease-in-out;
 }
 
 #submit:hover, #home:hover {
-    font-weight: bold;
+    scale:1.05;
     cursor: pointer;
 }
 
@@ -112,4 +111,55 @@ input,textarea,select{
 #selectskills .hidden
 {
     display: none;
+}
+
+
+
+.upload-container {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%; /* Makes the container circular */
+    overflow: hidden;
+    position: relative;
+    background-color: var(--scuRed); /* Light grey background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+}
+
+.upload-label {
+    color:white;
+    z-index: 2;
+}
+
+#fileUpload {
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+#preview {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the circle */
+    border-radius: 50%; /* Makes the image circular */
+}
+
+
+#removeImage{
+    margin-right: auto;
+    background-color: var(--scuRed);
+    color: white;
+    padding:0.5rem;
+    border:none;
+    border-radius: 6px;
+    transition:.2s all ease-in-out;
+}
+#removeImage:hover{
+    scale:1.05;
 }

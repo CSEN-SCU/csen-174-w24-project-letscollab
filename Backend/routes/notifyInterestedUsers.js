@@ -14,7 +14,7 @@ const transporter = nodemailer.createTransport({
 
   async function sendEmail(project, receivers, AuthorEmail) {
     // send mail with defined transport object
-    let receivers_ = receivers
+    let receivers_ = [...receivers]
     receivers_.push(AuthorEmail)
     return new Promise(async(resolve,reject)=>{
         transporter.sendMail({
@@ -49,7 +49,7 @@ module.exports = {
                     let res = await sendEmail(projectObject,interestedUsers,authorEmail)
                     if(res.status){ 
                         out_obj["info"]=res;
-                        out_obj["response"]="Email sent to interestedUsers";
+                        out_obj["response"]="Email sent to all interested users!";
                     }else{
                         out_obj["response"] = "Error sending email"
                     }

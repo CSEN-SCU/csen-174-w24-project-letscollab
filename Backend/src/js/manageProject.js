@@ -1,5 +1,10 @@
 let id;
-
+function setResponse(text, color){
+    $('#manageResponse').html(`${text}`).css("color",color);
+    setTimeout(()=>{
+        $("#manageResponse").html("");
+    },1250)
+}
 $(async () => {
     // Get list of all current skills
     let allSkills = await API.getSkills();
@@ -33,7 +38,7 @@ $(async () => {
     emailMembersBtn.click(async () => {
         console.log(`Notify interested users of prjoect ${projectData.ID} ${projectData.Name}`)
         let data = await API.notifyInterestedUsers(projectData.ID);
-        console.log(data);
+        setResponse(data.response,data.status ? "green" : "red");
     });
     // Project skills
     const projectSkillContainer = $("#projectskills");
@@ -84,6 +89,7 @@ $(async () => {
 
     // Hide project control panel if user is not owner
     if (localStorage.getItem("Email") !== projectData.AuthorEmail) {
+        $("#interestButton").show()
         $("#projectmanagercontrols *, #projectmanagercontrols").hide();
     }
 
