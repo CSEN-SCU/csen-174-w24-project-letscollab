@@ -49,12 +49,8 @@ $(async () => {
     updatePreviewName();
     updatePreviewLocation();
     updatePreviewDateTime();
+    
     //updatePreviewImage(null);
-    /*
-    updatePreviewName();
-    updatePreviewDescription();
-    updatePreviewDateTime();
-    updatePreviewLocation();
 
     // Create input listener for uploading project image
     $("#fileUpload").on("input", (event) => {
@@ -89,11 +85,12 @@ $(async () => {
     $("#locations").on("input", () => {
         updatePreviewLocation();
     });
+    
 
     $("#home").on("click", () => {
         window.location.href = "/projects";
     });
-
+    
     // Load skill list
     await loadSkillList(projectData["Skills Desired"]);
 

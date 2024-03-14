@@ -139,8 +139,7 @@ const createSkillElement = (container, skill) => {
     const newSkillName = $("<p>");
 
     // Add proper classes and content
-    newSkill.addClass(`
-}skill ${skill.skillType}`);
+    newSkill.addClass(`skill ${skill.skillType}`);
 
     newSkillIcon.addClass("skillicon");
     newSkillIcon.text("•");
