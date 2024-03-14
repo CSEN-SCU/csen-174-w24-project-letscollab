@@ -32,21 +32,13 @@ $(async () => {
 
     $("#name").val(projectData.Name);
     $("#description").val(projectData.Description);
-
     const date = new Date(projectData.Meetup.Time * 1000); // Convert seconds to milliseconds
     // Get the individual date and time components
-    const year = date.getFullYear();
-    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Month starts from 0
-    const day = date.getDate().toString().padStart(2, '0');
-    const hours = date.getHours().toString().padStart(2, '0');
-    const minutes = date.getMinutes().toString().padStart(2, '0');
-    const seconds = date.getSeconds().toString().padStart(2, '0');
-    $("#time").val(`${hours}:${minutes}:${seconds}`);
-    $("#date").val(`${year}-${month}-${day}`);
+    $("#time").val(`${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}:${date.getSeconds().toString().padStart(2, '0')}`);
+    $("#date").val(`${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`);
     $("#locations").val(projectData.Meetup.Location);
     $("#projectID").val(projectData.ID);
     const fff = document.getElementById("peopleRequired").options;
-    console.log(projectData.PeopleRequired);
     for (let i = 0; i < fff.length; ++i) {
         if (fff[i].value === projectData.PeopleRequired) {
             fff[i].selected = true;
@@ -62,8 +54,7 @@ $(async () => {
     updatePreviewName();
     updatePreviewDescription();
     updatePreviewDateTime();
-    updatePreviewDateTime();
-    updatePreviewLocation();*/
+    updatePreviewLocation();
 
     // Create input listener for uploading project image
     $("#fileUpload").on("input", (event) => {
@@ -262,6 +253,13 @@ const loadSkillList = async (skillsDesired) => {
     skills.forEach((skill) => {
         createSkillElement(container, skill, false, skillsDesired.includes(skill.skillName));
     });
+    for (let i of projectData["Skills Desired"]) {
+        let add = true;
+        skills.forEach((skill) => {
+            if (i === skill.skillName) add = false;
+        });
+        if (add) createSkillElement(container, {skillName: i, skillType: "cs"}, false, true);
+    }
 }
 
 /**
@@ -292,7 +290,7 @@ const createSkillElement = (container, skill, isPreview, selected) => {
             } else { // Otherwise, add it
                 newSkill.addClass("selected");
                 const previewContainer = $(".projectlist .skills");
-                createSkillElement(previewContainer, skill, true)
+                createSkillElement(previewContainer, skill, true, true);
             }
         });
     }
