@@ -143,11 +143,12 @@ mark {
 
 #projectmanagercontrols {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
     gap: 2%;
     padding: 3%;
     border-radius: 1rem;
-    background-color: var(--gray);
+    background-color: transparent;
     text-align: center;
 }
 
@@ -161,7 +162,8 @@ mark {
 #projectmanagercontrols #managebuttons p {
     display: flex;
     justify-content: center;
-    padding: 2%;
+    width:150px;
+    padding: 1rem;
     background-color: var(--dark-gray);
     border-radius: 1rem;
     transition: all 0.2s ease-in

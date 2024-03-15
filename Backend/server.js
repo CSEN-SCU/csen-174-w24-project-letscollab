@@ -81,7 +81,7 @@ app.get("/auth/google/callback",async(req,res)=>{
         let userProfile = await oAuth2.getUserInfo();
         let response = await oAuth2.createUserFromOAuth2(userProfile).catch((err) => console.log("WAAAAAAAAAAAAAA"));
         req.session.Email = userProfile.email;
-        res.redirect(`/login?status=done&redirectTo=${req.session.redirectTo}`);
+        res.redirect(`/login?status=done&redirectTo=${req.session.redirectTo?req.session.redirectTo:"/projects"}`);
     }
 })
 

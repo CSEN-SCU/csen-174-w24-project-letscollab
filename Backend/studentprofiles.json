@@ -177,7 +177,9 @@
         "ProjectsCreated": [
             "6b6697f4-f3a8-4e17-87a3-ae35bb2ce4f6"
         ],
-        "ProjectsInterested": []
+        "ProjectsInterested": [
+            "681d6db7-0c54-4bf2-946b-efd8e467873d"
+        ]
     },
     "rguioguio@scu.edu": {
         "FirstName": "Riley",
@@ -196,7 +198,8 @@
             "P1001"
         ],
         "ProjectsInterested": [
-            "P1002"
+            "P1002",
+            "681d6db7-0c54-4bf2-946b-efd8e467873d"
         ]
     },
     "sraghunath@scu.edu": {

@@ -1,0 +1,230 @@
+{
+    "john@scu.edu": {
+        "FirstName": "John",
+        "LastName": "Doe",
+        "Email": "john@scu.edu",
+        "GoogleID": "af7d373f-13a6-4af6-be94-f6bbfda197ce",
+        "Password": "",
+        "Year": "Sophomore",
+        "Description": "I am a Computer Science major seeking opportunities to gain experience in Ethics.",
+        "Skills": [
+            "ReactJS",
+            "Assembly",
+            "C"
+        ],
+        "ProjectsCreated": [
+            "78df1de0-390d-4591-a2d3-2c75717c0b7d"
+        ],
+        "ProjectsInterested": [
+            "4344cede-8822-45da-bdcc-ad841498e8cf"
+        ]
+    },
+    "jane@scu.edu": {
+        "FirstName": "Jane",
+        "LastName": "Doe",
+        "Email": "jane@scu.edu",
+        "GoogleID": "0abd9a97-89af-4ab3-850c-01e078a54324",
+        "Password": "",
+        "Year": "Freshman",
+        "Description": "I am a Business Administration major seeking opportunities to gain experience in ReactJS.",
+        "Skills": [
+            "Entrepreneurship",
+            "Arduino"
+        ],
+        "ProjectsCreated": [
+            "83edd5e3-cf74-4994-a57a-24e808041269"
+        ],
+        "ProjectsInterested": [
+            "a475fcc6-0a18-4c31-8c30-3e2a221f32cf"
+        ]
+    },
+    "joe@scu.edu": {
+        "FirstName": "Joe",
+        "LastName": "Doe",
+        "Email": "joe@scu.edu",
+        "GoogleID": "0d7dec6d-dc8d-4768-b351-d021bd94f32d",
+        "Password": "",
+        "Year": "Sophomore",
+        "Description": "I am a Engineering major seeking opportunities to gain experience in Sensors.",
+        "Skills": [
+            "Ruby",
+            "JavaScript",
+            "HTML"
+        ],
+        "ProjectsCreated": [
+            "c8b34fd3-0d8b-4b36-a199-31c11bd0ee48"
+        ],
+        "ProjectsInterested": [
+            "21898ea2-d495-4c38-9b99-fd11b49974de"
+        ]
+    },
+    "alice@scu.edu": {
+        "FirstName": "Alice",
+        "LastName": "Doe",
+        "Email": "alice@scu.edu",
+        "GoogleID": "a6b5bdf6-5d04-415d-8f16-f91999358146",
+        "Password": "",
+        "Year": "Junior",
+        "Description": "I am a Computer Science major seeking opportunities to gain experience in TypeScript.",
+        "Skills": [
+            "Python",
+            "JavaScript",
+            "Java",
+            "Networking",
+            "Rust"
+        ],
+        "ProjectsCreated": [
+            "d416838d-8ac1-4892-afab-4f6bc9616012"
+        ],
+        "ProjectsInterested": [
+            "d949172d-07ee-4bcc-9e72-3afc18cd06d6"
+        ]
+    },
+    "bob@scu.edu": {
+        "FirstName": "Bob",
+        "LastName": "Doe",
+        "Email": "bob@scu.edu",
+        "GoogleID": "d2376e87-1bc8-4466-b4a9-9e9029e44819",
+        "Password": "",
+        "Year": "Junior",
+        "Description": "I am a Business Administration major seeking opportunities to gain experience in Ruby.",
+        "Skills": [
+            "Management",
+            "Assembly",
+            "SQL",
+            "Computer Science"
+        ],
+        "ProjectsCreated": [
+            "402604e5-e78f-40ff-a918-99971499b4c2"
+        ],
+        "ProjectsInterested": [
+            "ec0a0dec-531e-4785-907a-aae2007ebd2e"
+        ]
+    },
+    "charlie@scu.edu": {
+        "FirstName": "Charlie",
+        "LastName": "Doe",
+        "Email": "charlie@scu.edu",
+        "GoogleID": "5cb43cf4-cfe8-415f-9570-dc459df01bd4",
+        "Password": "",
+        "Year": "Senior",
+        "Description": "I am a Engineering major seeking opportunities to gain experience in Sensors.",
+        "Skills": [
+            "Swift",
+            "Economics",
+            "Entrepreneurship",
+            "Arduino"
+        ],
+        "ProjectsCreated": [
+            "08e43040-2cab-442c-ac74-05694b2506ba"
+        ],
+        "ProjectsInterested": [
+            "33388d38-1c74-444d-968b-47da11d59f53"
+        ]
+    },
+    "markzucker@scu.edu": {
+        "FirstName": "Mark",
+        "LastName": "Zucker",
+        "Email": "markzucker@scu.edu",
+        "GoogleID": "38c99554-cbb7-466a-95a9-46f513b1fc39",
+        "Password": "",
+        "Year": "Senior",
+        "Description": "Aspiring tech entrepreneur with a passion for innovative solutions in social media and data.",
+        "Skills": [
+            "JavaScript",
+            "ReactJS",
+            "NodeJS",
+            "MongoDB",
+            "Express",
+            "HTML",
+            "CSS"
+        ],
+        "ProjectsCreated": [
+            "85df696a-7d04-44e9-94ef-f9cf022fd409",
+            "c48d06fe-2cbd-4f7a-ac0f-88c36757b5a0"
+        ],
+        "ProjectsInterested": []
+    },
+    "danny@scu.edu": {
+        "FirstName": "Danny",
+        "LastName": "Doe",
+        "Email": "danny@scu.edu",
+        "GoogleID": "62a92d39-c792-432c-b7bc-e8a57c327305",
+        "Password": "",
+        "Year": "Sophomore",
+        "Description": "I am a Computer Science major seeking opportunities to gain experience in CSS.",
+        "Skills": [
+            "Business",
+            "Management",
+            "ReactJS",
+            "PHP"
+        ],
+        "ProjectsCreated": [
+            "11eb0872-21e2-48cb-baa8-3c662328cbc3"
+        ],
+        "ProjectsInterested": [
+            "83edd5e3-cf74-4994-a57a-24e808041269"
+        ]
+    },
+    "erin@scu.edu": {
+        "FirstName": "Erin",
+        "LastName": "Doe",
+        "Email": "erin@scu.edu",
+        "GoogleID": "06d6dcf5-a8b1-41f8-9885-4d786d22eb9d",
+        "Password": "",
+        "Year": "Junior",
+        "Description": "I am a Engineering major seeking opportunities to gain experience in Kotlin.",
+        "Skills": [
+            "CSS",
+            "Networking"
+        ],
+        "ProjectsCreated": [
+            "4d51078e-b892-4b01-b90b-50ea5f03e561"
+        ],
+        "ProjectsInterested": [
+            "08e43040-2cab-442c-ac74-05694b2506ba"
+        ]
+    },
+    "fiona@scu.edu": {
+        "FirstName": "Fiona",
+        "LastName": "Doe",
+        "Email": "fiona@scu.edu",
+        "GoogleID": "e9edce96-0370-4655-8476-0b0a101ac788",
+        "Password": "",
+        "Year": "Freshman",
+        "Description": "I am a Computer Science major seeking opportunities to gain experience in Assembly.",
+        "Skills": [
+            "Management",
+            "Ethics",
+            "C#"
+        ],
+        "ProjectsCreated": [
+            "31f3b1c8-959b-4e0e-a8d2-215c77d10d99"
+        ],
+        "ProjectsInterested": [
+            "08e43040-2cab-442c-ac74-05694b2506ba"
+        ]
+    },
+    "fsalinas@scu.edu": {
+        "FirstName": "Francisco",
+        "LastName": "Salinas",
+        "Email": "fsalinas@scu.edu",
+        "GoogleID": "110594390120746253458",
+        "Password": "",
+        "Year": "Junior",
+        "Description": "Hi I'm definitely not a freshman",
+        "Skills": [
+            "Figma",
+            "ReactJS",
+            "C#",
+            "Computer Science",
+            "CSS",
+            "SQL",
+            "Entrepreneurship"
+        ],
+        "ProjectsCreated": [
+            "46882e4d-924a-47b7-9ec5-83a41669884a"
+        ],
+        "ProjectsInterested": []
+    }
+}

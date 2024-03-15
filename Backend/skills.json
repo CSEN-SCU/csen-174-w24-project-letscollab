@@ -118,5 +118,9 @@
     "Sensors": {
         "skillName": "Sensors",
         "skillType": "engr"
+    },
+    "Figma": {
+        "skillName": "Figma",
+        "skillType": "cs"
     }
 }

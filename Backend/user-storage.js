@@ -1,17 +1,20 @@
 const fs = require("fs").promises;
-//const log = require("../utils/log");
+const yaml = require('yaml-config')
+const config = yaml.readConfig("./config/config.yml",'default');
 
+let filePath = config.debug ? "./studentprofilestest.json" : './studentprofiles.json';
+console.log(`Using ${filePath} for student profiles because debug is ${config.debug}`);
 let data = {};
-fs.readFile("./studentprofiles.json")
+fs.readFile(filePath)
   .then((contents) => {
     if (contents) {
       data = JSON.parse(contents);
-      fs.writeFile("./studentprofiles.json", JSON.stringify(data,null,4));
+      fs.writeFile(filePath, JSON.stringify(data,null,4));
     }
   })
   .catch((err) => {
     if (err.code === "ENOENT") {
-      fs.writeFile("./studentprofiles.json", JSON.stringify({}));
+      fs.writeFile(filePath, JSON.stringify({}));
     }
   });
 
@@ -29,6 +32,6 @@ module.exports = {
   },
   setItem: (key, value) => {
     data[key] = value;
-    fs.writeFile("./studentprofiles.json", JSON.stringify(data,null,4));
+    fs.writeFile(filePath, JSON.stringify(data,null,4));
   },
 };

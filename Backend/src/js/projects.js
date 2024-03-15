@@ -70,6 +70,25 @@ $(async () => {
 })
 
 /**
+ * Hide an element with a fade out effect using setTimeout
+ * @param {*} element element to pass to function 
+ */
+function hideElement(element){
+    element.classList.add("opacityfadein");
+    setTimeout(()=>{
+        element.classList.add("hidden");
+    },250)
+}
+
+function unhideElement(element){
+    element.classList.remove("hidden");
+    element.classList.add("opacityfadein");
+    setTimeout(()=>{
+        element.classList.remove("opacityfadein");
+    },250)
+}
+
+/**
  * createProjectElement ()
  *
  * create a `section` element for each project
@@ -80,22 +99,29 @@ function createProjectElement(projObj)
 {
     /** each project has a `section` element with id _`projectID` */
     const projElement = document.createElement("section");
-    projElement.classList.add("projectlist");
+    projElement.classList.add("projectlist","opacityfadein");
     projElement.setAttribute("id", "_" + projObj["ID"]);
 
     /** append section to projectList (main) */
     projectList.append(projElement);
-
+    setTimeout(()=>{
+        projElement.classList.remove("opacityfadein");
+    },250)
     /** construct section elements */
     const figure = document.createElement("figure");
     const article = document.createElement("article");
 
     /** display the project image if it exists */
     const image = document.createElement("img");
-    if (projObj["CoverImage"].length > 0)
-        image.src = "data:image/png;base64," + projObj.CoverImage;
+    if (projObj["CoverImage"].length > 0){
+        if(projObj["CoverImage"].startsWith("https://")){
+            image.src = projObj["CoverImage"];
+        }else{
+            image.src = "data:image/png;base64," + projObj["CoverImage"];
+        }
+    }
     else
-        image.src = "../images/background.jpeg";
+        image.src = "https://cdn-icons-png.flaticon.com/512/2103/2103930.png"
 
     image.alt = "project icon";
 
@@ -257,8 +283,9 @@ function selectTab (index)
     const projects = document.getElementsByClassName("projectlist");
     // initially unhide all projects
     for (project of projects)
-    {
+    {   
        project.classList.remove("hidden");
+       project.classList.add("opacityfadein");
     }
 
     /** only show projects the user is interested in */
@@ -267,16 +294,26 @@ function selectTab (index)
         for (project of projects)
         {
             let projID = project.getAttribute("ID").substring(1);
-            if (!userInfo["ProjectsInterested"].includes(projID))
-                project.classList.add("hidden");
+            if (!userInfo["ProjectsInterested"].includes(projID)){
+                hideElement(project);
+            }else{
+                unhideElement(project);
+            }
         }
     /** only show projects created by the user */
     } else if (index === 2) {
         for (project of projects)
         {
             let projID = project.getAttribute("ID").substring(1);
-            if (!userInfo["ProjectsCreated"].includes(projID))
-                project.classList.add("hidden");
+            if (!userInfo["ProjectsCreated"].includes(projID)){
+                hideElement(project)
+            }else{
+                unhideElement(project);
+            }
+        }
+    }else{
+        for(project of projects){
+            unhideElement(project);
         }
     }
 }

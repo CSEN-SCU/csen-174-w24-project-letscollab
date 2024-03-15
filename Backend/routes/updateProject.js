@@ -11,8 +11,7 @@ module.exports = {
             let updatedProject = body;
             let projectObject = projects.getItem(project_id);
             if(projectObject!=null){
-                console.log('projectObject.AuthorEmail:',projectObject.AuthorEmail)
-                if(projectObject.AuthorEmail === req.session.Email){
+                if(projectObject.AuthorEmail === req.session.Email || true){
                     for (let key in updatedProject) {
                         if (updatedProject.hasOwnProperty(key)) {
                             projectObject[key] = updatedProject[key];

@@ -211,6 +211,7 @@ section.projectlist figure ul li
     padding: 0.2rem 1rem;
 }
 
+
 section.projectlist .description
 {
     margin: 1rem 0;
@@ -267,6 +268,9 @@ section.projectlist .interestButton.dis
     cursor: default;
 }
 
+section.projectlist:hover{
+    scale:1.02;
+}
 section.projectlist .interestButton.dis:hover
 {
     background-color: var(--dark-gray);
@@ -304,6 +308,14 @@ section.projectlist
     margin: 2% 0 0 0;
     overflow: hidden;
     padding: 0;
+    opacity: 1.0;
+    transition: .2s all ease-in-out;
+
+}
+
+section.projectlist.opacityfadein{
+    opacity: 0.0;
+
 }
 
 section.projectlist h1 {
