@@ -17,12 +17,21 @@ input,textarea,select{
     border-radius: 12px;
     padding:0.3rem;
     font-size: large;
+    font-family: "Onest", sans-serif;
     opacity: 0.6;
     resize: none;
     transition: .2s all ease-in-out;
     max-width: 75%;
 }
+input:focus,textarea:focus,select:focus{
+    opacity: 1.0;
+    padding:1rem;
+}
+label{
+    font-weight: 500;
+    font-size: large;
 
+}
 
 .meetup-details{
     display: flex;
