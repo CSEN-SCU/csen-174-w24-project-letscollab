@@ -16,7 +16,8 @@ html, body
     display: flex;
     flex-direction: column;
     justify-content: center;
-    font-family: 'Trebuchet MS', sans-serif;
+    font-family: "Onest", sans-serif;
+
 }
 
 #homePageButton{
@@ -98,6 +99,7 @@ img
 
 .skills
 {
+    padding-top: 0.5rem;
     display: flex;
     flex-wrap: wrap;
     gap: 2%;
@@ -111,6 +113,7 @@ img
 /* Skills */
 .skill
 {
+    cursor: pointer;
     display: flex;
     padding: 5px 10px 5px 10px;
     border-radius: 10px;
@@ -222,7 +225,7 @@ section.projectlist aside
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    
     margin: 0;
     padding: 1rem;
     width: 30%;
@@ -233,55 +236,90 @@ section.projectlist aside *
     margin: 0;
     padding: 0;
 }
-
-section.projectlist .interestButton
+section.projectlist .interestSection
 {
+    display: flex;
+    flex-direction: column;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-bottom: 2rem;
+    gap:10px;
+    justify-content: center;
+}
+section.projectlist .interestSection .interestButton
+{
+
     background-color: var(--white);
     border-radius: 1rem;
     cursor: pointer;
     padding: 1rem;
     text-align: center;
-    transition: all .5s;
-    margin-bottom: 5%;
+    transition: all .2s;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
-section.projectlist .interestButton.selected
+section.projectlist .timeSince{
+    top:0;
+    font-weight: 700;
+    cursor: none;
+    text-align: right;
+    height: 5%;
+}
+
+section.projectlist .interestSection .interestButton.selected
 {
     background-color: var(--scuRed);
     color: var(--white);
 }
 
-section.projectlist .interestButton.selected:hover
+section.projectlist .interestSection .interestButton.selected:hover
 {
     background-color: var(--scuRed);
 }
 
-section.projectlist .interestButton:hover
+section.projectlist .interestSection .interestButton:hover
 {
+    scale:1.02;
     background-color: var(--background-color);
 }
 
 /** disabled if you created this project */
-section.projectlist .interestButton.dis
+section.projectlist .interestSection .interestButton.dis
 {
-    background-color: var(--dark-gray);
-    cursor: default;
+    background-color: var(--background-color);
 }
 
 section.projectlist:hover{
     scale:1.02;
 }
-section.projectlist .interestButton.dis:hover
+section.projectlist .interestSection .interestButton.dis:hover
 {
     background-color: var(--dark-gray);
 }
 
+/** if the project is your project**/
+section.projectlist .interestSection .interestButton.myproject
+{
+    color:white;
+    background-color: var(--scuRed);
+}
+
+section.projectlist .interestSection .interestButton.myproject:hover
+{
+    background-color: var(--scuDarkRed);
+}
+
 /** text to show interested people */
-section.projectlist nav
+section.projectlist .interestSection nav
 {
     /* background-color: orange; */
+    margin-bottom: auto;
+    opacity:0.5;
     display: flex;
+    font-weight: 600;
     justify-content: center;
+    flex-direction: row;
     gap: 0.2rem;
     text-wrap: nowrap;
 }

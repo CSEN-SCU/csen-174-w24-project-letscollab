@@ -103,6 +103,7 @@ mark {
 
 #projectskills, #projectbody .skills {
     justify-content: center;
+    padding:1rem;
 }
 
 #participantscontainer {

@@ -22,6 +22,35 @@ let userSkills;
 /**
  * asynchronous function on page load
  */
+
+
+function timeSince(epoch) {
+    const seconds = Math.floor((Date.now() - epoch) / 1000);
+
+    let interval = seconds / 31536000;
+    if (interval > 1) {
+        return "Posted " + Math.floor(interval) + "yr" + (Math.floor(interval) > 1 ? "s" : "") + " ago";
+    }
+    interval = seconds / 2592000;
+    if (interval > 1) {
+        return "Posted " + Math.floor(interval) + "mo" + (Math.floor(interval) > 1 ? "s" : "") + " ago";
+    }
+    interval = seconds / 86400;
+    if (interval > 1) {
+        return "Posted " + Math.floor(interval) + "d" + (Math.floor(interval) > 1 ? "s" : "") + " ago";
+    }
+    interval = seconds / 3600;
+    if (interval > 1) {
+        return "Posted " + Math.floor(interval) + "hr" + (Math.floor(interval) > 1 ? "s" : "") + " ago";
+    }
+    interval = seconds / 60;
+    if (interval > 1) {
+        return "Posted " + Math.floor(interval) + "min" + (Math.floor(interval) > 1 ? "s" : "") + " ago";
+    }
+    return "Posted " + Math.floor(seconds) + "sec" + (Math.floor(seconds) > 1 ? "s" : "") + " ago";
+}
+
+
 $(async () => {
     /** remove demo project */
     document.querySelector("section").remove();
@@ -144,6 +173,10 @@ function createProjectElement(projObj)
     meetLoc.classList.add("meetlocation");
     meetLoc.innerHTML = "Location: " + projObj.Meetup.Location;
 
+    const meetOrganizer = document.createElement("h3");
+    meetOrganizer.classList.add("organizer");
+    meetOrganizer.innerHTML = "Organizer: " + projObj.AuthorEmail;
+
     const desiredSkills = document.createElement("h3");
     desiredSkills.innerHTML = "Desired Skills:";
 
@@ -173,19 +206,26 @@ function createProjectElement(projObj)
     }
 
     const aside = document.createElement("aside");
-
+    
     const interestButton = document.createElement("p");
     interestButton.classList.add("interestButton");
     interestButton.innerHTML = "Show Interest";
-  
+    
+    const timeSinceP = document.createElement("p");
+    timeSinceP.classList.add("timeSince");
+    timeSinceP.innerHTML = timeSince(projObj.CreatedAt);
     /** boolean - is the user interested in this project */
     const USERINTERESTED = userInfo["ProjectsInterested"].includes(projObj["ID"]);
 
     /** disable interest button for your own projects */
     if (userInfo["ProjectsCreated"].includes(projObj["ID"]))
     {
-        interestButton.classList.add("dis");
-        interestButton.innerHTML = "Your Project";
+        interestButton.classList.add("myproject");
+        interestButton.innerHTML = "View My Project";
+        interestButton.addEventListener("click", function(event) {
+            event.stopPropagation();
+            window.location.href = `/manageProject?id=${projObj.ID}`
+        });
     }
     /** disable button if project is full and user is not already interested */
     else if ((projObj["Interested Users"].length == projObj["PeopleRequired"]) && !USERINTERESTED)
@@ -237,6 +277,9 @@ function createProjectElement(projObj)
         window.location.href = `/manageProject?id=${projObj.ID}`;
     });
 
+    const interestSection = document.createElement("div");
+    interestSection.classList.add("interestSection");
+
     /** construct project section */
     projElement.append(figure);
     figure.append(article);
@@ -245,15 +288,17 @@ function createProjectElement(projObj)
     figure.append(desc);
     figure.append(meetTime);
     figure.append(meetLoc);
+    figure.append(meetOrganizer);
     figure.append(desiredSkills);
     figure.append(skills);
     projElement.append(aside);
-    aside.append(interestButton);
-
     peopleNav.append(people1);
     peopleNav.append(people2);
     peopleNav.append(people3);
-    aside.append(peopleNav);
+    interestSection.append(interestButton);
+    interestSection.append(peopleNav);
+    aside.append(timeSinceP)
+    aside.append(interestSection);
 }
 
 /**

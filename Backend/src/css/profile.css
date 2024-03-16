@@ -62,7 +62,7 @@ input,textarea,select{
     background-color: var(--scuRed);
     color: white;
     border-style: solid;
-    border-color: black;
+    border:none;
     padding: 2% 4% 2% 4%;
     margin-right: 3%;
     border-width: thin;
