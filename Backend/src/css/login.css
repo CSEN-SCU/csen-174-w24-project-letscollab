@@ -1,6 +1,14 @@
 main {
     min-width: 30%;
     width: auto;
+    
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75vh;
 }
 
 main none {
