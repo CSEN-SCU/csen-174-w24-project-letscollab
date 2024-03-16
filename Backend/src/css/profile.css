@@ -6,7 +6,6 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: xx-large;
     margin-bottom: 5%;
 }
 
@@ -18,8 +17,13 @@ main {
     margin: 0 0 3% 0;
 }
 
-.userinfo label, textarea, input, select {
-    font-size: large;
+.userinfo textarea, input, select {
+    font-weight: 450;
+    padding:0.3rem;
+}
+label{
+    font-weight: 500;
+
 }
 
 .userinfo textarea {
@@ -52,7 +56,6 @@ input,textarea,select{
     border: 0px;
     border-radius: 12px;
     padding:0.3rem;
-    font-size: large;
     opacity: 0.6;
     resize: none;
     transition: .2s all ease-in-out;

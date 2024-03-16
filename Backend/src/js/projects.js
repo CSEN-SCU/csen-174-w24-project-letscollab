@@ -173,10 +173,24 @@ function createProjectElement(projObj)
     meetLoc.classList.add("meetlocation");
     meetLoc.innerHTML = "Location: " + projObj.Meetup.Location;
 
+    const meetOrganizerDiv = document.createElement("div");
+    meetOrganizerDiv.id = "organizerDiv";
+    
     const meetOrganizer = document.createElement("h3");
     meetOrganizer.classList.add("organizer");
-    meetOrganizer.innerHTML = "Organizer: " + projObj.AuthorEmail;
+    meetOrganizer.innerHTML = "Organizer:"
 
+    const meetOrganizerName = document.createElement("button");
+    meetOrganizerName.classList.add("organizername");
+    meetOrganizerName.id = "organizername";
+    meetOrganizerName.innerHTML = projObj.AuthorEmail;
+    meetOrganizerDiv.append(meetOrganizer);
+    meetOrganizerDiv.append(meetOrganizerName);
+
+    meetOrganizerName.addEventListener("click", function(event) {
+        event.stopPropagation();
+        window.location.href = `/viewProfile?id=${projObj.AuthorEmail}`;
+    })
     const desiredSkills = document.createElement("h3");
     desiredSkills.innerHTML = "Desired Skills:";
 
@@ -221,7 +235,7 @@ function createProjectElement(projObj)
     if (userInfo["ProjectsCreated"].includes(projObj["ID"]))
     {
         interestButton.classList.add("myproject");
-        interestButton.innerHTML = "View My Project";
+        interestButton.innerHTML = "Manage Project";
         interestButton.addEventListener("click", function(event) {
             event.stopPropagation();
             window.location.href = `/manageProject?id=${projObj.ID}`
@@ -269,13 +283,14 @@ function createProjectElement(projObj)
 
     // Project should go to project management page after click
     projElement.addEventListener("click", () => {
+        event.preventDefault();
         window.location.href = `/manageProject?id=${projObj.ID}`
     });
 
     /** project redirects to `manageProject` page on click */
-    projElement.addEventListener("click", () => {
-        window.location.href = `/manageProject?id=${projObj.ID}`;
-    });
+    // projElement.addEventListener("click", () => {
+    //     window.location.href = `/manageProject?id=${projObj.ID}`;
+    // });
 
     const interestSection = document.createElement("div");
     interestSection.classList.add("interestSection");
@@ -288,7 +303,7 @@ function createProjectElement(projObj)
     figure.append(desc);
     figure.append(meetTime);
     figure.append(meetLoc);
-    figure.append(meetOrganizer);
+    figure.append(meetOrganizerDiv);
     figure.append(desiredSkills);
     figure.append(skills);
     projElement.append(aside);

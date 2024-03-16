@@ -246,6 +246,24 @@ section.projectlist .interestSection
     gap:10px;
     justify-content: center;
 }
+.organizername{
+    background:transparent;
+    border:none;
+    font-weight: 600;
+    color: var(--black);
+    margin-left: 0.3rem;
+    font-size: large;
+    text-align: center;
+    transition: .2s all ease-in-out;
+
+}
+.organizername:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+#organizerDiv *{
+    display:inline-block;
+}
 section.projectlist .interestSection .interestButton
 {
 

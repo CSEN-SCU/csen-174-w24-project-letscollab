@@ -34,6 +34,15 @@
                     <h3 id="meettime">Meetup Time: x</h3>
                     <h3 id="meetlocation">Meetup Location: x</h3>
                     <h3 id="projectowner"> Project Creator: x</h3>
+                    <div id="projectmanagercontrols">    
+                        <div id="managebuttons">
+                            <p id="emailmembers">Email Members</p>
+                            <p id="editproject"  >Edit Project</p>
+                            <p id="deleteproject" >Delete Project</p>
+                        </div>
+                    </div>
+                    <p hidden id="interestButton" class="interestButton">Show Interest</p>
+                    <p id="manageResponse"></p>
                 </aside>
                 <div id="skillspanel">
                     <h3>Desired Skills</h3>
@@ -43,31 +52,17 @@
 
                 </div>
             </header>
-            <div id="projectmanagercontrols">    
-                <div id="managebuttons">
-                    <p id="emailmembers">Email Members</p>
-                    <p id="editproject">Edit Project</p>
-                    <p id="deleteproject">Delete Project</p>
-                </div>
-                <p id="manageResponse"></p>
-            </div>
+           
             <div id="projectbody">
                 <div id="participantscontainer">
                     <h4>Participants: 0/x</h4>
                     <ul id="participants"></ul>
                 </div>
+                <br>
+                <button id="homebutton" onclick="window.location.href = '/projects'">Back</button>
 
-                <div id="interestpanel">
-                    <figure id="interest"><p hidden id="interestButton" class="interestButton" onclick="showInterest(this)">Show Interest</p></figure>
-                </div>
             </div>
         </div>
-
-        
-
-        <figure id="homebuttoncontainer">
-            <button id="homebutton" onclick="window.location.href = '/projects'">Home</button>
-        </figure>
     </main>
 </body>
 </html>

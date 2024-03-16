@@ -31,7 +31,7 @@ async function getRelatedProjects(projects,elem){
     
         // Process the results
         results.forEach(project => {
-            elem.append(`<li><a href="/viewProject?id=${project.ID}">${project.Name}</a><li>`);
+            elem.append(`<li><a href="/manageProject?id=${project.ID}">${project.Name}</a><li>`);
         });
     } catch (error) {
         // This catches any errors from the API calls

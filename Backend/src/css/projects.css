@@ -58,25 +58,31 @@ header ul li:hover
     font-family: "Onest", sans-serif;
     transition: .2s all ease-in-out;
     width: 90%;
+    
+}
+
+#searchprojects:focus {
+    outline:6px solid rgba(0,0,0,0.5)
 }
 
 #searchicon{
     width: 30px;
     height: 30px;
+    transition: .2s all ease-in-out;
 }
 
 #searchicon:hover{
-    scale:1.05;
+    scale:1.5;
 }
 
 #searchbar{
     font-family: "Onest", sans-serif;
     display:flex;
+    justify-content:left;
     flex-direction: row;
     border-radius: 16px;
     align-items: center;
     gap:10px;
-    width:50%;
     padding:10px;
     background-color: var(--scuRed);
 }

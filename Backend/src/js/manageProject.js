@@ -3,10 +3,53 @@ function setResponse(text, color){
     $('#manageResponse').html(`${text}`).css("color",color);
     setTimeout(()=>{
         $("#manageResponse").html("");
-    },1250)
+    },1500)
 }
+let userInfo = {};
+/**
+ * showInterest ()
+ * @button was pressed
+ * @projObj project object we are marking (dis)interest in
+ * 
+ */
+async function showInterest(button, projObj)
+{
+
+    let isSelected = button.html() == "Show Interest";
+    /** update userProfiles and projects json files with API call */
+    await API.setProjectInterest(projObj.ID,isSelected).then(response => {
+        if(response){
+            if(isSelected){
+                button.html("Remove Interest");
+            }else{
+                
+                button.html("Show Interest");
+            }
+            setResponse(response.response,"green");
+        }else{
+            setResponse("Error marking interest in project","red"); //error message
+        }
+       //set project interest
+
+    }).catch(err => {
+        console.error("error marking interest in project: " + err);
+    })
+
+    /** UPDATE user info from the API */
+    await API.getMyInfo().then(response => {
+        userInfo = response.data;
+    }).catch(err => {
+        console.error("error updating user info: " + err);
+    })
+}
+
 $(async () => {
     // Get list of all current skills
+    await API.getMyInfo().then(response => {
+        userInfo = response.data;
+    }).catch(err => {
+        console.error("error fetching user info: " + err);
+    })
     let allSkills = await API.getSkills();
     allSkills = allSkills.data;
 
@@ -28,7 +71,7 @@ $(async () => {
     id = projectData.ID;
     $("#project aside h1").html(projectData.Name); // Name
     $("#project aside #description").html(projectData.Description); // Description
-    $("#project figure img").attr("src", projectData.CoverImage.length > 0 ? "data:image/png;base64," + projectData.CoverImage : "../images/background.jpeg"); // Cover image
+    $("#project figure img").attr("src", projectData.CoverImage.length > 0 ? (projectData["CoverImage"].startsWith("https://")? projectData["CoverImage"]:"data:image/png;base64," + projectData.CoverImage): "https://cdn-icons-png.flaticon.com/512/2103/2103930.png"); // Cover image
     $("#project aside #meetlocation").html(`Meetup Location: ${projectData.Meetup.Location}`); // Meetup location
     $("#project aside #projectowner").html(`Project Creator: ${projectData.AuthorEmail}`);
     // Project date
@@ -79,19 +122,33 @@ $(async () => {
         user.Skills.forEach((skill) => {
             if (projectData["Skills Desired"].includes(skill)) createSkillElement(skillContainer, allSkills[skill]);
         });
-
+        newPerson.attr("id", user.Email)
         newPerson.append(name);
         newPerson.append(email);
         newPerson.append(skillContainer);
-
+        newPerson.click(() => {
+            window.location.href = `/viewProfile?id=${user.Email}`;
+        });
         participantsList.append(newPerson);
     });
 
     // Hide project control panel if user is not owner
     if (localStorage.getItem("Email") !== projectData.AuthorEmail) {
         $("#interestButton").show()
+        console.log(interestedUsers, userInfo.Email)
+        if(projectData["Interested Users"].includes(userInfo.Email)){
+            $("#interestButton").html("Remove Interest");
+        }else{
+            $("#interestButton").html("Show Interest");
+        }
+        $("#interestButton").click(async () => {
+            let element = $("#interestButton");
+            showInterest(element, projectData);
+        });
         $("#projectmanagercontrols *, #projectmanagercontrols").hide();
-    }
+    }else{
+        $("#projectmanagercontrols *, #projectmanagercontrols").show();
+    }    
 
     // Create functionality for project control
     const deleteButton = $("#deleteproject");
