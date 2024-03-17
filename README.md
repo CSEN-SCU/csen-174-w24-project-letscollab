@@ -1,11 +1,11 @@
 # LetsCollab
 
-FOR SCU students looking to build project experience
-WHO are looking for peers with unique skillsets
-LET’S COLLAB is a DESKTOP APPLICATION
-THAT enables students to meet others with project ideas.
-UNLIKE SLACK,
-OUR PRODUCT allows students to quickly reach a wide audience and start collaborating
+FOR SCU students looking to build software projects for experienice
+WHO are lack necessary skills to execute their project and are looking for peers with desired project skills
+LET’S COLLAB is a WEB APPLICATION
+THAT enables students to meet and collaborate with others on project ideas that are submitted to the project dashboard.
+UNLIKE GITHUB or DEVPOST,
+OUR PRODUCT allows students to reach and connect with other students in their organizational network through joint project interest 
 
 
 1. clone git repo through command line
@@ -19,3 +19,9 @@ OUR PRODUCT allows students to quickly reach a wide audience and start collabora
 5. access pages through html name
 - login page http://localhost/login
 - create projects page http://localhost/projects
+
+
+[![Image from Gyazo](https://i.gyazo.com/9ec347dfc0221f5219a89156d17f6d53.png)](https://gyazo.com/9ec347dfc0221f5219a89156d17f6d53)
+[![Image from Gyazo](https://i.gyazo.com/d0c8001de4901e863aef7617aa65017d.png)](https://gyazo.com/d0c8001de4901e863aef7617aa65017d)
+[![Image from Gyazo](https://i.gyazo.com/37908120d267bc4dd7632e3a16e7200e.png)](https://gyazo.com/37908120d267bc4dd7632e3a16e7200e)
+[![Image from Gyazo](https://i.gyazo.com/f671464f496519530b60282e4f98881b.png)](https://gyazo.com/f671464f496519530b60282e4f98881b)
