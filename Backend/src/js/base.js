@@ -18,6 +18,9 @@ $(function() {
         $('#password').attr('type', type);
     });
 });
+const delay = (time) => {
+    return new Promise(resolve => setTimeout(resolve, time));
+}
 
 /**
  * Initializes user icon text on every page (the thing in the top right)

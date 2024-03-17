@@ -14,7 +14,7 @@ function validateProject(project) {
 }
 const toTimestampString = () => {
     const dt = new Date().getTime();
-    return Math.floor(dt / 1000);
+    return Math.floor(dt);
 }
 module.exports = {
     name: "createProject",

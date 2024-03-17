@@ -10,7 +10,7 @@ function toUnixTimestamp (date,time)
     const date_ = new Date(dateString);
 
     // Convert to Unix timestamp (in seconds)
-    const unixTimestamp = Math.floor(date_.getTime() / 1000);
+    const unixTimestamp = Math.floor(date_.getTime()/1000);
 
     return unixTimestamp;
 }
@@ -325,7 +325,12 @@ function getSkillNamesArray() {
     return skillNames;
   }
   
-  function setResponse(text, color){
+  function setLoader(){
+    $('#formSubmitResponse').addClass("loader");
+  }
+  async function setResponse(text, color){
+    await delay(250);
+    $('#formSubmitResponse').removeClass("loader");
     $('#formSubmitResponse').html(`${text}`).css("color",color);
     setTimeout(()=>{
         $(this).html("");
@@ -346,6 +351,7 @@ const fileToDataURL = async(file) =>{
 
 projectForm.addEventListener("submit",async (event)=>{
     event.preventDefault();
+    setLoader();
     const form = new FormData(projectForm);
     const obj = Object.fromEntries(form.entries());
     let date = toUnixTimestamp(obj["date"],obj["time"]);
@@ -380,9 +386,9 @@ projectForm.addEventListener("submit",async (event)=>{
             setResponse(data.response,"green")
         }
 
-        await delay(2000);
-
-        window.location.href = "/projects";
+        await delay(1000);
+        console.log(data);
+        window.location.href = `/manageProject?id=${data.data.ID}`;
 
     }).catch(err=>{
         console.log(err);

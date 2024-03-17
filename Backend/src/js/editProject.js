@@ -390,7 +390,13 @@ function getSkillNamesArray() {
     return skillNames;
   }
   
-function setResponse(text, color){
+function setLoader(){
+    $('#formSubmitResponse').addClass("loader");
+
+}
+async function setResponse(text, color){
+    await delay(250);
+    $('#formSubmitResponse').removeClass("loader");
     $('#formSubmitResponse').html(`${text}`).css("color",color);
     setTimeout(()=>{
         $('#formSubmitResponse').html("");
@@ -430,7 +436,7 @@ function getBase64FromImage() {
 }
 
 projectForm.addEventListener("submit",async (event)=>{
-    console.log('submit from form')
+    setLoader();
     event.preventDefault();
     let projectID = $("#projectID").val();
     const form = new FormData(projectForm);

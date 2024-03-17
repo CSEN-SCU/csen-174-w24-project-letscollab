@@ -49,7 +49,7 @@ module.exports = {
                     let res = await sendEmail(projectObject,interestedUsers,authorEmail)
                     if(res.status){ 
                         out_obj["info"]=res;
-                        out_obj["response"]="Email sent to all interested users!";
+                        out_obj["response"]=`Email sent to ${res.receivers.length} interested user(s)!`;
                     }else{
                         out_obj["response"] = "Error sending email"
                     }

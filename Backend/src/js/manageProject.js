@@ -1,9 +1,14 @@
 let id;
-function setResponse(text, color){
+async function setResponse(text, color){
+    await delay(250);
+    $('#manageResponse').removeClass("loader");
     $('#manageResponse').html(`${text}`).css("color",color);
     setTimeout(()=>{
         $("#manageResponse").html("");
     },1500)
+}
+function setLoadingResponse(){
+    $('#manageResponse').addClass("loader");
 }
 let userInfo = {};
 /**
@@ -79,7 +84,7 @@ $(async () => {
     $("#project aside #meettime").html("Meetup Time: " + date.toLocaleString());
     let emailMembersBtn = $("#emailmembers");
     emailMembersBtn.click(async () => {
-        console.log(`Notify interested users of prjoect ${projectData.ID} ${projectData.Name}`)
+        setLoadingResponse();
         let data = await API.notifyInterestedUsers(projectData.ID);
         setResponse(data.response,data.status ? "green" : "red");
     });
@@ -154,21 +159,19 @@ $(async () => {
     // Create functionality for project control
     const deleteButton = $("#deleteproject");
     deleteButton.click(async () => {
+        setLoadingResponse();
         let res = await API.deleteProject(projectData.ID);
         if(res.status){
             setResponse(res.response,"green");
             setTimeout(()=>{
                 window.location.href = "/projects";
-            },2000);
+            },1000);
         }else{
             setResponse(res.response,"red");
         }
     });
 });
 
-$("#emailmembers").click(function() {
-    console.log("Email sent");
-});
 
 $("#editproject").click(function() {
     window.location.href = `/editProject?id=${id}`;
