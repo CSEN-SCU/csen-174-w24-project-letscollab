@@ -135,10 +135,13 @@ const updatePreviewImage = (event) => {
  */
 const updatePreviewFromBinarySource = (base64String) => {
     // Construct the src for the image
-    const imageSrc = `data:image/jpeg;base64,${base64String}`; // Assume JPEG for simplicity, adjust if necessary
-
-    // Use jQuery to find the preview image element and set its src attribute
     const previewElement = $(".projectlist img");
+    if(base64String.startsWith("https://")){
+            previewElement.attr("src", base64String);
+            return;
+    }
+    const imageSrc = `data:image/jpeg;base64,${base64String}`; // Assume JPEG for simplicity, adjust if necessary
+    // Use jQuery to find the preview image element and set its src attribute
     previewElement.attr("src", imageSrc);
     $('#preview').attr('src', imageSrc).show();
     $("#removeImage").show();
@@ -409,6 +412,9 @@ function getBase64FromImage() {
     // Assuming the image has an id="preview"
     var imageData = $('#preview').attr('src');
     if (imageData) {
+        if(imageData.startsWith("https://")){
+            return imageData;
+        }
         // Optional: Check if it's indeed base64 data
         if (imageData.indexOf('data:image') === 0) {
             // Image data is in base64 format

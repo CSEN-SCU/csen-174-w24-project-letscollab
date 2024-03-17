@@ -22,22 +22,77 @@ let userSkills;
 /**
  * asynchronous function on page load
  */
+function sortProject(){
+    document.getElementById('sort-recent').addEventListener('click', function() {
+        // Get the container that holds all projects
+        this.classList.add("active");
+        document.getElementById('sort-relevance').classList.remove("active");
+        // Convert NodeList to Array to use the sort method
+        const projects = Array.from(document.querySelectorAll('section.projectlist:not(.hidden)'));
+        
+        // Sort projects based on the data-posted-time attribute
+        projects.sort((a, b) => {
+          return b.getAttribute('data-posted-time') - a.getAttribute('data-posted-time');
+        });
+      
+        // Re-append projects in sorted order
+        projects.forEach(project => {
+          projectList.appendChild(project);
+          unhideElement(project,100);
+        });
+      });
 
+      document.getElementById('sort-relevance').addEventListener('click', function() {
+
+        this.classList.add("active");
+        document.getElementById('sort-recent').classList.remove("active");
+        // Get the container that holds all projects
+        // Convert NodeList to Array to use the sort method
+        const projects = Array.from(document.querySelectorAll('section.projectlist:not(.hidden)'));
+
+        // Sort projects based on the data-posted-time attribute
+        projects.sort((a, b) => {
+            let aSkills = a.getAttribute('skills').split(",");
+            let bSkills = b.getAttribute('skills').split(",");
+            let aMatched = 0;
+            let bMatched = 0;
+            for(skill of aSkills){
+                if(userSkills.includes(skill)){
+                    aMatched++;
+                }
+            }
+            for(skill of bSkills){
+                if(userSkills.includes(skill)){
+                    bMatched++;
+                }
+            }
+            return bMatched - aMatched;
+        });
+      
+        // Re-append projects in sorted order
+        projects.forEach(project => {
+          projectList.appendChild(project);
+          unhideElement(project,100);
+          
+        });
+      });
+      
+}
 
 function timeSince(epoch) {
     const seconds = Math.floor((Date.now() - epoch) / 1000);
 
     let interval = seconds / 31536000;
     if (interval > 1) {
-        return "Posted " + Math.floor(interval) + "yr" + (Math.floor(interval) > 1 ? "s" : "") + " ago";
+        return "Posted " + Math.floor(interval) + " year" + (Math.floor(interval) > 1 ? "s" : "") + " ago";
     }
     interval = seconds / 2592000;
     if (interval > 1) {
-        return "Posted " + Math.floor(interval) + "mo" + (Math.floor(interval) > 1 ? "s" : "") + " ago";
+        return "Posted " + Math.floor(interval) + " month" + (Math.floor(interval) > 1 ? "s" : "") + " ago";
     }
     interval = seconds / 86400;
     if (interval > 1) {
-        return "Posted " + Math.floor(interval) + "d" + (Math.floor(interval) > 1 ? "s" : "") + " ago";
+        return "Posted " + Math.floor(interval) + " day" + (Math.floor(interval) > 1 ? "s" : "") + " ago";
     }
     interval = seconds / 3600;
     if (interval > 1) {
@@ -64,7 +119,7 @@ $(async () => {
 
     /** extract user skills */
     userSkills = userInfo["Skills"];
-    
+    sortProject();
     /** fetch object of all projects from API */
     await API.getAllProjects().then(response => {
         let projects = response.data;
@@ -86,6 +141,7 @@ $(async () => {
         }
 
         /** sort projArray descending by # of matching skills */
+        document.getElementById('sort-relevance').classList.add("active");
         projArray.sort((a, b) => b.matchedSkills - a.matchedSkills);
 
         /** `proj` is an object -> create it's HTML element */
@@ -109,12 +165,12 @@ function hideElement(element){
     },250)
 }
 
-function unhideElement(element){
+function unhideElement(element,time=250){
     element.classList.remove("hidden");
     element.classList.add("opacityfadein");
     setTimeout(()=>{
         element.classList.remove("opacityfadein");
-    },250)
+    },time)
 }
 
 /**
@@ -130,7 +186,8 @@ function createProjectElement(projObj)
     const projElement = document.createElement("section");
     projElement.classList.add("projectlist","opacityfadein");
     projElement.setAttribute("id", "_" + projObj["ID"]);
-
+    projElement.setAttribute("data-posted-time", projObj["CreatedAt"]);
+    projElement.setAttribute("skills", projObj["Skills Desired"].join(","));
     /** append section to projectList (main) */
     projectList.append(projElement);
     setTimeout(()=>{
@@ -334,7 +391,8 @@ function selectTab (index)
         window.location.href = '/createProject'
         return;
     }
-
+    document.getElementById('sort-recent').classList.remove("active");
+    document.getElementById('sort-relevance').classList.remove("active");
     // change active tab
     tabs[currentTab].classList.remove("active");
     currentTab = index;
@@ -412,6 +470,17 @@ async function showInterest (button, projObj)
             let index = projObj["Interested Users"].indexOf(userInfo["Email"]);
             if (index != -1)
                 projObj["Interested Users"].splice(index, 1);
+            if(currentTab==1){
+                const projects = document.getElementsByClassName("projectlist");
+                for (project of projects)
+                {
+                    let projID = project.getAttribute("ID").substring(1);
+                    if(projID == projObj.ID){
+                        hideElement(project);
+                        continue;
+                    }
+                }
+            }
         }
 
         /** update button */
@@ -443,10 +512,12 @@ async function showInterest (button, projObj)
 searchBar.addEventListener('input', function() {
     /** sanitize user input */
     let input = searchBar.value.toLowerCase();
-
+    document.getElementById('sort-recent').classList.remove("active");
+    document.getElementById('sort-relevance').classList.remove("active");
     /** filter if user added input */
     if (input.length > 0)
     {
+        
         for (let i = 0; i < projectHTMLs.length; ++i)
         {
             if (projArray[i].Name.toLowerCase().includes(input))

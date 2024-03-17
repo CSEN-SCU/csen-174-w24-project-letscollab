@@ -1,4 +1,6 @@
 const projects = require('../project-storage.js');
+
+
 module.exports = {
     name: "updateProject",
     method:'POST',
@@ -11,7 +13,7 @@ module.exports = {
             let updatedProject = body;
             let projectObject = projects.getItem(project_id);
             if(projectObject!=null){
-                if(projectObject.AuthorEmail === req.session.Email || true){
+                if(projectObject.AuthorEmail === req.session.Email){
                     for (let key in updatedProject) {
                         if (updatedProject.hasOwnProperty(key)) {
                             projectObject[key] = updatedProject[key];

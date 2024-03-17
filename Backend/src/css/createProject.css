@@ -45,15 +45,15 @@ label{
 #createproject header, #editproject header {
     font-size: x-large;
     font-weight: bold;
-    color: var(--dark-gray);
+    color: #1a1a1a;
 }
 
 .row * {
-    margin: 0 0 3% 0;
+    margin: 0 0 1% 0;
 }
 
 .row {
-    margin-top: 2%;
+    margin-top: 0%;
 }
 
 #imageupload {
@@ -76,7 +76,9 @@ label{
 #submit, #home {
     background-color: var(--scuRed);
     color: white;
-    padding: 2% 4% 2% 4%;
+    padding:15px 30px; 
+    width: auto;
+    opacity: 1.0;
     margin-right: 3%;
     border-width: thin;
     transition: all 0.2s ease-in-out;
@@ -162,9 +164,12 @@ label{
 
 #removeImage{
     margin-right: auto;
+    font-family: 'Onest', sans-serif;
+    font-weight: 600;
     background-color: var(--scuRed);
     color: white;
-    padding:0.5rem;
+    padding:10px 20px;
+    width: auto;
     border:none;
     border-radius: 6px;
     transition:.2s all ease-in-out;

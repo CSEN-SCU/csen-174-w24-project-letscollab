@@ -57,22 +57,30 @@ label{
 input,textarea,select{
     border: 0px;
     border-radius: 12px;
-    padding:0.75rem;
+    padding:0.5rem;
     opacity: 0.6;
     resize: none;
+    font-family: 'Onest', sans-serif;
     font-size: large;
     transition: .2s all ease-in-out;
     max-width: 75%;
 }
-.submit, .home {
+
+input:focus,textarea:focus,select:focus{
+    opacity: 1.0;
+    padding:1rem;
+}
+.submit, .home,.logout{
+    opacity: 1.0;
     background-color: var(--scuRed);
     color: white;
     border-style: solid;
     border:none;
-    padding:1.5rem;
-    margin-right: 3%;
+    padding: 15px 30px; /* Top and bottom padding, Left and right padding */
+    width: auto; /* Adjust based on content size */
+    margin-right: 20px;
     border-width: thin;
-    transform: .2s all ease-in;
+    transition: .2s all ease-in;
 }
 
 .home {
@@ -80,7 +88,7 @@ input,textarea,select{
 }
 
 .submit:hover, .home:hover, .logout:hover {
-    scale:1.05;
+    scale:1.09;
     opacity: 1.0; 
     cursor: pointer;
 }

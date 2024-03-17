@@ -83,6 +83,7 @@ $(async () => {
         let data = await API.notifyInterestedUsers(projectData.ID);
         setResponse(data.response,data.status ? "green" : "red");
     });
+
     // Project skills
     const projectSkillContainer = $("#projectskills");
     projectData["Skills Desired"].forEach((skill) => {
@@ -153,8 +154,15 @@ $(async () => {
     // Create functionality for project control
     const deleteButton = $("#deleteproject");
     deleteButton.click(async () => {
-        await API.deleteProject(projectData.ID);
-        window.location.href = "/projects";
+        let res = await API.deleteProject(projectData.ID);
+        if(res.status){
+            setResponse(res.response,"green");
+            setTimeout(()=>{
+                window.location.href = "/projects";
+            },2000);
+        }else{
+            setResponse(res.response,"red");
+        }
     });
 });
 
@@ -165,10 +173,7 @@ $("#emailmembers").click(function() {
 $("#editproject").click(function() {
     window.location.href = `/editProject?id=${id}`;
 });
-$("#deleteproject").click(async () => {
-        await API.deleteProject(projectData.ID);
-        window.location.href = "/projects";
-});
+
 
 const loadSkillList = async () => {
     let skills = {};

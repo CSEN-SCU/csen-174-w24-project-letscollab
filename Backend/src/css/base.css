@@ -48,6 +48,7 @@ main
     padding: 2rem 4rem;
     /* text-align: center; */
     width: 70%;
+    
 }
 
 header
@@ -299,7 +300,8 @@ section.projectlist .interestSection .interestButton.selected:hover
 section.projectlist .interestSection .interestButton:hover
 {
     scale:1.02;
-    background-color: var(--background-color);
+    color:white;
+    background-color: var(--scuRed);
 }
 
 /** disabled if you created this project */
@@ -309,6 +311,7 @@ section.projectlist .interestSection .interestButton.dis
 }
 
 section.projectlist:hover{
+    box-shadow: 1px 1px 10px 1px var(--dark-gray);
     scale:1.02;
 }
 section.projectlist .interestSection .interestButton.dis:hover
@@ -355,24 +358,28 @@ section.projectlist mark
 
 section.projectlist
 {
-    background-color: var(--gray);
+    background-color: #fbfbfb;
     border-radius: 1rem;
     box-sizing: border-box;
     display: flex;
+    font-weight: 600;
     flex-direction: row;
     justify-content: start;
     margin: 2% 0 0 0;
     overflow: hidden;
     padding: 0;
     opacity: 1.0;
+    scale:1.0;
     transition: .2s all ease-in-out;
 
 }
 
 section.projectlist.opacityfadein{
     opacity: 0.0;
+    transform: translateY(40px); /* Start 20px below the final position */
 
 }
+
 
 section.projectlist h1 {
     font-size: xx-large;

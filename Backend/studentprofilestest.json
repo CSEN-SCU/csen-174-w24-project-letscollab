@@ -16,7 +16,7 @@
             "78df1de0-390d-4591-a2d3-2c75717c0b7d"
         ],
         "ProjectsInterested": [
-            "4344cede-8822-45da-bdcc-ad841498e8cf"
+            "402604e5-e78f-40ff-a918-99971499b4c2"
         ]
     },
     "jane@scu.edu": {
@@ -29,13 +29,14 @@
         "Description": "I am a Business Administration major seeking opportunities to gain experience in ReactJS.",
         "Skills": [
             "Entrepreneurship",
-            "Arduino"
+            "Arduino",
+            "Management"
         ],
         "ProjectsCreated": [
             "83edd5e3-cf74-4994-a57a-24e808041269"
         ],
         "ProjectsInterested": [
-            "a475fcc6-0a18-4c31-8c30-3e2a221f32cf"
+            "402604e5-e78f-40ff-a918-99971499b4c2"
         ]
     },
     "joe@scu.edu": {
@@ -47,6 +48,9 @@
         "Year": "Sophomore",
         "Description": "I am a Engineering major seeking opportunities to gain experience in Sensors.",
         "Skills": [
+            "Swift",
+            "CSS",
+            "Business",
             "Ruby",
             "JavaScript",
             "HTML"
@@ -212,18 +216,23 @@
         "GoogleID": "110594390120746253458",
         "Password": "",
         "Year": "Junior",
-        "Description": "Hi I'm definitely not a freshman",
+        "Description": "Hi my name is Francisco Salinas and I like to build cool things. Blah blah blah.",
         "Skills": [
-            "Figma",
-            "ReactJS",
-            "C#",
-            "Computer Science",
-            "CSS",
+            "Networking",
+            "Entrepreneurship",
             "SQL",
-            "Entrepreneurship"
+            "CSS",
+            "C#",
+            "ReactJS",
+            "C++",
+            "Python",
+            "TypeScript",
+            "Ruby",
+            "MatLab",
+            "Kotlin"
         ],
         "ProjectsCreated": [
-            "46882e4d-924a-47b7-9ec5-83a41669884a"
+            "0ae033cd-2ca0-46ff-90f1-a91ffd002146"
         ],
         "ProjectsInterested": []
     },

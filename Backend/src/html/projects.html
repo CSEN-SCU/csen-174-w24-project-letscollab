@@ -11,7 +11,7 @@
         <script src="../js/jquery-3.7.1.js"></script>
     <script src="../js/api.js"></script>
     <script src="../js/base.js" async defer></script>
-    <script defer src="../js/projects.js"></script>
+    <script defer src="../js/projects.js" async defer></script>
 </head>
 
 <body>
@@ -24,16 +24,20 @@
                 <li onclick="selectTab(1)">Projects You're Interested In</li>
                 <li onclick="selectTab(2)">Your Projects</li>
                 <li id="createProject" onclick="selectTab(3)">Create A Project +</li>
+                <li id="usericon" onclick="location.href='profile'">
+                    <p>JD</p>
+                </li>
             </ul>
-            <div id="usericon" onclick="location.href='profile'">
-                <p>JD</p>
-            </div>
+            
         </header>
         <div id="searchbar">
             <input type="search" id="searchprojects" placeholder="Find Projects..." />
             <img id="searchicon" src="https://cdn-icons-png.flaticon.com/512/8915/8915520.png" alt="search icon" />
         </div>
-
+        <div class="sort-buttons">
+            <button id="sort-relevance" class="sort-button">Sort by Relevance</button>
+            <button id="sort-recent" class="sort-button">Sort by Recent</button>
+        </div>
         <!--
             `main` is populated by `sections`
             each section denotes a PROJECT
