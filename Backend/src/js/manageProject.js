@@ -8,6 +8,7 @@ async function setResponse(text, color){
     },1500)
 }
 function setLoadingResponse(){
+    $('#manageResponse').html("");
     $('#manageResponse').addClass("loader");
 }
 let userInfo = {};

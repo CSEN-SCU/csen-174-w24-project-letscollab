@@ -17,6 +17,9 @@ function toUnixTimestamp (date,time)
 
 /** asynchronously add event listeners on page load */
 $(async () => {
+    $('#home').click(()=>{
+        window.location.href = "/projects";
+    });
     // Create input listener for uploading project image
     $("#fileUpload").on("input", (event) => {
         updatePreviewImage(event);
@@ -326,6 +329,7 @@ function getSkillNamesArray() {
   }
   
   function setLoader(){
+    $('#formSubmitResponse').html("");
     $('#formSubmitResponse').addClass("loader");
   }
   async function setResponse(text, color){
@@ -397,7 +401,3 @@ projectForm.addEventListener("submit",async (event)=>{
     });
 
 });
-
-const delay = (time) => {
-    return new Promise(resolve => setTimeout(resolve, time));
-}

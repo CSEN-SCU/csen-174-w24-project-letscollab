@@ -125,9 +125,9 @@ mark {
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    overflow-x: auto;
     border-radius: 1rem;
     background-color: var(--gray);
+
     padding: 2%;
     scrollbar-width: thin;
 }
@@ -135,8 +135,9 @@ mark {
 #participants {
     display: flex;
     flex-direction: row;
-    justify-content: left;
-    gap: 5%;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
 }
 
 #participants li *:not(.skills *) {

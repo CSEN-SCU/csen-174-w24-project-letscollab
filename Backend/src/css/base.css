@@ -256,11 +256,13 @@ section.projectlist .interestSection
     font-size: large;
     text-align: center;
     transition: .2s all ease-in-out;
+    font-family: 'onest', sans-serif;
 
 }
 .organizername:hover{
     text-decoration: underline;
     cursor: pointer;
+    scale:1.01;
 }
 #organizerDiv *{
     display:inline-block;

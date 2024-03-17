@@ -391,6 +391,7 @@ function getSkillNamesArray() {
   }
   
 function setLoader(){
+    $('#formSubmitResponse').html("");
     $('#formSubmitResponse').addClass("loader");
 
 }
