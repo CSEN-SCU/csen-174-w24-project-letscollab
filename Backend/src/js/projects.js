@@ -520,7 +520,7 @@ searchBar.addEventListener('input', function() {
         
         for (let i = 0; i < projectHTMLs.length; ++i)
         {
-            if (projArray[i].Name.toLowerCase().includes(input))
+            if (projArray[i].Name.toLowerCase().includes(input) || projArray[i].Description.toLowerCase().includes(input))
                 projectHTMLs[i].classList.remove("hidden");
             else
                 projectHTMLs[i].classList.add("hidden");
