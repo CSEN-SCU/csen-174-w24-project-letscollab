@@ -13,8 +13,23 @@ $('#description').val(userobj.Description)
 const container = $(".skills");
 userobj.Skills.forEach((skill) => {
     createProfileSkill(container, {"skillName":skill,"skillType":""},[]);
-});
+    
+}); 
 
+}
+
+function setLoader(){
+    $('#response').html("");
+    $('#response').addClass("loader");
+
+}
+async function setResponse(text, color){
+    await delay(250);
+    $('#response').removeClass("loader");
+    $('#response').html(`${text}`).css("color",color);
+    setTimeout(()=>{
+        $('#response').html("");
+    },800)
 }
 
 async function getRelatedProjects(projects,elem){
@@ -22,7 +37,7 @@ async function getRelatedProjects(projects,elem){
         const results = await Promise.all(projects.map(async (id) => {
             try {
                 const response = await API.getProject(id);
-                return response.data; 
+                return response.status?response.data:null; 
             } catch (error) {
                 console.error(`Failed to fetch data for project ${id}:`, error);
                 throw error; 
@@ -31,7 +46,10 @@ async function getRelatedProjects(projects,elem){
     
         // Process the results
         results.forEach(project => {
-            elem.append(`<li><a href="/manageProject?id=${project.ID}">${project.Name}</a><li>`);
+            if(project!=null){
+            console.log(project)
+            elem.append(`<li><a href="/manageProject?id=${project.ID}">${project.Name}</a></li>`);
+            }
         });
     } catch (error) {
         // This catches any errors from the API calls
@@ -39,6 +57,8 @@ async function getRelatedProjects(projects,elem){
     }
     
 }
+
+
 
 
 $(async () => {
@@ -55,5 +75,21 @@ $(async () => {
         getRelatedProjects(userdata.data.ProjectsCreated,$("#projectCreatedList"));
         getRelatedProjects(userdata.data.ProjectsInterested,$("#projectInterestedList"));
     }
+
+    $("#connect").click(async()=>{
+        setLoader();
+        const urlParams = new URLSearchParams(window.location.search);
+        const userID = urlParams.get('id');   
+        console.log('Sending connection request to: ' + userID)
+        await API.connectWithUser(userID).then(response => {
+            if(response.status){
+                setResponse(response.response,"green");
+            }else{
+                setResponse(response.response,"red");
+            }
+        }).catch(err => {
+            console.error("Error sending connection request: " + err);
+        })
+    })
 
 })

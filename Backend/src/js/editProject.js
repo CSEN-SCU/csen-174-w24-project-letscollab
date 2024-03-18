@@ -56,6 +56,9 @@ $(async () => {
     $("#fileUpload").on("input", (event) => {
         updatePreviewImage(event);
     });
+    $("#imageurl").on("input", (event) => {
+        updatePreviewImage(event);
+    });
 
     // Create key listener for project name
     $("#name").on("keyup", () => {
@@ -67,9 +70,12 @@ $(async () => {
         updatePreviewDescription();
     });
     $("#removeImage").on("click", () => {
-        $('#preview').hide();
+        $("#preview").attr("src", "").hide();
+        $(".projectlist img").attr("src", "../images/background.jpeg");
         $('.upload-label').show(); // Show the "Upload" text if no image
         $("#removeImage").hide();
+        $("#imageurl").val("");
+        $("uploadstatus").html("");
     })
     // Create input listener for project time
     $("#time").on("input", () => {
@@ -107,26 +113,29 @@ $(async () => {
 const updatePreviewImage = (event) => {
     // Check if there is an image in the upload list
     const images = event.target.files;
-    if (images.length > 0){
-        const image = URL.createObjectURL(images[0]);
-        const previewElement = $(".projectlist img");
-        previewElement.attr("src", image);
-        $('#preview').attr('src', image).show();
-        $('.upload-label').hide(); // Hide the "Upload" text
-        $('#removeImage').show(); // Show the "Remove" button
-
-        const status = $("#uploadstatus");
-        status.html("Upload Successful!");
-        status.css({
-            "color": "green",
-            "font-size": "small",
-        });
+    let image = "";
+    if(event.currentTarget === $("#imageurl")[0]){
+        image = $("#imageurl").val();
     }else{
-        $('#preview').hide();
-        $('.upload-label').show(); // Show the "Upload" text if no image
+        if (images.length < 0){
+            return;
+        }else{
+            image = URL.createObjectURL(images[0]);
+        }
     }
-
+    const previewElement = $(".projectlist img");
+    previewElement.attr("src", image);
     
+    $('#preview').attr('src', image).show();
+    $('.upload-label').hide(); // Hide the "Upload" text
+    $('#removeImage').show(); // Show the "Remove" button
+    // Create status message
+    const status = $("#uploadstatus");
+    status.html("Upload Successful!");
+    status.css({
+        "color": "green",
+        "font-size": "small",
+    });
 }
 
 
@@ -137,7 +146,12 @@ const updatePreviewFromBinarySource = (base64String) => {
     // Construct the src for the image
     const previewElement = $(".projectlist img");
     if(base64String.startsWith("https://")){
+            $('#imageurl').val(base64String);
+            console.log('uploading preview from binaryu source');
+            $("#preview").attr("src", base64String).show();
             previewElement.attr("src", base64String);
+            $("#removeImage").show();
+            $('.upload-label').hide();
             return;
     }
     const imageSrc = `data:image/jpeg;base64,${base64String}`; // Assume JPEG for simplicity, adjust if necessary

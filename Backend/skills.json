@@ -122,5 +122,41 @@
     "Figma": {
         "skillName": "Figma",
         "skillType": "cs"
+    },
+    "Flutter": {
+        "skillName": "Flutter",
+        "skillType": "cs"
+    },
+    "MongoDB": {
+        "skillName": "MongoDB",
+        "skillType": "cs"
+    },
+    "Docker": {
+        "skillName": "Docker",
+        "skillType": "cs"
+    },
+    "Ubuntu": {
+        "skillName": "Ubuntu",
+        "skillType": "cs"
+    },
+    "jQuery": {
+        "skillName": "jQuery",
+        "skillType": "cs"
+    },
+    "NGINX": {
+        "skillName": "NGINX",
+        "skillType": "cs"
+    },
+    "Bootstrap": {
+        "skillName": "Bootstrap",
+        "skillType": "cs"
+    },
+    "AWS ": {
+        "skillName": "AWS ",
+        "skillType": "cs"
+    },
+    "AngularJS": {
+        "skillName": "AngularJS",
+        "skillType": "cs"
     }
 }

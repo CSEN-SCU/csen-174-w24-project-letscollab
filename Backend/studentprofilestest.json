@@ -13,10 +13,13 @@
             "C"
         ],
         "ProjectsCreated": [
-            "78df1de0-390d-4591-a2d3-2c75717c0b7d"
+            "78df1de0-390d-4591-a2d3-2c75717c0b7d",
+            "6a8e9ec9-3377-46df-83ee-f4af995f79e2"
         ],
         "ProjectsInterested": [
-            "402604e5-e78f-40ff-a918-99971499b4c2"
+            "402604e5-e78f-40ff-a918-99971499b4c2",
+            "4d9840e3-8708-4ccd-8d07-a4d204a87cd6",
+            "cf93a714-f976-46bd-91af-13915d545982"
         ]
     },
     "jane@scu.edu": {
@@ -33,10 +36,15 @@
             "Management"
         ],
         "ProjectsCreated": [
-            "83edd5e3-cf74-4994-a57a-24e808041269"
+            "83edd5e3-cf74-4994-a57a-24e808041269",
+            "9d6658db-b1c5-4e46-bdf5-76a3cbebf49f"
         ],
         "ProjectsInterested": [
-            "402604e5-e78f-40ff-a918-99971499b4c2"
+            "402604e5-e78f-40ff-a918-99971499b4c2",
+            "dd5b33aa-fb71-42f0-85c1-5095996ea3fe",
+            "4d9840e3-8708-4ccd-8d07-a4d204a87cd6",
+            "2469577a-c8b2-4bfd-a28c-809cf3b42111",
+            "0647e1d0-74e9-4d8e-b2ad-7a470d811e9a"
         ]
     },
     "joe@scu.edu": {
@@ -56,10 +64,12 @@
             "HTML"
         ],
         "ProjectsCreated": [
-            "c8b34fd3-0d8b-4b36-a199-31c11bd0ee48"
+            "c8b34fd3-0d8b-4b36-a199-31c11bd0ee48",
+            "0647e1d0-74e9-4d8e-b2ad-7a470d811e9a"
         ],
         "ProjectsInterested": [
-            "21898ea2-d495-4c38-9b99-fd11b49974de"
+            "21898ea2-d495-4c38-9b99-fd11b49974de",
+            "4d9840e3-8708-4ccd-8d07-a4d204a87cd6"
         ]
     },
     "alice@scu.edu": {
@@ -78,10 +88,13 @@
             "Rust"
         ],
         "ProjectsCreated": [
-            "d416838d-8ac1-4892-afab-4f6bc9616012"
+            "d416838d-8ac1-4892-afab-4f6bc9616012",
+            "553b22ad-84a9-414e-8c01-df124de4f629"
         ],
         "ProjectsInterested": [
-            "d949172d-07ee-4bcc-9e72-3afc18cd06d6"
+            "d949172d-07ee-4bcc-9e72-3afc18cd06d6",
+            "dd5b33aa-fb71-42f0-85c1-5095996ea3fe",
+            "cf93a714-f976-46bd-91af-13915d545982"
         ]
     },
     "bob@scu.edu": {
@@ -99,10 +112,14 @@
             "Computer Science"
         ],
         "ProjectsCreated": [
-            "402604e5-e78f-40ff-a918-99971499b4c2"
+            "402604e5-e78f-40ff-a918-99971499b4c2",
+            "cf93a714-f976-46bd-91af-13915d545982"
         ],
         "ProjectsInterested": [
-            "ec0a0dec-531e-4785-907a-aae2007ebd2e"
+            "ec0a0dec-531e-4785-907a-aae2007ebd2e",
+            "dd5b33aa-fb71-42f0-85c1-5095996ea3fe",
+            "4d9840e3-8708-4ccd-8d07-a4d204a87cd6",
+            "553b22ad-84a9-414e-8c01-df124de4f629"
         ]
     },
     "charlie@scu.edu": {
@@ -120,10 +137,12 @@
             "Arduino"
         ],
         "ProjectsCreated": [
-            "08e43040-2cab-442c-ac74-05694b2506ba"
+            "08e43040-2cab-442c-ac74-05694b2506ba",
+            "2469577a-c8b2-4bfd-a28c-809cf3b42111"
         ],
         "ProjectsInterested": [
-            "33388d38-1c74-444d-968b-47da11d59f53"
+            "33388d38-1c74-444d-968b-47da11d59f53",
+            "cf93a714-f976-46bd-91af-13915d545982"
         ]
     },
     "markzucker@scu.edu": {
@@ -145,9 +164,14 @@
         ],
         "ProjectsCreated": [
             "85df696a-7d04-44e9-94ef-f9cf022fd409",
+            "4d9840e3-8708-4ccd-8d07-a4d204a87cd6",
             "c48d06fe-2cbd-4f7a-ac0f-88c36757b5a0"
         ],
-        "ProjectsInterested": []
+        "ProjectsInterested": [
+            "9d6658db-b1c5-4e46-bdf5-76a3cbebf49f",
+            "0ae033cd-2ca0-46ff-90f1-a91ffd002146",
+            "dd5b33aa-fb71-42f0-85c1-5095996ea3fe"
+        ]
     },
     "danny@scu.edu": {
         "FirstName": "Danny",
@@ -167,7 +191,10 @@
             "11eb0872-21e2-48cb-baa8-3c662328cbc3"
         ],
         "ProjectsInterested": [
-            "83edd5e3-cf74-4994-a57a-24e808041269"
+            "83edd5e3-cf74-4994-a57a-24e808041269",
+            "0754f264-3041-4c79-82ac-34719795214d",
+            "6a8e9ec9-3377-46df-83ee-f4af995f79e2",
+            "cf93a714-f976-46bd-91af-13915d545982"
         ]
     },
     "erin@scu.edu": {
@@ -183,10 +210,15 @@
             "Networking"
         ],
         "ProjectsCreated": [
-            "4d51078e-b892-4b01-b90b-50ea5f03e561"
+            "4d51078e-b892-4b01-b90b-50ea5f03e561",
+            "dd5b33aa-fb71-42f0-85c1-5095996ea3fe"
         ],
         "ProjectsInterested": [
-            "08e43040-2cab-442c-ac74-05694b2506ba"
+            "08e43040-2cab-442c-ac74-05694b2506ba",
+            "0754f264-3041-4c79-82ac-34719795214d",
+            "6a8e9ec9-3377-46df-83ee-f4af995f79e2",
+            "5eae8751-8368-4504-859c-41fc203afb9d",
+            "553b22ad-84a9-414e-8c01-df124de4f629"
         ]
     },
     "fiona@scu.edu": {
@@ -206,7 +238,12 @@
             "31f3b1c8-959b-4e0e-a8d2-215c77d10d99"
         ],
         "ProjectsInterested": [
-            "08e43040-2cab-442c-ac74-05694b2506ba"
+            "08e43040-2cab-442c-ac74-05694b2506ba",
+            "0754f264-3041-4c79-82ac-34719795214d",
+            "6a8e9ec9-3377-46df-83ee-f4af995f79e2",
+            "5eae8751-8368-4504-859c-41fc203afb9d",
+            "2469577a-c8b2-4bfd-a28c-809cf3b42111",
+            "cf93a714-f976-46bd-91af-13915d545982"
         ]
     },
     "fsalinas@scu.edu": {
@@ -218,23 +255,40 @@
         "Year": "Junior",
         "Description": "Hi my name is Francisco Salinas and I like to build cool things. Blah blah blah.",
         "Skills": [
+            "AngularJS",
+            "AWS ",
+            "Bootstrap",
+            "NGINX",
+            "jQuery",
+            "Ubuntu",
+            "Docker",
+            "MongoDB",
+            "Flutter",
             "Networking",
             "Entrepreneurship",
             "SQL",
+            "Ruby",
+            "TypeScript",
             "CSS",
             "C#",
             "ReactJS",
-            "C++",
             "Python",
-            "TypeScript",
-            "Ruby",
-            "MatLab",
-            "Kotlin"
+            "C++"
         ],
         "ProjectsCreated": [
-            "0ae033cd-2ca0-46ff-90f1-a91ffd002146"
+            "0ae033cd-2ca0-46ff-90f1-a91ffd002146",
+            "0754f264-3041-4c79-82ac-34719795214d",
+            "5eae8751-8368-4504-859c-41fc203afb9d"
         ],
-        "ProjectsInterested": []
+        "ProjectsInterested": [
+            "83edd5e3-cf74-4994-a57a-24e808041269",
+            "6a8e9ec9-3377-46df-83ee-f4af995f79e2",
+            "dd5b33aa-fb71-42f0-85c1-5095996ea3fe",
+            "4d9840e3-8708-4ccd-8d07-a4d204a87cd6",
+            "2469577a-c8b2-4bfd-a28c-809cf3b42111",
+            "cf93a714-f976-46bd-91af-13915d545982",
+            "0647e1d0-74e9-4d8e-b2ad-7a470d811e9a"
+        ]
     },
     "salinasf3@gmail.com": {
         "FirstName": "Francisco",

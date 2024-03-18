@@ -463,3 +463,29 @@ section.projectlist.hidden
       transform: translate3d(8px, 0, 0);
     }
   }
+
+  #imageurl{
+    max-width: 30%;
+  }
+
+  #projectInterestedList,#projectCreatedList{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap:1rem;
+  }
+
+  #projectInterestedList li,#projectCreatedList li{
+    background:var(--gray);
+    padding:10px 20px;
+    border-radius:12px;
+    transition: .2s all ease-in-out;
+  }
+
+  #projectInterestedList li a,#projectCreatedList li a{
+    text-decoration: none;
+  }
+
+  #projectInterestedList li:hover,#projectCreatedList li:hover{
+    scale:1.05;
+  }

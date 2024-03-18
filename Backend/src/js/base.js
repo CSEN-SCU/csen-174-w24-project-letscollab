@@ -28,6 +28,7 @@ const delay = (time) => {
 $(() => {
     $("#usericon p").html(`${localStorage.getItem("FirstName").charAt(0).toUpperCase()}${localStorage.getItem("LastName").charAt(0).toUpperCase()}`);
     $("#usericon").click(() => {window.location.href = "/profile"});
+
 });
 
 /**

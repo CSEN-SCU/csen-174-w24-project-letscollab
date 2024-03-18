@@ -24,6 +24,9 @@ $(async () => {
     $("#fileUpload").on("input", (event) => {
         updatePreviewImage(event);
     });
+    $("#imageurl").on("input", (event) => {
+        updatePreviewImage(event)
+    });
 
     // Create key listener for project name
     $("#name").on("keyup", () => {
@@ -55,9 +58,11 @@ $(async () => {
         updatePeopleRequired();
     });
     $("#removeImage").on("click", () => {
-        $('#preview').hide();
+        $("#preview").attr("src", "").hide();
+        $('#imageurl').val('');
         $('.upload-label').show(); // Show the "Upload" text if no image
         $("#removeImage").hide();
+        $("#uploadstatus").html("");
     })
     // Load skill list
     await loadSkillList();
@@ -75,9 +80,16 @@ $(async () => {
 const updatePreviewImage = (event) => {
     // Check if there is an image in the upload list
     const images = event.target.files;
-    if (images.length < 0) return;
-
-    const image = URL.createObjectURL(images[0]);
+    let image = "";
+    if(event.currentTarget === $("#imageurl")[0]){
+        image = $("#imageurl").val();
+    }else{
+        if (images.length < 0){
+            return;
+        }else{
+            image = URL.createObjectURL(images[0]);
+        }
+    }
     const previewElement = $(".projectlist img");
     previewElement.attr("src", image);
     $('#preview').attr('src', image).show();
@@ -340,6 +352,29 @@ function getSkillNamesArray() {
         $(this).html("");
      },1500)
 }
+
+function getBase64FromImage() {
+    // Assuming the image has an id="preview"
+    var imageData = $('#preview').attr('src');
+    if (imageData) {
+        if(imageData.startsWith("https://")){
+            return imageData;
+        }
+        // Optional: Check if it's indeed base64 data
+        if (imageData.indexOf('data:image') === 0) {
+            // Image data is in base64 format
+            return imageData.split(',')[1]; // Split by comma and take the second part, which is the base64 data
+        } else {
+            console.log('The image src does not contain base64 data.');
+            return null;
+        }
+    } else {
+        console.log('No image found.');
+        return null;
+    }
+}
+
+
 const fileToDataURL = async(file) =>{
     let reader = new FileReader();
     return new Promise(function (resolve, reject) {
@@ -361,11 +396,19 @@ projectForm.addEventListener("submit",async (event)=>{
     let date = toUnixTimestamp(obj["date"],obj["time"]);
     const file = document.getElementById("fileUpload").files[0];
     let imageBase64 = "";
-    try {
-        imageBase64 = await fileToDataURL(file);
-    } catch (e) {
-        setResponse("Please upload an image file to your project!", "red");
-        return;
+    if(!file){
+        imageBase64 = getBase64FromImage();
+        if(!imageBase64){
+            setResponse("No image selected","red");
+            return;
+        }
+    }else{
+        try {
+            imageBase64 = await fileToDataURL(file);
+        } catch (e) {
+            setResponse("Please upload an image file to your project!", "red");
+            return;
+        }    
     }
     let sendObj = {
         "Name":obj["name"],
