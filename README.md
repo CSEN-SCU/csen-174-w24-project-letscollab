@@ -1,5 +1,7 @@
 # LetsCollab
 
+[![Image from Gyazo](https://i.gyazo.com/f6682d4851185f1aabcd222450caac9f.png)](https://gyazo.com/f6682d4851185f1aabcd222450caac9f)
+
 **FOR** University students looking to build software projects for experience
 **WHO** are looking for colleagues in their immediate network who possess the desired skills to execute their project idea.
 **LET’S COLLAB** is a WEB APPLICATION
